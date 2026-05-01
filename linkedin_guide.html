@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinkedIn Optimization Guide — Beyaricko Degu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:    #0f1117;
+      --ink2:   #374151;
+      --muted:  #6b7280;
+      --accent: #0a66c2;
+      --accent2: #00a0dc;
+      --line:   #e5e7eb;
+      --bg:     #f8fafc;
+      --card:   #ffffff;
+      --green:  #057642;
+      --green-bg: #e6f4ea;
+      --orange: #d97706;
+      --orange-bg: #fef3c7;
+      --red:    #dc2626;
+      --red-bg: #fef2f2;
+    }
+
+    html { font-size: 10.5pt; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+
+    .wrapper { max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+    /* TOP */
+    .page-header {
+      background: var(--accent);
+      color: white;
+      padding: 2.5rem 2rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+
+    .page-header h1 { font-size: 1.6rem; font-weight: 700; margin-bottom: .3rem; }
+    .page-header p { font-size: .9rem; opacity: .85; }
+
+    .back-link { display: inline-block; font-size: .8rem; color: var(--accent); text-decoration: none; margin-bottom: 1.5rem; }
+    .back-link:hover { text-decoration: underline; }
+
+    /* SECTION */
+    .section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--line);
+      background: #f9fafb;
+    }
+
+    .section-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .7rem;
+      font-weight: 500;
+      background: var(--accent);
+      color: white;
+      padding: .2rem .5rem;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    .section-title { font-size: .95rem; font-weight: 700; color: var(--ink); }
+    .section-subtitle { font-size: .75rem; color: var(--muted); margin-left: auto; }
+
+    .section-body { padding: 1.5rem; }
+
+    /* COPY BLOCK */
+    .copy-block {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .8rem;
+      line-height: 1.75;
+      color: var(--ink);
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin-bottom: 1rem;
+    }
+
+    .copy-label {
+      font-size: .65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--accent);
+      margin-bottom: .4rem;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    /* NOTES */
+    .note {
+      font-size: .82rem;
+      color: var(--ink2);
+      line-height: 1.7;
+      margin-bottom: .75rem;
+    }
+
+    .note strong { color: var(--ink); font-weight: 600; }
+
+    /* BADGES */
+    .badge {
+      display: inline-block;
+      font-size: .65rem;
+      font-weight: 600;
+      padding: .2rem .6rem;
+      border-radius: 999px;
+      margin-right: .35rem;
+      margin-bottom: .35rem;
+    }
+
+    .badge-green { background: var(--green-bg); color: var(--green); }
+    .badge-orange { background: var(--orange-bg); color: var(--orange); }
+    .badge-blue { background: #dbeafe; color: #1d4ed8; }
+    .badge-red { background: var(--red-bg); color: var(--red); }
+
+    /* SKILLS GRID */
+    .skills-grid { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .75rem; }
+
+    .skill-chip {
+      font-size: .72rem;
+      background: #f1f5f9;
+      color: var(--ink2);
+      border: 1px solid #cbd5e1;
+      padding: .25rem .65rem;
+      border-radius: 4px;
+    }
+
+    .skill-chip.pin { background: #dbeafe; color: #1d4ed8; border-color: #bfdbfe; font-weight: 600; }
+
+    /* CHECKLIST */
+    .checklist { list-style: none; padding: 0; }
+
+    .checklist li {
+      display: flex;
+      gap: .6rem;
+      font-size: .82rem;
+      color: var(--ink2);
+      padding: .4rem 0;
+      border-bottom: 1px solid #f1f5f9;
+      line-height: 1.5;
+    }
+
+    .checklist li:last-child { border-bottom: none; }
+
+    .checklist li::before {
+      content: '☐';
+      color: var(--accent);
+      font-size: .9rem;
+      flex-shrink: 0;
+      margin-top: .05rem;
+    }
+
+    /* ACTION ITEMS */
+    .action-row {
+      display: flex;
+      align-items: flex-start;
+      gap: .75rem;
+      padding: .65rem 0;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: .82rem;
+      color: var(--ink2);
+    }
+
+    .action-row:last-child { border-bottom: none; }
+    .action-icon { font-size: 1rem; flex-shrink: 0; }
+
+    /* DIVIDER */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: 1.25rem 0;
+    }
+
+    h3 { font-size: .88rem; font-weight: 700; color: var(--ink); margin-bottom: .6rem; margin-top: 1.25rem; }
+    h3:first-child { margin-top: 0; }
+
+    /* PRINT */
+    @media print {
+      body { background: white; }
+      .page-header { background: #0a66c2 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .section { break-inside: avoid; }
+    }
+
+    .print-hint {
+      text-align: center;
+      font-size: .8rem;
+      color: var(--muted);
+      padding: .5rem;
+      margin-bottom: 1rem;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .print-hint a { color: var(--accent); text-decoration: none; margin-right: 1.5rem; }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <p class="print-hint">
+    <a href="index.html">← Back to Portfolio</a>
+    Press Ctrl/Cmd + P to save as PDF
+  </p>
+
+  <div class="page-header">
+    <h1>LinkedIn Profile — Full Optimization Guide</h1>
+    <p>Every section written and ready to copy-paste. Research-backed for 2026 recruiter algorithms and the Netherlands market.</p>
+  </div>
+
+  <!-- ══ 01 HEADLINE ══ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">Headline</span>
+      <span class="section-subtitle">Most visible field · shows in every search result</span>
+    </div>
+    <div class="section-body">
+      <p class="note">This is the single most important field on LinkedIn. It shows under your name in every search, feed post, and message. Recruiters search by keywords — if your headline doesn't have the words, you won't appear.</p>
+      <div class="copy-label">→ Copy this exactly</div>
+      <div class="copy-block">AI Automation Builder · Make.com & n8n · Software Engineer · Content & Media Strategy MSc · Netherlands</div>
+      <p class="note"><strong>Why this works:</strong> Leads with what you build (not your title), names the exact tools recruiters search for (Make.com, n8n), establishes the rare dual background, and includes Netherlands for local search visibility. 96 characters — well within the limit.</p>
+    </div>
+  </div>
+
+  <!-- ══ 02 ABOUT ══ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">About / Summary</span>
+      <span class="section-subtitle">Hook must land in first ~200 characters before "See more"</span>
+    </div>
+    <div class="section-body">
+      <p class="note"><strong>Critical:</strong> LinkedIn cuts off the About section after ~200 characters on mobile before showing "See more." The first two lines decide whether someone keeps reading. The hook below is written to work within that cutoff.</p>
+      <div class="copy-label">→ Copy this exactly</div>
+      <div class="copy-block">I build AI automations that do real work — candidate screening pipelines, sentiment-routing bots, document generators — using Make.com, n8n, and LLMs.
+
+Software Engineer (BSc) finishing an MA in Content & Media Strategy in the Netherlands. Two things most people have one of.
+
+What I've actually built:
+▸ AI recruitment pipeline: watches Google Drive for CVs, Make AI Agent scores each candidate, logs to Google Sheets for human review
+▸ Telegram support bot: sentiment analysis routes messages to AI reply or human escalation — live agentic logic
+▸ AI document generation: Google Sheets data → LLM → formatted Google Docs, automatically
+▸ 20+ client websites across film production, music labels, law, healthcare, and international trade
+
+Co-founded two companies (Digital Abyssinia Technologies, 2019; Build Up Addis, 2024). Certified in Google Analytics GA4 and HubSpot Content Marketing. Dutch B1, based in Leeuwarden, open to Amsterdam and beyond.
+
+I'm looking for a role where I can contribute from day one, keep learning, and grow into something long-term — ideally in AI automation, marketing technology, or digital operations.
+
+📩 beyaricko.nega@gmail.com
+🌐 jerichonega.github.io/portfolio</div>
+      <p class="note"><strong>Character count:</strong> ~1,050 characters — well-paced, not overwhelming. The bullet list breaks the wall of text and makes it scannable on mobile.</p>
+    </div>
+  </div>
+
+  <!-- ══ 03 EXPERIENCE ══ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">Experience</span>
+      <span class="section-subtitle">3–5 achievement bullets per role · front-load the best ones</span>
+    </div>
+    <div class="section-body">
+
+      <h3>Role 1 — Build Up Addis</h3>
+      <div class="copy-label">Job title</div>
+      <div class="copy-block">Co-Founder & Digital Lead</div>
+      <div class="copy-label">Description</div>
+      <div class="copy-block">Co-founded a digital studio delivering websites and AI-powered workflows for clients across entertainment, healthcare, law, music, and international trade.
+
+▸ Built production-ready AI automations using Make.com and n8n — including an AI candidate screening pipeline (Google Drive → AI Agent → Google Sheets) and a sentiment-routing Telegram bot
+▸ Delivered 9+ client websites end-to-end: discovery, UX, WordPress/Elementor build, GA4 tracking, SEO, and launch
+▸ Managed full client lifecycle autonomously across international time zones</div>
+
+      <hr class="divider" />
+
+      <h3>Role 2 — Digital Abyssinia Technologies</h3>
+      <div class="copy-label">Job title</div>
+      <div class="copy-block">Co-Founder & Content Lead</div>
+      <div class="copy-label">Description</div>
+      <div class="copy-block">Co-founded a software and digital agency, building websites and digital solutions for international clients across multiple industries.
+
+▸ Developed 20+ websites using WordPress and Elementor Pro, achieving a 40% average improvement in organic search rankings through technical SEO
+▸ Collaborated with design, marketing, and development teams across film production, record labels, law firms, medical companies, and international trade
+▸ Led client projects from brief to handover — strategy, design, build, tracking, and reporting</div>
+
+      <hr class="divider" />
+
+      <h3>Role 3 — Barcon Getta</h3>
+      <div class="copy-label">Job title</div>
+      <div class="copy-block">Digital Marketing Specialist</div>
+      <div class="copy-label">Description</div>
+      <div class="copy-block">Managed digital marketing campaigns for competitive international markets, working remotely across time zones.
+
+▸ Increased customer engagement by 30% through targeted SEO, content strategy, and conversion optimisation
+▸ Optimised WordPress site performance and implemented conversion tracking via Google Tag Manager and HubSpot</div>
+
+      <hr class="divider" />
+
+      <h3>Role 4 — ip4sure</h3>
+      <div class="copy-label">Job title</div>
+      <div class="copy-block">SEO & Content Strategist</div>
+      <div class="copy-label">Description</div>
+      <div class="copy-block">Part-time SEO and content strategy role at a Dutch digital agency in Eindhoven.
+
+▸ Improved organic search rankings by 25% for B2B clients through technical SEO audits and content optimisation
+▸ Delivered GA4 migration support and built custom reporting dashboards for stakeholder review</div>
+
+    </div>
+  </div>
+
+  <!-- ══ 04 EDUCATION ══ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <span class="section-title">Education</span>
+      <span class="section-subtitle">Add descriptions — they're indexed by LinkedIn search</span>
+    </div>
+    <div class="section-body">
+
+      <h3>NHL Stenden</h3>
+      <div class="copy-label">Degree & field</div>
+      <div class="copy-block">Master of Arts (MA), Content & Media Strategy</div>
+      <div class="copy-label">Description (add this)</div>
+      <div class="copy-block">Studying the strategic and business dimensions of media, content, and digital transformation. Focus areas: content ecosystems, digital media strategy, audience analytics, and AI adoption in creative industries. Expected graduation: 2026.</div>
+
+      <hr class="divider" />
+
+      <h3>Arba Minch University</h3>
+      <div class="copy-label">Degree & field</div>
+      <div class="copy-block">Bachelor of Science (BSc), Software Engineering</div>
+      <div class="copy-label">Description (add this)</div>
+      <div class="copy-block">Foundation in software systems, programming, and engineering principles. Provided the technical grounding behind applied work in web development, AI automation, and systems design.</div>
+
+    </div>
+  </div>
+
+  <!-- ══ 05 SKILLS ══ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <span class="section-title">Skills</span>
+      <span class="section-subtitle">Pin your top 3 · these show prominently on your profile</span>
+    </div>
+    <div class="section-body">
+      <p class="note"><strong>Pin these 3 first</strong> (they appear at the top of your Skills section and on your profile card):</p>
+      <div class="skills-grid">
+        <span class="skill-chip pin">📌 Make.com</span>
+        <span class="skill-chip pin">📌 AI Workflow Automation</span>
+        <span class="skill-chip pin">📌 n8n</span>
+      </div>
+
+      <p class="note" style="margin-top:.75rem;"><strong>Add all of these to your Skills section:</strong></p>
+      <div class="skills-grid">
+        <span class="skill-chip">Make AI Agents</span>
+        <span class="skill-chip">JavaScript</span>
+        <span class="skill-chip">React.js</span>
+        <span class="skill-chip">Python</span>
+        <span class="skill-chip">REST APIs</span>
+        <span class="skill-chip">Webhooks</span>
+        <span class="skill-chip">OAuth2</span>
+        <span class="skill-chip">Prompt Engineering</span>
+        <span class="skill-chip">Claude API</span>
+        <span class="skill-chip">OpenAI API</span>
+        <span class="skill-chip">Eden AI</span>
+        <span class="skill-chip">Human-in-the-Loop Design</span>
+        <span class="skill-chip">Google Analytics 4</span>
+        <span class="skill-chip">Technical SEO</span>
+        <span class="skill-chip">Meta Ads</span>
+        <span class="skill-chip">HubSpot</span>
+        <span class="skill-chip">Google Tag Manager</span>
+        <span class="skill-chip">WordPress</span>
+        <span class="skill-chip">Elementor Pro</span>
+        <span class="skill-chip">Shopify</span>
+        <span class="skill-chip">Webflow</span>
+        <span class="skill-chip">Figma</span>
+        <span class="skill-chip">Content Strategy</span>
+        <span class="skill-chip">Digital Marketing</span>
+        <span class="skill-chip">Google Workspace</span>
+        <span class="skill-chip">Git</span>
+      </div>
+
+      <p class="note" style="margin-top:1rem;"><strong>After adding skills:</strong> Ask 3–5 connections (start with Twan) to endorse your top 3 pinned skills. Endorsements signal verified authority to LinkedIn's algorithm and push you higher in recruiter searches.</p>
+    </div>
+  </div>
+
+  <!-- ══ 06 CERTIFICATIONS ══ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <span class="section-title">Certifications</span>
+    </div>
+    <div class="section-body">
+      <p class="note">Add each of these under Licenses & Certifications:</p>
+      <ul class="checklist">
+        <li><strong>Google Analytics (GA4)</strong> — Issuer: Google · Add year obtained</li>
+        <li><strong>Content Marketing Certification</strong> — Issuer: HubSpot Academy · Add year obtained</li>
+        <li><strong>Digital Marketing Masterclass</strong> — Issuer: Udemy</li>
+        <li><strong>SEO & SEM Strategies</strong> — Issuer: Udemy</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ 07 FEATURED ══ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <span class="section-title">Featured Section</span>
+      <span class="section-subtitle">Profiles with Featured get 30% more views · limit to 4 items</span>
+    </div>
+    <div class="section-body">
+      <p class="note">Go to your profile → Add section → Featured. Add these 4 items in this order:</p>
+      <ul class="checklist">
+        <li><strong>Item 1 — Portfolio link:</strong> Add as a link → URL: <code>jerichonega.github.io/portfolio</code> · Title: "Portfolio — Beyaricko Degu" · Description: "Projects, AI automations, and client work."</li>
+        <li><strong>Item 2 — CV link:</strong> Add as a link → URL: <code>jerichonega.github.io/portfolio/cv.html</code> · Title: "My CV" · Description: "Full background — automation, engineering, marketing."</li>
+        <li><strong>Item 3 — LinkedIn post (write &amp; publish first):</strong> Post about the AI recruitment pipeline you built (see Post Ideas section below), then feature it here once it has engagement.</li>
+        <li><strong>Item 4 — Build Up Addis link:</strong> URL: <code>buildupaddis.com</code> · Title: "Build Up Addis — Digital Studio" · Description: "Co-founded agency delivering 9+ client websites."</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ══ 08 SETTINGS ══ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <span class="section-title">Settings to Change Now</span>
+    </div>
+    <div class="section-body">
+      <div class="action-row"><span class="action-icon">🟢</span><div><strong>Creator Mode → ON</strong><br>Go to: Profile → Resources → Creator mode toggle. Turns Connect into Follow, boosts content reach, unlocks analytics. Turn this on.</div></div>
+      <div class="action-row"><span class="action-icon">🔍</span><div><strong>Open to Work → Recruiters Only</strong><br>Profile → Open to → Finding a new job. Set visibility to "Recruiters only" (not public — keeps it professional). Target roles: AI Workflow Automation, AI Intern, Marketing Automation, Digital Operations. Locations: Netherlands, Remote.</div></div>
+      <div class="action-row"><span class="action-icon">🔗</span><div><strong>Custom URL</strong><br>Edit your LinkedIn URL to: <code>linkedin.com/in/beyaricko-degu</code> (clean, no numbers). Go to: Profile → Edit public profile & URL → Edit your custom URL.</div></div>
+      <div class="action-row"><span class="action-icon">📧</span><div><strong>Contact Info</strong><br>Make sure email shows as: <code>beyaricko.nega@gmail.com</code> · Website: <code>jerichonega.github.io/portfolio</code> · Phone: <code>+31 6 45 11 27 60</code></div></div>
+      <div class="action-row"><span class="action-icon">📍</span><div><strong>Location</strong><br>Set to: Leeuwarden, Friesland, Netherlands</div></div>
+      <div class="action-row"><span class="action-icon">🖼️</span><div><strong>Banner image</strong><br>Add a simple dark/minimal banner. Canva has free templates. Use text: "AI Automation · Software Engineering · Content & Media Strategy" on a dark background to match your portfolio aesthetic.</div></div>
+    </div>
+  </div>
+
+  <!-- ══ 09 FIRST POST ══ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <span class="section-title">First Post to Publish (Write This Today)</span>
+      <span class="section-subtitle">One strong post builds social proof + gets featured</span>
+    </div>
+    <div class="section-body">
+      <p class="note">LinkedIn posts that show real work perform far better than opinion pieces. This one is about your actual recruitment pipeline. Write it in your own voice — this is the template:</p>
+      <div class="copy-label">→ Adapt and publish this</div>
+      <div class="copy-block">I built an AI system that screens CVs automatically.
+
+Here's exactly how it works:
+
+1. A recruiter uploads a PDF CV to a Google Drive folder
+2. Make.com detects the new file instantly
+3. PDF.co extracts the text from the document
+4. A Make AI Agent reads the CV and scores the candidate 0–2 based on a structured rubric
+5. The result gets logged to a Google Sheet — name, email, LinkedIn, score, summary
+6. The recruiter reviews the shortlist and makes the call
+
+The human never loses control. The AI just handles the volume.
+
+Built entirely in Make.com — no custom backend, no code deployment.
+
+This is what no-code AI automation looks like when it solves a real problem.
+
+—
+
+I'm Beyaricko. Software Engineer finishing my MA in Content & Media Strategy in the Netherlands. I build AI automations that do real work.
+
+Open to AI automation and digital operations roles. DMs open.
+
+#AIAutomation #Makekom #NoCode #AI #Netherlands</div>
+      <p class="note"><strong>After it gets some likes/comments:</strong> Go to Featured section and add it as a featured post.</p>
+    </div>
+  </div>
+
+  <!-- ══ 10 REFERENCE ══ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <span class="section-title">Recommendation — Ask Twan</span>
+    </div>
+    <div class="section-body">
+      <p class="note">A recommendation from Twan (founder of Cyberlab.nl, Eindhoven) would be strong — Dutch tech professional, mentor, can speak to your work ethic and capabilities. Here's a message you can send him on LinkedIn:</p>
+      <div class="copy-label">→ Message to send Twan</div>
+      <div class="copy-block">Hi Twan, I hope you're well. I'm actively applying for AI automation and tech roles here in the Netherlands and I'm updating my LinkedIn profile. Would you be willing to write a short recommendation? Even a few sentences about working together or your experience with my work would mean a lot and would carry real weight with Dutch employers. No pressure at all — but I'd really appreciate it. Thanks.</div>
+    </div>
+  </div>
+
+  <!-- ══ CHECKLIST ══ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">✓</span>
+      <span class="section-title">Final Checklist — Do These in Order</span>
+    </div>
+    <div class="section-body">
+      <ul class="checklist">
+        <li>Update Headline (copy from section 01)</li>
+        <li>Rewrite About section (copy from section 02)</li>
+        <li>Update all 4 Experience descriptions (section 03)</li>
+        <li>Add/correct Education entries with descriptions (section 04)</li>
+        <li>Add all Skills, pin top 3: Make.com, AI Workflow Automation, n8n (section 05)</li>
+        <li>Add all 4 Certifications (section 06)</li>
+        <li>Set up Featured section with portfolio + CV links (section 07)</li>
+        <li>Turn on Creator Mode</li>
+        <li>Enable Open to Work → Recruiters Only</li>
+        <li>Set custom URL to linkedin.com/in/beyaricko-degu</li>
+        <li>Update Contact Info: email, website, phone</li>
+        <li>Add a banner image (Canva, dark/minimal)</li>
+        <li>Publish first post (section 09) and feature it</li>
+        <li>Message Twan asking for a recommendation (section 10)</li>
+        <li>Ask 3–5 connections to endorse your top 3 skills</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
