@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Beyaricko Degu · Cleeng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:    #0f1117;
+      --ink2:   #374151;
+      --muted:  #6b7280;
+      --accent: #0d6efd;
+      --accent2: #0958d9;
+      --line:   #e5e7eb;
+      --bg:     #ffffff;
+      --soft:   #f8faff;
+    }
+
+    html { font-size: 10pt; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #f0f0f0;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    /* ── PAGE ── */
+    .page {
+      width: 210mm;
+      background: var(--bg);
+      margin: 2rem auto;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.12);
+    }
+
+    /* ── HEADER BAND ── */
+    .header-band {
+      background: var(--ink);
+      padding: 14mm 16mm 12mm;
+      color: white;
+    }
+
+    .hb-top { display: flex; justify-content: space-between; align-items: flex-start; }
+
+    .hb-name {
+      font-size: 22pt;
+      font-weight: 700;
+      letter-spacing: -.02em;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .hb-title {
+      font-size: 9.5pt;
+      color: #93c5fd;
+      font-weight: 500;
+      margin-top: 5px;
+    }
+
+    .hb-web {
+      text-align: right;
+    }
+
+    .hb-web-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 7pt;
+      color: #6b7280;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .hb-web-url {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9.5pt;
+      font-weight: 500;
+      color: #38bdf8;
+      text-decoration: none;
+      border-bottom: 1px solid #38bdf8;
+      padding-bottom: 1px;
+    }
+
+    .hb-contact {
+      display: flex;
+      gap: 18px;
+      margin-top: 10px;
+      font-size: 8pt;
+      color: #9ca3af;
+    }
+
+    .hb-contact a { color: #9ca3af; text-decoration: none; }
+
+    .hb-tag {
+      display: inline-block;
+      margin-top: 9px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 7.5pt;
+      color: #0d6efd;
+      background: rgba(13,110,253,0.12);
+      border: 1px solid rgba(13,110,253,0.3);
+      padding: 2px 8px;
+      border-radius: 3px;
+    }
+
+    /* ── BODY ── */
+    .body { padding: 12mm 16mm 14mm; }
+
+    /* ── SECTION ── */
+    .section { margin-bottom: 13mm; }
+    .section:last-child { margin-bottom: 0; }
+
+    .sec-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 6.5pt;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    /* ── PROJECT CARD ── */
+    .project-card {
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--accent);
+      border-radius: 4px;
+      padding: 10px 12px 10px 13px;
+      margin-bottom: 8px;
+      background: var(--soft);
+      break-inside: avoid;
+    }
+
+    .project-card:last-child { margin-bottom: 0; }
+
+    .pc-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 5px; }
+
+    .pc-name {
+      font-size: 10pt;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .pc-tags { display: flex; flex-wrap: wrap; gap: 3px; flex-shrink: 0; }
+
+    .pc-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 6.5pt;
+      background: #dbeafe;
+      color: #1e40af;
+      border: 1px solid #bfdbfe;
+      padding: 1px 5px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    .pc-tag.green { background: #dcfce7; color: #166534; border-color: #bbf7d0; }
+
+    .pc-desc {
+      font-size: 8.5pt;
+      color: var(--ink2);
+      line-height: 1.65;
+      margin-bottom: 7px;
+    }
+
+    .pc-desc strong { color: var(--ink); font-weight: 600; }
+
+    /* ── PIPELINE FLOW ── */
+    .flow {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0;
+      margin-top: 6px;
+      margin-bottom: 2px;
+    }
+
+    .flow-step {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 6.5pt;
+      background: var(--ink);
+      color: #e2e8f0;
+      padding: 3px 7px;
+      border-radius: 3px;
+      white-space: nowrap;
+    }
+
+    .flow-arrow {
+      font-size: 7pt;
+      color: var(--accent);
+      margin: 0 4px;
+      font-weight: 700;
+    }
+
+    .flow-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 6pt;
+      color: var(--muted);
+      margin-left: 6px;
+    }
+
+    /* ── OUTCOME ROW ── */
+    .outcome-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+
+    .outcome-chip {
+      font-size: 7.5pt;
+      background: white;
+      border: 1px solid var(--line);
+      color: var(--ink2);
+      padding: 2px 8px;
+      border-radius: 3px;
+    }
+
+    .outcome-chip.accent { border-color: #bfdbfe; color: var(--accent); background: #eff6ff; }
+
+    /* ── WEB PROJECT GRID ── */
+    .web-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+    }
+
+    .web-card {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 8px 10px;
+      background: var(--soft);
+    }
+
+    .wc-name { font-size: 9pt; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+    .wc-type { font-size: 7.5pt; color: var(--accent); font-weight: 500; margin-bottom: 4px; }
+    .wc-desc { font-size: 7.5pt; color: var(--ink2); line-height: 1.55; }
+    .wc-stack { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 5px; }
+    .wc-chip {
+      font-size: 6.5pt;
+      background: var(--tag-bg, #f3f4f6);
+      color: var(--muted);
+      border: 1px solid var(--line);
+      padding: 1px 5px;
+      border-radius: 2px;
+    }
+
+    /* ── SKILLS ROW ── */
+    .skills-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
+    }
+
+    .skills-col { }
+    .skills-col-label {
+      font-size: 7pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+
+    .skills-chips { display: flex; flex-wrap: wrap; gap: 3px; }
+    .sk {
+      font-size: 7pt;
+      background: #f3f4f6;
+      color: var(--ink2);
+      border: 1px solid var(--line);
+      padding: 2px 5px;
+      border-radius: 2px;
+    }
+    .sk.hi { background: #dbeafe; color: #1e40af; border-color: #bfdbfe; font-weight: 600; }
+
+    /* ── ABOUT BAND ── */
+    .about-band {
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 10px 13px;
+      font-size: 8.5pt;
+      color: var(--ink2);
+      line-height: 1.75;
+    }
+
+    .about-band strong { color: var(--ink); font-weight: 600; }
+
+    /* ── FOOTER BAND ── */
+    .footer-band {
+      background: var(--ink);
+      padding: 8mm 16mm;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .fb-left { font-size: 8pt; color: #9ca3af; }
+    .fb-left strong { color: white; }
+
+    .fb-cta {
+      text-align: right;
+    }
+
+    .fb-cta-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 6.5pt;
+      color: #6b7280;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .fb-cta-url {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9pt;
+      font-weight: 500;
+      color: #38bdf8;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      body { background: white; }
+      .page { margin: 0; box-shadow: none; width: 100%; }
+      .print-hint { display: none; }
+      .header-band { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: var(--ink) !important; }
+      .footer-band { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: var(--ink) !important; }
+      .project-card { break-inside: avoid; }
+      .web-card { break-inside: avoid; }
+    }
+
+    .print-hint {
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9pt;
+      color: #888;
+      padding: .5rem;
+      margin-bottom: .5rem;
+    }
+
+    .print-hint a { color: #0d6efd; text-decoration: none; margin-right: 2rem; }
+  </style>
+</head>
+<body>
+
+<p class="print-hint">
+  <a href="index.html">← Back to Portfolio</a>
+  <a href="cleeng_cv.html" target="_blank">↗ CV</a>
+  <a href="cleeng_cover.html" target="_blank">↗ Cover Letter</a>
+  Press <strong>Ctrl/Cmd + P</strong> → Save as PDF
+</p>
+
+<div class="page">
+
+  <!-- ══ HEADER ══ -->
+  <div class="header-band">
+    <div class="hb-top">
+      <div>
+        <div class="hb-name">BEYARICKO (JERICHO) DEGU</div>
+        <div class="hb-title">AI Workflow Automation &nbsp;·&nbsp; Software Engineer &nbsp;·&nbsp; Content &amp; Media Strategy MA &nbsp;·&nbsp; Digital Marketing</div>
+        <div class="hb-contact">
+          <span>beyaricko.nega@gmail.com</span>
+          <span>+31 6 45 11 27 60</span>
+          <span>Leeuwarden, Netherlands</span>
+          <span><a href="https://www.linkedin.com/in/beyaricko-degu" target="_blank">linkedin.com/in/beyaricko-degu</a></span>
+        </div>
+        <span class="hb-tag">Work Portfolio — Application for Cleeng · AI Workflow Automation Intern</span>
+      </div>
+      <div class="hb-web">
+        <div class="hb-web-label">Full portfolio</div>
+        <a class="hb-web-url" href="https://jerichonega.github.io/portfolio/" target="_blank">jerichonega.github.io/portfolio</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ BODY ══ -->
+  <div class="body">
+
+    <!-- ABOUT -->
+    <div class="section">
+      <div class="about-band">
+        I am a <strong>Software Engineer (BSc)</strong> finishing an <strong>MA in Content &amp; Media Strategy</strong> at NHL Stenden — a rare combination for a Media &amp; Entertainment company like Cleeng. I build <strong>production-ready automations in Make.com and n8n</strong>, co-founded two companies, and have delivered 20+ client websites across film, music, law, healthcare, and international trade. This portfolio shows the projects most relevant to your team: real automations, real outputs.
+      </div>
+    </div>
+
+    <!-- AI AUTOMATIONS -->
+    <div class="section">
+      <div class="sec-label">AI &amp; Automation Projects</div>
+
+      <!-- Project 1 -->
+      <div class="project-card">
+        <div class="pc-header">
+          <div class="pc-name">HR/People Team — AI Candidate Screening Pipeline</div>
+          <div class="pc-tags">
+            <span class="pc-tag green">Make.com</span>
+            <span class="pc-tag green">AI Agents</span>
+            <span class="pc-tag">PDF.co</span>
+            <span class="pc-tag">Google Drive</span>
+            <span class="pc-tag">Google Sheets</span>
+          </div>
+        </div>
+        <div class="pc-desc">
+          A recruiter uploads a CV to a Google Drive folder. The pipeline wakes up, extracts the PDF content, passes it to a <strong>Make AI Agent</strong> that evaluates the candidate against a structured rubric (skills match, experience, location, availability — scored 0–2 per dimension), and logs the result to Google Sheets. The human sees a clean shortlist, not a pile of PDFs. <strong>Zero manual screening.</strong>
+        </div>
+        <div class="flow">
+          <span class="flow-step">Google Drive (new file)</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">PDF.co (text extract)</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">Make AI Agent (score)</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">Sub-scenario: log to Sheets</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">Human review shortlist</span>
+        </div>
+        <div class="outcome-row">
+          <span class="outcome-chip accent">11 executions · 0 errors</span>
+          <span class="outcome-chip">Human hand-off by design</span>
+          <span class="outcome-chip">Structured rubric · consistent scoring</span>
+          <span class="outcome-chip">Directly mirrors HR team automation</span>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="pc-header">
+          <div class="pc-name">Support Automation — Telegram Bot with AI Sentiment Routing</div>
+          <div class="pc-tags">
+            <span class="pc-tag green">Make.com</span>
+            <span class="pc-tag green">n8n</span>
+            <span class="pc-tag">Eden AI</span>
+            <span class="pc-tag">Webhooks</span>
+            <span class="pc-tag">Telegram API</span>
+          </div>
+        </div>
+        <div class="pc-desc">
+          Webhook-triggered bot that receives incoming messages, runs <strong>real-time sentiment analysis via Eden AI</strong>, and makes a routing decision: negative sentiment escalates to a human via email; neutral/positive messages get an <strong>AI-generated reply</strong> via Make AI Toolkit. Full agentic loop with a built-in human escalation path — no blind automation.
+        </div>
+        <div class="flow">
+          <span class="flow-step">Telegram message (webhook)</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">Eden AI (sentiment)</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">Router</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">AI reply</span>
+          <span class="flow-label">or</span>
+          <span class="flow-step" style="background:#374151;">Email escalation</span>
+        </div>
+        <div class="outcome-row">
+          <span class="outcome-chip accent">Live agentic routing logic</span>
+          <span class="outcome-chip">Human escalation built in</span>
+          <span class="outcome-chip">Support team automation pattern</span>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card">
+        <div class="pc-header">
+          <div class="pc-name">Cross-functional — AI Document Generation Workflow</div>
+          <div class="pc-tags">
+            <span class="pc-tag green">Make.com</span>
+            <span class="pc-tag">Make AI Toolkit</span>
+            <span class="pc-tag">Google Sheets</span>
+            <span class="pc-tag">Google Docs</span>
+          </div>
+        </div>
+        <div class="pc-desc">
+          Watches a Google Sheet for new rows, pulls the structured data, passes it to an <strong>LLM for content generation</strong>, and creates a formatted Google Doc from a template — automatically. Eliminates repetitive document drafting for any team that generates similar documents at volume (reports, proposals, summaries).
+        </div>
+        <div class="flow">
+          <span class="flow-step">Google Sheets (new row)</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">Make AI Toolkit (generate)</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">Google Docs (create &amp; format)</span>
+        </div>
+        <div class="outcome-row">
+          <span class="outcome-chip accent">Marketing / Finance / People use case</span>
+          <span class="outcome-chip">Zero manual drafting</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- WEB / DEV PROJECTS -->
+    <div class="section">
+      <div class="sec-label">Web &amp; Development — Selected Client Work</div>
+      <div class="web-grid">
+
+        <div class="web-card">
+          <div class="wc-name">Disruptor Pictures</div>
+          <div class="wc-type">Film Production · Media &amp; Entertainment</div>
+          <div class="wc-desc">Full website build for a film production company — the same industry Cleeng serves. Discovery, UX, build, SEO, GA4 tracking, and launch.</div>
+          <div class="wc-stack">
+            <span class="wc-chip">WordPress</span>
+            <span class="wc-chip">Elementor Pro</span>
+            <span class="wc-chip">GA4</span>
+            <span class="wc-chip">Technical SEO</span>
+          </div>
+        </div>
+
+        <div class="web-card">
+          <div class="wc-name">Birbaux Records</div>
+          <div class="wc-type">Music Label · Media &amp; Entertainment</div>
+          <div class="wc-desc">Website and digital presence for a music label. Artist pages, release listings, streaming embeds, and brand-aligned visual design.</div>
+          <div class="wc-stack">
+            <span class="wc-chip">WordPress</span>
+            <span class="wc-chip">Elementor Pro</span>
+            <span class="wc-chip">SEO</span>
+          </div>
+        </div>
+
+        <div class="web-card">
+          <div class="wc-name">Dahlak Production</div>
+          <div class="wc-type">Film &amp; Media Production</div>
+          <div class="wc-desc">Production company site with portfolio showcase, contact workflow, and SEO optimisation. Delivered end-to-end.</div>
+          <div class="wc-stack">
+            <span class="wc-chip">WordPress</span>
+            <span class="wc-chip">Elementor Pro</span>
+            <span class="wc-chip">SEO</span>
+          </div>
+        </div>
+
+        <div class="web-card">
+          <div class="wc-name">React Crypto Dashboard</div>
+          <div class="wc-type">Live Data App · Software Engineering</div>
+          <div class="wc-desc">Live price tracker with interactive charts, search, and coin detail pages — built in React, consuming the CoinGecko API in real time.</div>
+          <div class="wc-stack">
+            <span class="wc-chip">React</span>
+            <span class="wc-chip">CoinGecko API</span>
+            <span class="wc-chip">Recharts</span>
+            <span class="wc-chip">Vite</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SKILLS SUMMARY -->
+    <div class="section">
+      <div class="sec-label">Core Skills</div>
+      <div class="skills-row">
+        <div class="skills-col">
+          <div class="skills-col-label">Automation</div>
+          <div class="skills-chips">
+            <span class="sk hi">Make.com</span>
+            <span class="sk hi">n8n</span>
+            <span class="sk hi">Make AI Agents</span>
+            <span class="sk hi">Webhooks</span>
+            <span class="sk hi">REST APIs</span>
+            <span class="sk">OAuth2</span>
+            <span class="sk">JavaScript</span>
+          </div>
+        </div>
+        <div class="skills-col">
+          <div class="skills-col-label">AI &amp; Data</div>
+          <div class="skills-chips">
+            <span class="sk hi">Prompt Engineering</span>
+            <span class="sk">Claude API</span>
+            <span class="sk">Eden AI</span>
+            <span class="sk">Google Sheets</span>
+            <span class="sk">GA4</span>
+            <span class="sk hi">HubSpot</span>
+          </div>
+        </div>
+        <div class="skills-col">
+          <div class="skills-col-label">Web &amp; CMS</div>
+          <div class="skills-chips">
+            <span class="sk">React</span>
+            <span class="sk">Python</span>
+            <span class="sk">HTML5/CSS3</span>
+            <span class="sk">WordPress</span>
+            <span class="sk">Elementor Pro</span>
+            <span class="sk">Shopify</span>
+            <span class="sk">Figma</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ FOOTER BAND ══ -->
+  <div class="footer-band">
+    <div class="fb-left">
+      <div><strong>Beyaricko (Jericho) Degu</strong> &nbsp;·&nbsp; beyaricko.nega@gmail.com &nbsp;·&nbsp; +31 6 45 11 27 60</div>
+      <div style="margin-top:3px;">MA Content &amp; Media Strategy · NHL Stenden &nbsp;·&nbsp; BSc Software Engineering · Arba Minch University</div>
+    </div>
+    <div class="fb-cta">
+      <div class="fb-cta-label">Full interactive portfolio</div>
+      <div class="fb-cta-url">jerichonega.github.io/portfolio</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  if (new URLSearchParams(window.location.search).get('print') === '1') {
+    window.addEventListener('load', () => setTimeout(() => window.print(), 500));
+  }
+</script>
+</body>
+</html>
