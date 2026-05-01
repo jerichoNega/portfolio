@@ -32,11 +32,10 @@
       min-height: 297mm;
       background: var(--bg);
       margin: 2rem auto;
-      padding: 18mm 18mm 18mm 18mm;
+      padding: 18mm 18mm;
       box-shadow: 0 4px 32px rgba(0,0,0,0.12);
     }
 
-    /* TOP BAR */
     .top-bar {
       display: flex;
       justify-content: space-between;
@@ -46,19 +45,8 @@
       border-bottom: 2px solid var(--ink);
     }
 
-    .sender-name {
-      font-size: 16pt;
-      font-weight: 700;
-      letter-spacing: -.02em;
-      color: var(--ink);
-    }
-
-    .sender-title {
-      font-size: 9pt;
-      color: var(--accent);
-      font-weight: 500;
-      margin-top: 2px;
-    }
+    .sender-name { font-size: 16pt; font-weight: 700; letter-spacing: -.02em; color: var(--ink); }
+    .sender-title { font-size: 9pt; color: var(--accent); font-weight: 500; margin-top: 2px; }
 
     .sender-contact {
       text-align: right;
@@ -69,7 +57,6 @@
 
     .sender-contact a { color: var(--ink2); text-decoration: none; }
 
-    /* DATE & RECIPIENT */
     .date {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 8.5pt;
@@ -77,23 +64,10 @@
       margin-bottom: 20px;
     }
 
-    .recipient {
-      margin-bottom: 24px;
-    }
+    .recipient { margin-bottom: 24px; }
+    .recipient-name { font-size: 10pt; font-weight: 600; color: var(--ink); }
+    .recipient-detail { font-size: 9pt; color: var(--ink2); line-height: 1.7; }
 
-    .recipient-name {
-      font-size: 10pt;
-      font-weight: 600;
-      color: var(--ink);
-    }
-
-    .recipient-detail {
-      font-size: 9pt;
-      color: var(--ink2);
-      line-height: 1.7;
-    }
-
-    /* SUBJECT */
     .subject {
       font-size: 10pt;
       font-weight: 600;
@@ -103,56 +77,25 @@
       border-bottom: 1px solid var(--line);
     }
 
-    .subject span {
-      color: var(--accent);
-    }
+    .subject span { color: var(--accent); }
 
-    /* BODY */
     p {
       font-size: 10pt;
       color: var(--ink2);
-      line-height: 1.75;
+      line-height: 1.78;
       margin-bottom: 16px;
     }
 
     p strong { color: var(--ink); font-weight: 600; }
 
-    /* SIGN OFF */
-    .signoff {
-      margin-top: 28px;
-    }
+    .signoff { margin-top: 28px; }
+    .signoff p { margin-bottom: 4px; }
+    .signoff-name { font-size: 12pt; font-weight: 700; color: var(--ink); margin-top: 14px; display: block; }
+    .signoff-sub { font-size: 8.5pt; color: var(--accent); margin-top: 2px; font-weight: 500; }
 
-    .signoff p {
-      margin-bottom: 4px;
-      font-size: 10pt;
-      color: var(--ink2);
-    }
-
-    .signoff-name {
-      font-size: 12pt;
-      font-weight: 700;
-      color: var(--ink);
-      margin-top: 14px;
-      display: block;
-    }
-
-    .signoff-sub {
-      font-size: 8.5pt;
-      color: var(--accent);
-      margin-top: 2px;
-      font-weight: 500;
-    }
-
-    /* PRINT */
     @media print {
       body { background: white; }
-      .page {
-        margin: 0;
-        padding: 15mm 16mm;
-        box-shadow: none;
-        width: 100%;
-        min-height: auto;
-      }
+      .page { margin: 0; padding: 15mm 16mm; box-shadow: none; width: 100%; min-height: auto; }
       .print-hint { display: none; }
     }
 
@@ -172,16 +115,15 @@
 
 <p class="print-hint">
   <a href="index.html">← Back to Portfolio</a>
-  Press <strong>Ctrl/Cmd + P</strong> → Save as PDF to export
+  Press <strong>Ctrl/Cmd + P</strong> → Save as PDF
 </p>
 
 <div class="page">
 
-  <!-- TOP BAR -->
   <div class="top-bar">
     <div>
       <div class="sender-name">Beyaricko Degu</div>
-      <div class="sender-title">AI Automation Specialist &amp; MSc Student</div>
+      <div class="sender-title">AI Automation Builder &amp; MSc Student</div>
     </div>
     <div class="sender-contact">
       +31 6 45 11 27 60<br>
@@ -191,10 +133,8 @@
     </div>
   </div>
 
-  <!-- DATE -->
   <div class="date">1 May 2026</div>
 
-  <!-- RECIPIENT -->
   <div class="recipient">
     <div class="recipient-name">Declan Murphy</div>
     <div class="recipient-detail">
@@ -204,36 +144,34 @@
     </div>
   </div>
 
-  <!-- SUBJECT -->
   <div class="subject">
     Re: <span>AI Student Job (2–3 days/week) — People &amp; Organization Consultancy</span>
   </div>
 
-  <!-- BODY -->
   <p>Dear Declan,</p>
 
   <p>
-    When I read the description for this role — building AI agents, working with <strong>n8n and Make.com</strong>, monitoring industry adoption trends, and contributing strategic thinking about where AI actually creates value — I recognised it as the kind of work I have already been doing. What excites me about Kienbaum is the chance to do it inside a professional services environment where the stakes are higher and the impact on organisations is real.
+    One of the automations I built recently watches a Google Drive folder for incoming CVs. When a new PDF arrives, it extracts the text, passes it to a <strong>Make AI Agent</strong> that reads and scores the candidate, and logs everything to a Google Sheet for the hiring team to review. The human still makes the call — the system just makes sure they are looking at the right people. When I saw that Kienbaum works in People &amp; Organization consulting and is specifically looking for someone to build AI agents, I thought that was worth mentioning upfront.
   </p>
 
   <p>
-    Over the past five years, I have designed and deployed AI automation systems for clients across multiple industries. I have built end-to-end pipelines in <strong>n8n and Make.com</strong>, integrated the <strong>Claude and OpenAI APIs</strong> into content and operational workflows, and handed these systems over to client teams with full documentation and training. The part of that work I find most important — and most relevant to Kienbaum — is the <strong>human-in-the-loop design</strong> philosophy I apply to every system I build. AI should accelerate people, not replace their judgement. In a people and organization consultancy, that distinction matters enormously, and I am already thinking in those terms.
+    I am currently finishing my MA in Content &amp; Media Strategy at NHL Stenden in Leeuwarden. Before that, I co-founded two companies: <strong>Digital Abyssinia Technologies</strong> (2021), a software and technology company, and later <strong>Build Up Addis</strong> (2024), a digital studio where I have delivered 9+ client websites across entertainment, healthcare, law, and international trade. Across both, I have been building with AI tools — Make.com, Claude API, Eden AI — not reading about them.
   </p>
 
   <p>
-    I am currently completing my MA in Content &amp; Media Strategy at NHL Stenden in Leeuwarden, which means I am in the Netherlands, available <strong>two to three days per week</strong>, and able to start immediately. My academic background gives me a lens on how organisations communicate, change, and adopt new practices — which I believe makes me more useful in a consulting context than someone with purely technical skills. I understand the business side of what I build.
+    Beyond the recruitment pipeline, I have built a <strong>Telegram bot that runs sentiment analysis on incoming messages</strong> and routes them to either an AI response or a human via email — depending on the tone. I have also built a document generation workflow that takes data from Google Sheets, passes it to an AI model, and creates formatted Google Docs automatically. These are not large enterprise systems — they are real, working automations I built to solve actual problems, and that is the approach I would bring to Kienbaum.
   </p>
 
   <p>
-    I want to be direct about my intentions: I am not looking for a short-term student job to put on a CV. I want to be in a place where I can prove myself, take ownership of real projects, and grow into a full-time role after I graduate. Kienbaum's mention that this position could evolve into an Associate role is exactly the kind of trajectory I am looking for. I am willing to work hard, show what I can do, and commit — and I would rather demonstrate that than say it.
+    I want to be direct: I am not looking for something to fill time between lectures. I want to be somewhere I can prove myself, own real work, and grow. The possibility of this becoming a full-time Associate role after I graduate in 2026 is exactly what I am looking for. I am available <strong>two to three days per week from immediately</strong>, I am in the Netherlands, and I am ready to show — not just tell — what I can contribute.
   </p>
 
   <p>
-    I have attached my CV and would welcome the opportunity to speak with you. If it would be useful, I am also happy to share examples of automation workflows or AI systems I have built — I can walk through them in a call or send materials in advance.
+    I have attached my CV. If it would help, I am happy to walk through any of the automations on a call or share screen recordings in advance.
   </p>
 
   <div class="signoff">
-    <p>Thank you for your time and consideration.</p>
+    <p>Thank you for your time.</p>
     <p>I look forward to hearing from you.</p>
     <span class="signoff-name">Beyaricko Degu</span>
     <div class="signoff-sub">beyaricko.nega@gmail.com &nbsp;·&nbsp; +31 6 45 11 27 60</div>
