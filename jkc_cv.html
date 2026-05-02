@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beyaricko Degu — CV · JKC Media</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:    #0f1117;
+      --ink2:   #374151;
+      --muted:  #6b7280;
+      --accent: #e65100;
+      --line:   #e5e7eb;
+      --bg:     #ffffff;
+      --tag-bg: #f3f4f6;
+    }
+
+    html { font-size: 10pt; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #f0f0f0;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      background: var(--bg);
+      margin: 2rem auto;
+      padding: 13mm 15mm;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.12);
+    }
+
+    .header {
+      padding-bottom: 9px;
+      margin-bottom: 11px;
+      border-bottom: 2.5px solid var(--ink);
+    }
+
+    .header-name { font-size: 24pt; font-weight: 700; letter-spacing: -.02em; color: var(--ink); line-height: 1; }
+    .header-title { font-size: 10pt; font-weight: 500; color: var(--accent); margin-top: 3px; }
+
+    .header-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px 16px;
+      margin-top: 7px;
+      font-size: 8.5pt;
+      color: var(--ink2);
+    }
+
+    .header-contact a { color: var(--ink2); text-decoration: none; }
+    .contact-item { display: flex; align-items: center; gap: 4px; }
+    .contact-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 57mm;
+      gap: 0 15px;
+      margin-top: 11px;
+    }
+
+    .section { margin-bottom: 12px; }
+
+    .section-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 7pt;
+      font-weight: 500;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 7px;
+      padding-bottom: 3px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .summary { font-size: 9pt; line-height: 1.65; color: var(--ink2); }
+    .summary strong { color: var(--ink); font-weight: 600; }
+
+    .exp-item { margin-bottom: 10px; }
+    .exp-item:last-child { margin-bottom: 0; }
+
+    .exp-header { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+    .exp-role { font-size: 9.5pt; font-weight: 600; color: var(--ink); }
+    .exp-date { font-family: 'IBM Plex Mono', monospace; font-size: 7.5pt; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+    .exp-company { font-size: 8.5pt; color: var(--accent); font-weight: 500; margin-top: 1px; }
+
+    .exp-bullets { margin-top: 5px; padding-left: 12px; list-style: none; }
+
+    .exp-bullets li {
+      font-size: 8.5pt;
+      color: var(--ink2);
+      line-height: 1.55;
+      margin-bottom: 3px;
+      position: relative;
+    }
+
+    .exp-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: -11px;
+      color: var(--accent);
+      font-size: 7pt;
+      top: 1px;
+    }
+
+    .exp-bullets li strong { color: var(--ink); font-weight: 600; }
+
+    .sidebar .section { margin-bottom: 11px; }
+
+    .skill-group { margin-bottom: 8px; }
+    .skill-group-label { font-size: 7.5pt; font-weight: 600; color: var(--ink); margin-bottom: 4px; text-transform: uppercase; letter-spacing: .06em; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 3px; }
+
+    .skill-tag {
+      font-size: 7pt;
+      background: var(--tag-bg);
+      color: var(--ink2);
+      padding: 2px 6px;
+      border-radius: 3px;
+      border: 1px solid var(--line);
+      white-space: nowrap;
+    }
+
+    .skill-tag.highlight { background: #fff3e0; color: #bf360c; border-color: #ffccbc; font-weight: 600; }
+    .skill-tag.match { background: #dcfce7; color: #166534; border-color: #bbf7d0; font-weight: 600; }
+
+    .edu-item { margin-bottom: 8px; }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-degree { font-size: 8.5pt; font-weight: 600; color: var(--ink); }
+    .edu-school { font-size: 8pt; color: var(--accent); margin-top: 1px; }
+    .edu-year { font-family: 'IBM Plex Mono', monospace; font-size: 7.5pt; color: var(--muted); margin-top: 1px; }
+    .edu-note { font-size: 7.5pt; color: var(--ink2); margin-top: 2px; font-style: italic; line-height: 1.5; }
+
+    .cert-badge {
+      font-size: 6.5pt;
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      padding: 1px 5px;
+      border-radius: 2px;
+      white-space: nowrap;
+      margin-top: 2px;
+      display: inline-block;
+    }
+
+    .lang-item { display: flex; justify-content: space-between; font-size: 8pt; color: var(--ink2); margin-bottom: 4px; }
+    .lang-level { font-size: 7.5pt; color: var(--muted); font-style: italic; }
+
+    .avail-box {
+      font-size: 8pt;
+      color: var(--ink2);
+      line-height: 1.7;
+      background: #fff8f5;
+      border: 1px solid #ffccbc;
+      border-radius: 3px;
+      padding: 6px 8px;
+    }
+    .avail-box strong { color: var(--ink); font-weight: 600; }
+
+    @media print {
+      body { background: white; }
+      .page { margin: 0; padding: 11mm 13mm; box-shadow: none; width: 100%; min-height: auto; }
+      .print-hint { display: none; }
+    }
+
+    .print-hint {
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9pt;
+      color: #888;
+      padding: .5rem;
+      margin-bottom: .5rem;
+    }
+
+    .print-hint a { color: #e65100; text-decoration: none; margin-right: 2rem; }
+  </style>
+</head>
+<body>
+
+<p class="print-hint">
+  <a href="index.html">← Back to Portfolio</a>
+  Press <strong>Ctrl/Cmd + P</strong> → Save as PDF
+</p>
+
+<div class="page">
+
+  <header class="header">
+    <div class="header-name">BEYARICKO (JERICHO) DEGU</div>
+    <div class="header-title">Online Marketeer · SEO/GEO · Content &amp; Media Strategy MA · Software Engineer · Digital Marketing</div>
+    <div class="header-contact">
+      <span class="contact-item"><span class="contact-dot"></span>+31 6 45 11 27 60</span>
+      <span class="contact-item"><span class="contact-dot"></span><a href="mailto:beyaricko.nega@gmail.com">beyaricko.nega@gmail.com</a></span>
+      <span class="contact-item"><span class="contact-dot"></span>Leeuwarden, Netherlands</span>
+      <span class="contact-item"><span class="contact-dot"></span><a href="https://www.linkedin.com/in/beyaricko-degu" target="_blank">linkedin.com/in/beyaricko-degu</a></span>
+      <span class="contact-item"><span class="contact-dot"></span><a href="https://jerichonega.github.io/portfolio/" target="_blank">jerichonega.github.io/portfolio</a></span>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <main>
+
+      <!-- PROFILE -->
+      <section class="section">
+        <h2 class="section-title">Profile</h2>
+        <p class="summary">
+          Digital marketeer with a <strong>BSc in Software Engineering</strong> and an <strong>MA in Content &amp; Media Strategy</strong> (NHL Stenden, graduating 2026) — a combination that gives me both the strategic and technical depth behind online marketing. I have worked on <strong>20+ client websites</strong> across agencies and my own studio, handling SEO, Google Ads, Meta Ads, GA4, and content strategy end to end. My software engineering background means I understand what I am actually optimising: site architecture, tracking implementation, Core Web Vitals — not just the surface. I use <strong>AI tools daily</strong> (Make.com, Claude API) to work smarter and faster, and I am actively developing my knowledge of <strong>GEO</strong> — generative engine optimisation for AI search — through my MA programme and with clients. Certified by Google (GA4) and HubSpot. Looking for a real, long-term environment where I can contribute meaningfully and keep growing.
+        </p>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section class="section">
+        <h2 class="section-title">Experience</h2>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Co-Founder &amp; Digital Lead</span>
+            <span class="exp-date">2024 — Present</span>
+          </div>
+          <div class="exp-company">Build Up Addis · Digital Studio · Remote / International</div>
+          <ul class="exp-bullets">
+            <li>Co-founded a digital studio delivering <strong>websites, SEO, and AI-powered workflows</strong> for clients across entertainment, healthcare, law, and international trade — managing strategy, build, and analytics end to end.</li>
+            <li>Handled full client lifecycle autonomously: discovery, UX, CMS build, GA4 &amp; GTM implementation, on-page SEO, launch, and ongoing reporting.</li>
+            <li>Built AI automations using <strong>Make.com and n8n</strong> (CV screening pipeline, content generation workflows) — integrated into client operations to reduce manual effort.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Co-Founder &amp; Content Lead</span>
+            <span class="exp-date">2019 — 2024</span>
+          </div>
+          <div class="exp-company">Digital Abyssinia Technologies · Software &amp; Digital Agency</div>
+          <ul class="exp-bullets">
+            <li>Developed and managed <strong>20+ client websites</strong> using WordPress and Elementor Pro; implemented SEO strategies that consistently improved organic visibility across diverse sectors.</li>
+            <li>Led content strategy and digital marketing for clients spanning film production, record labels, law firms, and medical companies — aligning content with business goals and measuring outcomes via GA4.</li>
+            <li>Collaborated across design, development, and marketing to deliver projects on time and aligned with client KPIs.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Website Design Management &amp; Digital Marketing</span>
+            <span class="exp-date">2021 — 2023</span>
+          </div>
+          <div class="exp-company">Barcon Getta · Ottawa, Canada · Remote</div>
+          <ul class="exp-bullets">
+            <li>Managed WordPress website design, maintenance, and optimisation alongside full-spectrum digital marketing: <strong>SEO, content strategy, social media, and campaign management</strong>.</li>
+            <li>Implemented conversion tracking via Google Tag Manager and HubSpot; drove measurable growth in organic traffic and customer engagement through consistent content and SEO improvements.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">SEO &amp; Content Strategist</span>
+            <span class="exp-date">2021 — 2023</span>
+          </div>
+          <div class="exp-company">ip4sure · Eindhoven, Netherlands · Part-time</div>
+          <ul class="exp-bullets">
+            <li>Delivered technical SEO audits and content optimisation for B2B clients in the Dutch market; supported GA4 migration and built reporting dashboards for stakeholder review in <strong>Looker Studio</strong>.</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <!-- SELECTED PROJECTS -->
+      <section class="section">
+        <h2 class="section-title">Selected Projects</h2>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Media &amp; Entertainment Client Websites</span>
+            <span class="exp-date">WordPress · SEO · GA4</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Built and optimised websites for Disruptor Pictures (film production), Birbaux Records (music label), and Dahlak Production (film/media) — each delivered end-to-end with on-page SEO, analytics, and conversion tracking.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">AI Recruitment Screening Pipeline</span>
+            <span class="exp-date">Make.com · AI Agents · Google Workspace</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Automation that watches Google Drive for CVs, scores them via AI agent, and logs results to Google Sheets — an example of using AI tools to remove repetitive manual work from a real workflow.</li>
+          </ul>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <section class="section">
+        <h2 class="section-title">Skills</h2>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Digital Marketing</div>
+          <div class="skill-tags">
+            <span class="skill-tag match">SEO / Technical SEO</span>
+            <span class="skill-tag match">GEO (developing)</span>
+            <span class="skill-tag match">Google Ads</span>
+            <span class="skill-tag match">Meta Ads</span>
+            <span class="skill-tag highlight">Google Analytics 4</span>
+            <span class="skill-tag highlight">Search Console</span>
+            <span class="skill-tag highlight">Looker Studio</span>
+            <span class="skill-tag highlight">Google Tag Manager</span>
+            <span class="skill-tag match">HubSpot</span>
+            <span class="skill-tag">Social Media Advertising</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">AI &amp; Workflow</div>
+          <div class="skill-tags">
+            <span class="skill-tag highlight">Make.com</span>
+            <span class="skill-tag">n8n</span>
+            <span class="skill-tag">Claude API</span>
+            <span class="skill-tag">Prompt Engineering</span>
+            <span class="skill-tag">REST APIs</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Content &amp; Strategy</div>
+          <div class="skill-tags">
+            <span class="skill-tag match">Content Strategy</span>
+            <span class="skill-tag match">Content Distribution</span>
+            <span class="skill-tag">Content Measurement</span>
+            <span class="skill-tag">Copywriting</span>
+            <span class="skill-tag">Digital Strategy</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Web &amp; CMS</div>
+          <div class="skill-tags">
+            <span class="skill-tag">WordPress</span>
+            <span class="skill-tag">Elementor Pro</span>
+            <span class="skill-tag">Shopify</span>
+            <span class="skill-tag">Webflow</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">HTML5 / CSS3</span>
+            <span class="skill-tag">Figma</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Education</h2>
+
+        <div class="edu-item">
+          <div class="edu-degree">MA — Content &amp; Media Strategy</div>
+          <div class="edu-school">NHL Stenden University · Leeuwarden</div>
+          <div class="edu-year">Netherlands · Graduating 2026</div>
+          <p class="edu-note">Focus: digital media strategy, content ecosystems, audience analytics, AI-driven search &amp; GEO, content distribution.</p>
+          <span class="cert-badge" style="background:#fff3e0;color:#bf360c;border-color:#ffccbc;">WO-level ✓</span>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-degree">BSc — Software Engineering</div>
+          <div class="edu-school">Arba Minch University · Ethiopia</div>
+          <p class="edu-note">Technical grounding in systems, programming, and web architecture — applied daily in SEO and tracking work.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Certifications</h2>
+
+        <div class="edu-item">
+          <div class="edu-degree">Google Analytics (GA4)</div>
+          <div class="edu-school">Google</div>
+          <span class="cert-badge">Certified ✓</span>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-degree">Content Marketing Certification</div>
+          <div class="edu-school">HubSpot Academy</div>
+          <span class="cert-badge">Certified ✓</span>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-degree">Measuring &amp; Analyzing Content</div>
+          <div class="edu-school">HubSpot Academy</div>
+          <span class="cert-badge">Certified ✓</span>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-degree">Promoting Content Effectively</div>
+          <div class="edu-school">HubSpot Academy</div>
+          <span class="cert-badge">Certified ✓</span>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-degree">Content Distribution Strategy</div>
+          <div class="edu-school">HubSpot Academy</div>
+          <span class="cert-badge">Certified ✓</span>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-degree">Digital Marketing Masterclass</div>
+          <div class="edu-school">Udemy</div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-degree">SEO &amp; SEM Strategies</div>
+          <div class="edu-school">Udemy</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Languages</h2>
+        <div class="lang-item"><span>English</span><span class="lang-level">Fluent</span></div>
+        <div class="lang-item"><span>Dutch</span><span class="lang-level">B1 · Actively learning</span></div>
+        <div class="lang-item"><span>Amharic</span><span class="lang-level">Native</span></div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Availability</h2>
+        <div class="avail-box">
+          <strong>12–16 hrs/week · Immediate start</strong><br>
+          Based in Leeuwarden. Eindhoven fully accessible — open to regular office days at Strijp-S.
+        </div>
+      </section>
+
+    </aside>
+  </div>
+
+</div>
+
+<script>
+  if (new URLSearchParams(window.location.search).get('print') === '1') {
+    window.addEventListener('load', () => setTimeout(() => window.print(), 500));
+  }
+</script>
+</body>
+</html>
