@@ -5,158 +5,324 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>From Automation to Architecture | Beyaricko Degu</title>
   <meta name="description" content="Why the Dutch digital industry needs AI governance professionals, not just AI users." />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta name="author" content="Beyaricko Degu" />
 
-    :root {
-      --navy:   #1a2e44;
-      --teal:   #1a6b5a;
-      --accent: #e8f4f0;
-      --text:   #222222;
-      --muted:  #666666;
-      --border: #dddddd;
-      --bg:     #ffffff;
+  <!-- Open Graph -->
+  <meta property="og:title"       content="From Automation to Architecture | Beyaricko Degu" />
+  <meta property="og:description" content="Why the Dutch digital industry needs AI governance professionals — not just AI users." />
+  <meta property="og:type"        content="article" />
+
+  <!-- Same fonts as portfolio -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Sora:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <!-- Portfolio base styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Article-specific overrides -->
+  <style>
+
+    /* ── ARTICLE HERO ── */
+    .article-hero {
+      position: relative;
+      z-index: 2;
+      min-height: 62vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 10rem 4rem 5rem;
+      border-bottom: 1px solid var(--border);
     }
 
-    body {
-      font-family: 'Georgia', serif;
-      background: var(--bg);
+    .article-hero-inner { max-width: 900px; }
+
+    .article-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    .article-tag::before { content: '> '; color: var(--cyan); }
+
+    /* Reset the global h1 animation for the article title */
+    .article-title {
+      font-family: 'Orbitron', monospace;
+      font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      line-height: 1.05;
+      letter-spacing: -.01em;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      opacity: 1;
+      animation: none;
+    }
+
+    .article-title .accent { color: var(--cyan); }
+
+    .article-subtitle {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 640px;
+      margin-bottom: 2.5rem;
+    }
+
+    .article-meta {
+      font-family: 'Space Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .15em;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .article-meta .sep { color: var(--border); }
+
+    /* ── BACK BAR ── */
+    .back-bar {
+      position: relative;
+      z-index: 2;
+      padding: 1.25rem 4rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(4,4,10,0.6);
+    }
+
+    .back-link {
+      font-family: 'Space Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      transition: color .2s;
+    }
+
+    .back-link::before { content: '←'; color: var(--orange); }
+    .back-link:hover { color: var(--cyan); }
+
+    /* ── ARTICLE BODY ── */
+    .article-body {
+      position: relative;
+      z-index: 2;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 4rem;
+    }
+
+    .article-container {
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    /* Paragraphs */
+    .article-container p {
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      line-height: 1.95;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .article-container strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .article-container em {
+      color: var(--cyan);
+      font-style: normal;
+    }
+
+    /* Section headings — override global h2 inside article */
+    .article-container h2 {
+      font-family: 'Space Mono', monospace;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      line-height: 1;
+      margin: 3.5rem 0 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+    }
+
+    .article-container h2::before {
+      content: '//';
+      color: var(--orange);
+      letter-spacing: 0;
+    }
+
+    /* Blockquote */
+    .article-container blockquote {
+      border-left: 3px solid var(--cyan);
+      background: var(--bg3);
+      padding: 1.75rem 2rem;
+      margin: 2.5rem 0;
+      font-family: 'Sora', sans-serif;
+      font-size: 1.05rem;
+      font-style: italic;
       color: var(--text);
+      line-height: 1.8;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-container blockquote::before {
+      content: '"';
+      position: absolute;
+      top: -1rem;
+      right: 1.5rem;
+      font-family: 'Orbitron', monospace;
+      font-size: 6rem;
+      color: rgba(0,229,212,0.05);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    /* Callout box */
+    .callout {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--orange);
+      padding: 1.5rem 2rem;
+      margin: 2.5rem 0;
+      font-family: 'Sora', sans-serif;
+      font-size: .9rem;
+      color: var(--muted);
       line-height: 1.75;
     }
 
-    /* ── NAV ── */
-    nav {
-      background: var(--navy);
-      padding: 0 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 56px;
-    }
-    nav a {
-      color: #ffffff;
-      text-decoration: none;
-      font-family: 'Arial', sans-serif;
-      font-size: 0.875rem;
-    }
-    nav .brand { font-weight: 700; font-size: 1rem; letter-spacing: 0.03em; }
-    nav .links { display: flex; gap: 1.5rem; }
-    nav .links a { opacity: 0.8; }
-    nav .links a:hover { opacity: 1; }
-
-    /* ── HERO ── */
-    .hero {
-      background: linear-gradient(135deg, var(--navy) 0%, #2a4a6e 100%);
-      color: #fff;
-      padding: 4rem 2rem 3rem;
-      text-align: center;
-    }
-    .hero .tag {
-      display: inline-block;
-      background: var(--teal);
-      color: #fff;
-      font-family: 'Arial', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
+    .callout strong {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .2em;
       text-transform: uppercase;
-      padding: 0.3rem 0.8rem;
-      border-radius: 2px;
-      margin-bottom: 1.2rem;
-    }
-    .hero h1 {
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      color: var(--orange) !important;
+      margin-bottom: .85rem;
       font-weight: 700;
-      line-height: 1.2;
-      max-width: 700px;
-      margin: 0 auto 1rem;
-    }
-    .hero .subtitle {
-      font-style: italic;
-      font-size: 1.1rem;
-      color: rgba(255,255,255,0.8);
-      max-width: 560px;
-      margin: 0 auto 2rem;
-    }
-    .hero .meta {
-      font-family: 'Arial', sans-serif;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.6);
-      letter-spacing: 0.05em;
     }
 
-    /* ── LAYOUT ── */
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 3rem 2rem 5rem;
+    /* Workflow diagram */
+    .workflow {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      margin: 2.5rem 0;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* ── TYPOGRAPHY ── */
-    h2 {
-      font-family: 'Arial', sans-serif;
-      font-size: 1.25rem;
+    .workflow::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--orange));
+    }
+
+    .workflow-title {
+      font-family: 'Space Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1.5rem;
+    }
+
+    .wf-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      align-items: center;
+    }
+
+    .wf-step {
+      font-family: 'Space Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .05em;
+      background: rgba(0,229,212,0.07);
+      color: var(--cyan);
+      border: 1px solid rgba(0,229,212,0.2);
+      padding: .45rem .9rem;
       font-weight: 700;
-      color: var(--navy);
-      margin: 2.5rem 0 0.75rem;
-      padding-bottom: 0.4rem;
-      border-bottom: 2px solid var(--accent);
     }
 
-    p { margin-bottom: 1.2rem; }
-
-    strong { color: var(--navy); }
-
-    em { color: var(--teal); font-style: italic; }
-
-    /* ── PULL QUOTE ── */
-    blockquote {
-      border-left: 4px solid var(--teal);
-      background: var(--accent);
-      padding: 1rem 1.4rem;
-      margin: 2rem 0;
-      font-style: italic;
-      font-size: 1.05rem;
-      color: var(--navy);
-      border-radius: 0 4px 4px 0;
+    .wf-step.human {
+      background: rgba(0,229,212,0.15);
+      border-color: rgba(0,229,212,0.45);
     }
 
-    /* ── CALLOUT BOX ── */
-    .callout {
-      background: #f0f7ff;
-      border: 1px solid #b8d4ee;
-      border-radius: 6px;
-      padding: 1.2rem 1.5rem;
-      margin: 2rem 0;
-      font-family: 'Arial', sans-serif;
-      font-size: 0.9rem;
+    .wf-step.check {
+      background: rgba(255,107,53,0.1);
+      border-color: rgba(255,107,53,0.3);
+      color: var(--orange);
     }
-    .callout strong { display: block; margin-bottom: 0.4rem; color: var(--navy); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; }
 
-    /* ── PRINCIPLES LIST ── */
+    .wf-arrow {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .workflow-note {
+      font-family: 'Space Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .05em;
+      color: var(--muted);
+      margin-top: 1.25rem;
+      line-height: 1.7;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+    }
+
+    /* Principles list */
     .principles {
       list-style: none;
-      margin: 1.2rem 0 1.5rem;
       display: flex;
       flex-direction: column;
-      gap: 0.8rem;
+      gap: 1.25rem;
+      margin: 2rem 0;
     }
+
     .principles li {
       display: flex;
-      gap: 0.8rem;
+      gap: 1.25rem;
       align-items: flex-start;
-      font-family: 'Arial', sans-serif;
-      font-size: 0.95rem;
+      font-family: 'Sora', sans-serif;
+      font-size: .95rem;
+      line-height: 1.75;
+      color: var(--muted);
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 1.25rem 1.5rem;
+      transition: border-color .2s;
     }
+
+    .principles li:hover { border-color: rgba(0,229,212,0.3); }
+
     .principles .num {
-      background: var(--navy);
-      color: #fff;
-      font-size: 0.75rem;
+      font-family: 'Orbitron', monospace;
+      font-size: .6rem;
       font-weight: 700;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(0,229,212,0.4);
+      color: var(--cyan);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -164,190 +330,310 @@
       margin-top: 2px;
     }
 
-    /* ── WORKFLOW DIAGRAM ── */
-    .workflow {
-      background: #f8f9fa;
+    /* Author card */
+    .article-author {
+      background: var(--bg3);
       border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-      font-family: 'Arial', sans-serif;
-      font-size: 0.85rem;
+      padding: 2rem;
+      margin: 4rem 0 0;
+      position: relative;
+      overflow: hidden;
     }
-    .workflow-title {
-      font-weight: 700;
-      color: var(--navy);
-      font-size: 0.8rem;
+
+    .article-author::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--orange));
+    }
+
+    .author-label {
+      font-family: 'Space Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .2em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 1rem;
+      color: var(--orange);
+      margin-bottom: .75rem;
     }
-    .wf-steps {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      align-items: center;
-    }
-    .wf-step {
-      background: var(--navy);
+
+    .author-name {
+      font-family: 'Orbitron', monospace;
+      font-size: .9rem;
+      font-weight: 700;
       color: #fff;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      font-size: 0.78rem;
-      font-weight: 600;
-    }
-    .wf-step.human {
-      background: var(--teal);
-    }
-    .wf-step.check {
-      background: #c0392b;
-    }
-    .wf-arrow {
-      color: var(--muted);
-      font-size: 1rem;
+      letter-spacing: .05em;
+      margin-bottom: .6rem;
     }
 
-    /* ── FOOTER ── */
-    .article-footer {
-      margin-top: 3rem;
-      padding-top: 1.5rem;
+    .author-bio {
+      font-family: 'Sora', sans-serif;
+      font-size: .88rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .author-links {
+      display: flex;
+      gap: .75rem;
+      flex-wrap: wrap;
+    }
+
+    .author-link {
+      font-family: 'Space Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      text-decoration: none;
+      border: 1px solid rgba(0,229,212,0.25);
+      padding: .4rem .9rem;
+      transition: all .2s;
+    }
+
+    .author-link:hover {
+      background: var(--cyan-dim);
+      border-color: rgba(0,229,212,0.5);
+    }
+
+    /* References */
+    .refs {
+      margin-top: 4rem;
+      padding-top: 2rem;
       border-top: 1px solid var(--border);
-      font-family: 'Arial', sans-serif;
-      font-size: 0.82rem;
-      color: var(--muted);
     }
-    .article-footer a { color: var(--teal); text-decoration: none; }
-    .article-footer a:hover { text-decoration: underline; }
 
-    .refs h2 { margin-top: 2rem; }
-    .refs ol { padding-left: 1.5rem; }
-    .refs li { margin-bottom: 0.5rem; font-size: 0.85rem; color: var(--muted); }
+    .refs h2 {
+      /* inherits article h2 override above */
+    }
 
-    @media (max-width: 600px) {
-      .container { padding: 2rem 1.2rem 4rem; }
-      nav .links { gap: 1rem; }
+    .refs ol {
+      padding-left: 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    .refs li {
+      font-family: 'Space Mono', monospace;
+      font-size: .6rem;
+      line-height: 1.9;
+      color: var(--muted);
+      margin-bottom: .85rem;
+      letter-spacing: .02em;
+    }
+
+    .refs li em {
+      color: var(--muted) !important;
+      font-style: italic;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .article-hero { padding: 8rem 1.5rem 3rem; min-height: 52vh; }
+      .article-body { padding: 3rem 1.5rem; }
+      .back-bar { padding: 1.25rem 1.5rem; }
+    }
+
+    @media (max-width: 560px) {
+      .article-title { font-size: clamp(1.8rem, 8vw, 2.6rem); }
+      .article-subtitle { font-size: .95rem; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
+<div id="glow"></div>
+
+<!-- ═══════════════════════════ NAV (identical to homepage) ═══════════════════════════ -->
 <nav>
-  <a href="index.html" class="brand">Beyaricko Degu</a>
-  <div class="links">
-    <a href="index.html">Home</a>
-    <a href="cv.html">CV</a>
-    <a href="https://github.com/JerichoNega" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://www.linkedin.com/in/beyarickonega" target="_blank" rel="noopener">LinkedIn</a>
-  </div>
+  <a href="index.html" class="nav-logo">BD</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="index.html#portfolio">Work</a></li>
+    <li><a href="index.html#blog">Blog</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="cv.html" target="_blank">CV</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">Hire Me</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- HERO -->
-<header class="hero">
-  <div class="tag">Opinion · AI Governance</div>
-  <h1>From Automation to Architecture</h1>
-  <p class="subtitle">Why the Dutch digital industry needs AI governance professionals — not just AI users</p>
-  <div class="meta">Beyaricko Degu &nbsp;·&nbsp; May 2026 &nbsp;·&nbsp; 7 min read</div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#about"     class="mobile-nav-link">About</a>
+  <a href="index.html#services"  class="mobile-nav-link">Services</a>
+  <a href="index.html#skills"    class="mobile-nav-link">Skills</a>
+  <a href="index.html#portfolio" class="mobile-nav-link">Work</a>
+  <a href="index.html#blog"      class="mobile-nav-link">Blog</a>
+  <a href="index.html#contact"   class="mobile-nav-link">Contact</a>
+  <a href="cv.html"              class="mobile-nav-link" target="_blank" style="color:var(--orange);">CV</a>
+  <a href="index.html#contact"   class="mobile-nav-link" style="color:var(--cyan);">Hire Me</a>
+</div>
+
+<!-- ═══════════════════════════ ARTICLE HERO ═══════════════════════════ -->
+<header class="article-hero">
+  <div class="article-hero-inner">
+    <p class="article-tag">Opinion · AI Governance · PPD</p>
+    <h1 class="article-title">From Automation<br><span class="accent">to Architecture</span></h1>
+    <p class="article-subtitle">Why the Dutch digital industry needs AI governance professionals — not just AI users</p>
+    <div class="article-meta">
+      <span>Beyaricko Degu</span>
+      <span class="sep">/</span>
+      <span>May 2026</span>
+      <span class="sep">/</span>
+      <span>7 min read</span>
+    </div>
+  </div>
 </header>
 
-<!-- ARTICLE BODY -->
-<main class="container">
+<!-- ═══════════════════════════ BACK BAR ═══════════════════════════ -->
+<div class="back-bar">
+  <a href="index.html#blog" class="back-link">Back to blog</a>
+</div>
 
-  <p>The Dutch media and marketing industry has an AI problem. Not the kind that makes headlines — not deepfakes or hallucinating chatbots — but a quieter, more corrosive problem: agencies are automating content at scale without building the governance architecture to make it trustworthy.</p>
+<!-- ═══════════════════════════ ARTICLE BODY ═══════════════════════════ -->
+<main class="article-body">
+  <div class="article-container">
 
-  <p>I have spent the last year building 11 agentic workflows in Make.com — tools that screen job applicants, generate client documents, schedule multi-channel content, and deliver AI-summarised news briefings. Each one taught me the same uncomfortable lesson: the technical part is the easy part. The hard part is designing the system to be <em>accountable</em> when something goes wrong.</p>
+    <p>The Dutch media and marketing industry has an AI problem. Not the kind that makes headlines — not deepfakes or hallucinating chatbots — but a quieter, more corrosive problem: agencies are automating content at scale without building the governance architecture to make it trustworthy.</p>
 
-  <blockquote>
-    "The professionals who will be most valuable in the next five years are not those who can use AI tools. They are those who can architect the governance systems that make AI deployments safe, compliant, and commercially sustainable."
-  </blockquote>
+    <p>I have spent the last year building 11 agentic workflows in Make.com — tools that screen job applicants, generate client documents, schedule multi-channel content, and deliver AI-summarised news briefings. Each one taught me the same uncomfortable lesson: the technical part is the easy part. The hard part is designing the system to be <em>accountable</em> when something goes wrong.</p>
 
-  <h2>The Automation Trap</h2>
+    <blockquote>
+      "The professionals who will be most valuable in the next five years are not those who can use AI tools. They are those who can architect the governance systems that make AI deployments safe, compliant, and commercially sustainable."
+    </blockquote>
 
-  <p>Many agencies have rushed to adopt AI primarily as a cost-reduction mechanism — using automation pipelines to generate high volumes of content with minimal human involvement. The output is fast, cheap, and increasingly untrustworthy. Audiences notice.</p>
+    <h2>The Automation Trap</h2>
 
-  <p>Research from the Reuters Institute confirms that trust in digital media continues to decline, and that readers are developing heightened scepticism toward content that feels algorithmically produced (Newman et al., 2024). This trajectory is not commercially neutral. It destroys brand equity, accumulates legal exposure, and produces exactly the kind of low-quality content that search engines are now actively penalising.</p>
+    <p>Many agencies have rushed to adopt AI primarily as a cost-reduction mechanism — using automation pipelines to generate high volumes of content with minimal human involvement. The output is fast, cheap, and increasingly untrustworthy. Audiences notice.</p>
 
-  <p>The current default is <strong>AI for speed</strong>. The professional standard we need to build toward is <strong>AI for governed precision</strong>.</p>
+    <p>Research from the Reuters Institute confirms that trust in digital media continues to decline, and that readers are developing heightened scepticism toward content that feels algorithmically produced (Newman et al., 2024). This trajectory is not commercially neutral. It destroys brand equity, accumulates legal exposure, and produces exactly the kind of low-quality content that search engines are now actively penalising.</p>
 
-  <h2>What the EU AI Act Actually Means for Dutch Agencies</h2>
+    <p>The current default is <strong>AI for speed</strong>. The professional standard we need to build toward is <strong>AI for governed precision</strong>.</p>
 
-  <p>The EU AI Act (Regulation (EU) 2024/1689), which entered into force in August 2024, establishes binding obligations for organisations deploying AI systems that generate or personalise content at scale. Dutch businesses in the digital media space — agencies, consultancies, content platforms — are subject to these rules whether they have read them or not.</p>
+    <h2>What the EU AI Act Actually Means for Dutch Agencies</h2>
 
-  <div class="callout">
-    <strong>Key obligation for marketing AI</strong>
-    Systems that use AI to make or influence decisions affecting individuals — including personalised content targeting — must include transparency disclosures, maintain audit trails, and ensure human oversight at consequential decision points. This is not a future requirement. It applies now.
-  </div>
+    <p>The EU AI Act (Regulation (EU) 2024/1689), which entered into force in August 2024, establishes binding obligations for organisations deploying AI systems that generate or personalise content at scale. Dutch businesses in the digital media space — agencies, consultancies, content platforms — are subject to these rules whether they have read them or not.</p>
 
-  <p>Organisations that treat compliance as a burden will face both regulatory risk and reputational damage. Organisations that treat it as a <em>competitive architecture</em> will build systems that are faster, safer, and more trusted than their competitors. The Rijksoverheid's national digitalisation strategy explicitly calls for innovation that is responsible, data-governed, and human-centred (Rijksoverheid, 2024). The AI Act is the legal expression of that strategy.</p>
-
-  <h2>Governance Layers: What They Look Like in Practice</h2>
-
-  <p>A Governance Layer is not a compliance checkbox. It is a set of systematic checkpoints built into the architecture of an agentic workflow that verify factual accuracy, test for bias, enforce brand alignment, and confirm legal compliance before any output reaches a human audience.</p>
-
-  <p>In the AI recruitment pipeline I built this year, the governance layer works like this:</p>
-
-  <div class="workflow">
-    <div class="workflow-title">AI Recruitment Pipeline — Governance Architecture</div>
-    <div class="wf-steps">
-      <span class="wf-step">CV uploaded to Drive</span>
-      <span class="wf-arrow">→</span>
-      <span class="wf-step">PDF.co extracts text</span>
-      <span class="wf-arrow">→</span>
-      <span class="wf-step">AI Agent screens candidate</span>
-      <span class="wf-arrow">→</span>
-      <span class="wf-step check">Criteria check</span>
-      <span class="wf-arrow">→</span>
-      <span class="wf-step human">Human review ✓</span>
-      <span class="wf-arrow">→</span>
-      <span class="wf-step">Log to Sheet</span>
+    <div class="callout">
+      <strong>Key obligation for marketing AI</strong>
+      Systems that use AI to make or influence decisions affecting individuals — including personalised content targeting — must include transparency disclosures, maintain audit trails, and ensure human oversight at consequential decision points. This is not a future requirement. It applies now.
     </div>
-    <p style="margin-top:0.8rem; color:#555; font-size:0.8rem;">17 executions, 0 errors. The human review node is non-optional — it is an architectural constraint, not a preference.</p>
+
+    <p>Organisations that treat compliance as a burden will face both regulatory risk and reputational damage. Organisations that treat it as a <em>competitive architecture</em> will build systems that are faster, safer, and more trusted than their competitors. The Rijksoverheid's national digitalisation strategy explicitly calls for innovation that is responsible, data-governed, and human-centred (Rijksoverheid, 2024). The AI Act is the legal expression of that strategy.</p>
+
+    <h2>Governance Layers: What They Look Like in Practice</h2>
+
+    <p>A Governance Layer is not a compliance checkbox. It is a set of systematic checkpoints built into the architecture of an agentic workflow that verify factual accuracy, test for bias, enforce brand alignment, and confirm legal compliance before any output reaches a human audience.</p>
+
+    <p>In the AI recruitment pipeline I built this year, the governance layer works like this:</p>
+
+    <div class="workflow">
+      <p class="workflow-title">// AI Recruitment Pipeline — Governance Architecture</p>
+      <div class="wf-steps">
+        <span class="wf-step">CV → Drive</span>
+        <span class="wf-arrow">→</span>
+        <span class="wf-step">PDF.co extracts text</span>
+        <span class="wf-arrow">→</span>
+        <span class="wf-step">AI Agent screens</span>
+        <span class="wf-arrow">→</span>
+        <span class="wf-step check">Criteria check</span>
+        <span class="wf-arrow">→</span>
+        <span class="wf-step human">Human review ✓</span>
+        <span class="wf-arrow">→</span>
+        <span class="wf-step">Log to Sheet</span>
+      </div>
+      <p class="workflow-note">17 executions · 0 errors · Human review node is non-optional — it is an architectural constraint, not a preference.</p>
+    </div>
+
+    <p>The human review node is not optional. It is an architectural constraint I build in from the start, because I understand what happens when it is absent. This is what I call <strong>Human-in-the-Loop (HITL) by design</strong> — not as a feature added afterward, but as a structural commitment encoded into the core of the system.</p>
+
+    <h2>Three Principles Every AI Architect Should Build With</h2>
+
+    <ul class="principles">
+      <li>
+        <span class="num">1</span>
+        <div><strong>Human-in-the-Loop by Design.</strong> Every agentic workflow that affects truth, representation, or user experience must have a mandatory human approval stage. This is a design standard, not a preference.</div>
+      </li>
+      <li>
+        <span class="num">2</span>
+        <div><strong>Privacy by Design.</strong> Agentic workflows move data across nodes, tools, APIs, and external services at speed. Data containment must be designed into the architecture from the first node — not retrofitted after the system is built.</div>
+      </li>
+      <li>
+        <span class="num">3</span>
+        <div><strong>Radical Transparency.</strong> If a piece of content or a business decision was shaped by an AI system, the end user deserves to know. Transparency is not a communication strategy — it is a structural commitment encoded into the system through disclosure layers, audit trails, and documented decision logic.</div>
+      </li>
+    </ul>
+
+    <h2>What This Means for the Dutch Market</h2>
+
+    <p>The Dutch digital market is well-positioned to lead on this, but only if it produces professionals who understand both the strategic context and the technical detail. From conversations with hiring managers and digital professionals across the Netherlands over the past year, one pattern emerged consistently: organisations know AI is changing how they work, but they lack the technical confidence to evaluate what "good" AI implementation actually looks like.</p>
+
+    <p>That gap is an opportunity. Not for AI users, but for AI architects — professionals who can walk into a Dutch agency, audit their current automation setup, identify the governance risks, and redesign the system to be compliant, auditable, and commercially sustainable. The question for digital professionals building their career in this market is: which side of that gap do you want to be on?</p>
+
+    <!-- Author card -->
+    <div class="article-author">
+      <p class="author-label">// About the author</p>
+      <p class="author-name">Beyaricko Degu</p>
+      <p class="author-bio">Digital strategist and AI automation practitioner studying MA Content &amp; Media Strategy at NHL Stenden, Netherlands. He builds agentic workflows in Make.com and n8n, and writes about the intersection of AI governance, digital marketing, and professional ethics.</p>
+      <div class="author-links">
+        <a href="https://github.com/JerichoNega" target="_blank" rel="noopener" class="author-link">GitHub</a>
+        <a href="https://www.linkedin.com/in/beyarickonega" target="_blank" rel="noopener" class="author-link">LinkedIn</a>
+        <a href="index.html" class="author-link">← Portfolio</a>
+      </div>
+    </div>
+
+    <!-- References -->
+    <div class="refs">
+      <h2>References</h2>
+      <ol>
+        <li>European Parliament. (2024). <em>Regulation (EU) 2024/1689 of the European Parliament and of the Council laying down harmonised rules on artificial intelligence (Artificial Intelligence Act).</em> Official Journal of the European Union. https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689</li>
+        <li>Newman, N., Fletcher, R., Robertson, C. T., Eddy, K., &amp; Nielsen, R. K. (2024). <em>Reuters Institute Digital News Report 2024.</em> Reuters Institute for the Study of Journalism. https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2024</li>
+        <li>Rijksoverheid. (2024). <em>Nederland Digitaal 2024–2028: Nationale digitaliseringsstrategie.</em> https://www.nederlanddigitaal.nl/</li>
+      </ol>
+    </div>
+
   </div>
-
-  <p>The human review node is not optional. It is an architectural constraint I build in from the start, because I understand what happens when it is absent. This is what I call <strong>Human-in-the-Loop (HITL) by design</strong> — not as a feature added afterward, but as a structural commitment encoded into the core of the system.</p>
-
-  <h2>Three Principles Every AI Architect Should Build With</h2>
-
-  <ul class="principles">
-    <li>
-      <span class="num">1</span>
-      <div><strong>Human-in-the-Loop by Design.</strong> Every agentic workflow that affects truth, representation, or user experience must have a mandatory human approval stage. This is a design standard, not a preference.</div>
-    </li>
-    <li>
-      <span class="num">2</span>
-      <div><strong>Privacy by Design.</strong> Agentic workflows move data across nodes, tools, APIs, and external services at speed. Data containment must be designed into the architecture from the first node — not retrofitted after the system is built.</div>
-    </li>
-    <li>
-      <span class="num">3</span>
-      <div><strong>Radical Transparency.</strong> If a piece of content or a business decision was shaped by an AI system, the end user deserves to know. Transparency is not a communication strategy — it is a structural commitment encoded into the system through disclosure layers, audit trails, and documented decision logic.</div>
-    </li>
-  </ul>
-
-  <h2>What This Means for the Dutch Market</h2>
-
-  <p>The Dutch digital market is well-positioned to lead on this, but only if it produces professionals who understand both the strategic context and the technical detail. From conversations with hiring managers and digital professionals across the Netherlands over the past year, one pattern emerged consistently: organisations know AI is changing how they work, but they lack the technical confidence to evaluate what "good" AI implementation actually looks like.</p>
-
-  <p>That gap is an opportunity. Not for AI users, but for AI architects — professionals who can walk into a Dutch agency, audit their current automation setup, identify the governance risks, and redesign the system to be compliant, auditable, and commercially sustainable. The question for digital professionals building their career in this market is: which side of that gap do you want to be on?</p>
-
-  <div class="article-footer">
-    <p><strong>Beyaricko Degu</strong> is a digital strategist and AI automation practitioner currently studying MA Content and Media Strategy at NHL Stenden, Netherlands. He builds agentic workflows in Make.com and n8n, and writes about the intersection of AI governance, digital marketing, and professional ethics.</p>
-    <p style="margin-top:0.8rem;">
-      <a href="https://github.com/JerichoNega" target="_blank" rel="noopener">GitHub: JerichoNega</a> &nbsp;·&nbsp;
-      <a href="https://www.linkedin.com/in/beyarickonega" target="_blank" rel="noopener">LinkedIn</a> &nbsp;·&nbsp;
-      <a href="index.html">Back to portfolio</a>
-    </p>
-  </div>
-
-  <div class="refs">
-    <h2>References</h2>
-    <ol>
-      <li>European Parliament. (2024). <em>Regulation (EU) 2024/1689 of the European Parliament and of the Council laying down harmonised rules on artificial intelligence (Artificial Intelligence Act).</em> Official Journal of the European Union. https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689</li>
-      <li>Newman, N., Fletcher, R., Robertson, C. T., Eddy, K., &amp; Nielsen, R. K. (2024). <em>Reuters Institute Digital News Report 2024.</em> Reuters Institute for the Study of Journalism. https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2024</li>
-      <li>Rijksoverheid. (2024). <em>Nederland Digitaal 2024–2028: Nationale digitaliseringsstrategie.</em> https://www.nederlanddigitaal.nl/</li>
-    </ol>
-  </div>
-
 </main>
 
+<!-- ═══════════════════════════ FOOTER (identical to homepage) ═══════════════════════════ -->
+<footer>
+  <span class="footer-logo">BEYARICKO DEGU</span>
+  <span class="footer-copy">© 2026 — All systems operational</span>
+</footer>
+
+<script>
+  /* ── CURSOR GLOW ── */
+  const glow = document.getElementById('glow');
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top  = e.clientY + 'px';
+  });
+
+  /* ── SCROLL REVEAL ── */
+  const revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+  }
+
+  /* ── MOBILE HAMBURGER ── */
+  const hamburger  = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+</script>
 </body>
 </html>
