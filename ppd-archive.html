@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PPD Archive — Master's Portfolio Evidence | Beyaricko Degu</title>
+  <meta name="description" content="PPD Portfolio archive for Beyaricko Degu — Master of Content and Media Strategy at NHL Stenden. Evidence index for the three learning goals and the industry opinion piece.">
+  
+  <!-- Same fonts as portfolio -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Sora:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <!-- Portfolio base styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <style>
+    :root {
+      /* Blend PPD colors with Portfolio variables where possible */
+      --ppd-ink: var(--text);
+      --ppd-ink-dim: var(--muted);
+      --ppd-accent: var(--cyan);
+      --ppd-warn: var(--orange);
+      --ppd-rule: var(--border);
+      --ppd-card: var(--bg2);
+    }
+
+    /* Override PPD body base to use portfolio font but keep mono for text as per word-for-word request */
+    .ppd-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 120px 24px 96px; /* Space for nav */
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      line-height: 1.55;
+    }
+
+    .ppd-wrap a { color: var(--ppd-accent); text-decoration: none; }
+    .ppd-wrap a:hover { text-decoration: underline; }
+
+    .kicker { color: var(--ppd-ink-dim); text-transform: uppercase; letter-spacing: .18em; font-size: 11px; margin-bottom: 10px; }
+    
+    .ppd-wrap h1 { font-family: 'Orbitron', sans-serif; font-size: 38px; line-height: 1.1; color: #fff; margin: 0 0 18px; letter-spacing: -.02em; }
+    .ppd-wrap h2 { font-family: 'Orbitron', sans-serif; font-size: 22px; color: #fff; margin: 48px 0 14px; letter-spacing: -.01em; border-bottom: 1px solid var(--ppd-rule); padding-bottom: 8px; }
+    .ppd-wrap h3 { font-family: 'Sora', sans-serif; font-size: 15px; color: #fff; margin: 24px 0 8px; letter-spacing: .02em; }
+    
+    p.lead { color: var(--ppd-ink); max-width: 760px; font-size: 15px; line-height: 1.65; margin: 0 0 14px; }
+    p.ppd-p { color: var(--ppd-ink-dim); max-width: 760px; margin: 0 0 14px; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 20px; }
+    .card { background: var(--ppd-card); border: 1px solid var(--ppd-rule); border-radius: 8px; padding: 18px; transition: transform .3s, border-color .3s; }
+    .card:hover { transform: translateY(-4px); border-color: var(--ppd-accent); }
+    
+    .card .lbl { color: var(--ppd-accent); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px; }
+    .card .title { color: #fff; font-size: 14px; margin: 0 0 8px; line-height: 1.4; }
+    .card .meta { color: var(--ppd-ink-dim); font-size: 12px; margin-bottom: 10px; }
+    .card .desc { color: var(--ppd-ink); font-size: 13px; line-height: 1.55; margin-bottom: 12px; }
+    .card .links a { display: inline-block; margin-right: 10px; font-size: 12px; }
+
+    .tag { display: inline-block; padding: 2px 8px; border: 1px solid var(--ppd-rule); border-radius: 999px; font-size: 11px; color: var(--ppd-ink-dim); margin-right: 6px; }
+    .tag.live { color: var(--ppd-accent); border-color: var(--ppd-accent); }
+    .tag.zip { color: var(--ppd-warn); border-color: var(--ppd-warn); }
+
+    table.appendix { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13px; background: rgba(255,255,255,0.02); }
+    table.appendix th, table.appendix td { padding: 12px; border-bottom: 1px solid var(--ppd-rule); text-align: left; vertical-align: top; }
+    table.appendix th { color: var(--ppd-ink-dim); font-weight: 600; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+    table.appendix td.id { color: var(--ppd-accent); white-space: nowrap; width: 90px; font-weight: 700; }
+    table.appendix td.location { white-space: nowrap; width: 120px; }
+
+    .pill { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--ppd-rule); color: var(--ppd-ink-dim); }
+    .pill.live { color: var(--ppd-accent); border-color: var(--ppd-accent); }
+    .pill.zip { color: var(--ppd-warn); border-color: var(--ppd-warn); }
+    
+    .sub { color: var(--ppd-ink-dim); font-size: 12px; margin-top: 4px; }
+    
+    .ppd-footer { margin-top: 80px; padding: 40px 0; border-top: 1px solid var(--ppd-rule); color: var(--ppd-ink-dim); font-size: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    
+    .goal-strip { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 20px; }
+    .goal-strip span { font-size: 11px; color: var(--ppd-ink-dim); padding: 3px 10px; border: 1px solid var(--ppd-rule); border-radius: 999px; background: rgba(255,255,255,0.05); }
+    
+    hr { border: none; border-top: 1px solid var(--ppd-rule); margin: 48px 0; }
+    ul.clean { list-style: none; padding: 0; margin: 0; }
+    ul.clean li { padding: 12px 0; border-bottom: 1px dashed var(--ppd-rule); font-size: 13px; }
+    ul.clean li:last-child { border: none; }
+    
+    code { background: var(--bg3); padding: 2px 6px; border-radius: 4px; color: var(--ppd-accent); font-size: 12px; }
+
+    @media (max-width: 768px) {
+      .ppd-wrap { padding-top: 100px; }
+      .ppd-wrap h1 { font-size: 28px; }
+      .grid { grid-template-columns: 1fr; }
+      table.appendix { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="glow"></div>
+
+<!-- ═══════════════════════════ NAV (Global Portfolio Nav) ═══════════════════════════ -->
+<nav>
+  <a href="index.html" class="nav-logo">BD</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="index.html#portfolio">Work</a></li>
+    <li><a href="ppd-archive.html" style="color:var(--cyan);">PPD Archive</a></li>
+    <li><a href="index.html#blog">Blog</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="cv.html" target="_blank">CV</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">Hire Me</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#about"    class="mobile-nav-link">About</a>
+  <a href="index.html#services" class="mobile-nav-link">Services</a>
+  <a href="index.html#skills"   class="mobile-nav-link">Skills</a>
+  <a href="index.html#portfolio" class="mobile-nav-link">Work</a>
+  <a href="ppd-archive.html"    class="mobile-nav-link" style="color:var(--cyan);">PPD Archive</a>
+  <a href="index.html#blog"     class="mobile-nav-link">Blog</a>
+  <a href="index.html#contact"  class="mobile-nav-link">Contact</a>
+  <a href="cv.html"   class="mobile-nav-link" target="_blank" style="color:var(--orange);">CV</a>
+  <a href="index.html#contact"  class="mobile-nav-link" style="color:var(--cyan);">Hire Me</a>
+</div>
+
+<div class="ppd-wrap">
+
+  <div class="kicker">PPD Archive · Master of Content & Media Strategy · NHL Stenden</div>
+  <h1>Personal &amp; Professional<br>Development Archive</h1>
+  <p class="lead">A supplementary archive accompanying the PPD Portfolio submission of <strong style="color:#fff">Beyaricko Nega Degu</strong> (student number 5692792, Group C, coaches Martine van der Heide and Marije Rispens). The portfolio template, completed logbook, and full evidence ZIP are uploaded to Blackboard. This page maps each appendix reference in the template to its live online artefact, so the work can be inspected in its native context.</p>
+
+  <div class="goal-strip">
+    <span>Submission · 15 May 2026</span>
+    <span>Reflection word count · 2,973 / 3,000</span>
+    <span>Opinion piece S1–3 · 958 / 1,000</span>
+    <span>Evidence ZIP · 5692792_DEGU_Evidence.zip</span>
+  </div>
+
+  <!-- ============================================== -->
+  <h2>1 · Three learning goals</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="lbl">Goal 1 · Professional skill</div>
+      <h3 class="title" style="margin-top:0">Data-Driven Strategy and Analytical Thinking</h3>
+      <div class="meta">Sep 2025 – Apr 2026 · 78 hours</div>
+      <p class="desc">Earned the Google Analytics 4 certification (27 Dec 2025), built a Looker Studio dashboard on live Buildup Addis GA4 data (April 2026), and integrated HubSpot Academy modules and Planr budget tracking as analytical inputs. Outcome: an analytical posture, not just a toolset.</p>
+      <div class="links">
+        <a href="#goal-1">Evidence ↓</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="lbl">Goal 2 · Professional skill</div>
+      <h3 class="title" style="margin-top:0">Technical Literacy and Applied AI Integration</h3>
+      <div class="meta">Sep 2025 – May 2026 · 122 hours</div>
+      <p class="desc">Four phases: JavaScript fundamentals, React applications, applied client work (DATAFRYSLÂN persona, Planr, command-centre with Telegram bot), and AI integration (11 Make.com scenarios including a recruitment pipeline with 17 executions and 0 errors). Closed with the Anthropic Claude Code in Action certificate (12 May 2026).</p>
+      <div class="links">
+        <a href="#goal-2">Evidence ↓</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="lbl">Goal 3 · Soft skill / mindset</div>
+      <h3 class="title" style="margin-top:0">Networking and Professional Collaboration</h3>
+      <div class="meta">Oct 2025 – May 2026 · 52 hours</div>
+      <p class="desc">Built a positioned network through prepared conversations and a 48-hour follow-up protocol. Key exchanges: Thonie van Lieburg (hiring manager), Twan Wouters (Cyberlab mentor), Wesley Plugers (Scherp Online), Neil Langereis (Meet the Board), Gerben (MICA), Justin van Dongen, Erik Bell, Noah van Rossum.</p>
+      <div class="links">
+        <a href="#goal-3">Evidence ↓</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <h2>2 · Pitch for Industry Opinion Piece</h2>
+  <p class="lead">From Automation to Architecture: Why the Dutch Digital Industry Needs AI Governance Professionals. Published on this site as the prototype for the PPD opinion piece (Indicator 5d).</p>
+  <div class="grid">
+    <div class="card">
+      <div class="lbl">Live · Indicator 5d Prototype</div>
+      <h3 class="title" style="margin-top:0">From Automation to Architecture</h3>
+      <div class="meta">May 2026 · 7 min read</div>
+      <p class="desc">Sections 1 to 3 (958 words) covering Code of Ethics (HITL, Privacy by Design, Radical Transparency), What I Would Change (the Automation Trap, EU AI Act, my 18-to-24-month verdict), and How I Would Convince (technical-transparency strategy, named audience, measurable signals). The Make.com recruitment-pipeline governance architecture is the worked example.</p>
+      <div class="links">
+        <a href="automation-architecture.html">Read live →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <h2 id="goal-1">3 · Goal 1 — Evidence Index</h2>
+  <table class="appendix">
+    <tr><th>ID</th><th>Title</th><th>Status</th></tr>
+    <tr><td class="id">H1</td><td>Google Analytics 4 certification (Cert. ID 170306910, 27 Dec 2025)<div class="sub">Industry-recognised credential; pdf in evidence ZIP.</div></td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+    <tr><td class="id">H2</td><td>Looker Studio Digital Performance Dashboard — Buildup Addis (April 2026)<div class="sub">43 visitors, 71 sessions, 40.85% engagement rate, 3-min avg session.</div></td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+    <tr><td class="id">H3</td><td>HubSpot Academy modules (inbound marketing / content strategy)<div class="sub">Completion record.</div></td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+    <tr><td class="id">H4</td><td>Planr budget and capacity tracking — De Ruiter's Bakkerij<div class="sub">€1800/month, 12 h/week cap.</div></td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+  </table>
+
+  <!-- ============================================== -->
+  <h2 id="goal-2">4 · Goal 2 — Evidence Index</h2>
+  <table class="appendix">
+    <tr><th>ID</th><th>Title</th><th>Status</th></tr>
+    <tr><td class="id">I1</td><td>Phase 1 JavaScript projects (Sep–Dec 2025)<div class="sub">digital-clock-js, palindrome-checker, snake-game, todo-app, dev-tip-calculator.</div></td><td class="location"><a href="https://github.com/jerichoNega"><span class="pill both">Live + ZIP</span></a></td></tr>
+    <tr><td class="id">I2</td><td>Phase 2 React applications (Jan–Feb 2026)<div class="sub">Crypto price dashboard, developer profile finder.</div></td><td class="location"><a href="https://github.com/jerichoNega/react-crypto-dashboard"><span class="pill both">Live + ZIP</span></a></td></tr>
+    <tr><td class="id">I3</td><td>Make.com AI recruitment pipeline (17 executions, 0 errors)<div class="sub">Parent-child architecture, mandatory human-review node, compliance-by-design.</div></td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+    <tr><td class="id">I4</td><td>DATAFRYSLÂN Pieter Hoekstra persona<div class="sub">Big Five OCEAN, motivation framework, media-use percentages, core values.</div></td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+    <tr><td class="id">I5</td><td>Planr / de-ruiter-contentcalendar implementation system<div class="sub">Four content series, weekly time caps, four-week production cycle.</div></td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+    <tr><td class="id">I6</td><td>Command-centre app + Telegram-bot voice-to-brain-dump pipeline<div class="sub">Offloads remembering so the brain can do thinking.</div></td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+    <tr><td class="id">I7</td><td>Anthropic Claude Code in Action certificate (12 May 2026)<div class="sub">Cert. No. fza2jjtswv87.</div></td><td class="location"><a href="https://verify.skilljar.com/c/fza2jjtswv87"><span class="pill both">Verify + ZIP</span></a></td></tr>
+    <tr><td class="id">I8</td><td>Make Academy + Anthropic Claude Cowork (in progress)<div class="sub">Progress screenshots.</div></td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+    <tr><td class="id">I9</td><td>Other Phase 4 work<div class="sub">MyNewsJericho (Python news bot), housing-finder (scraper), BuildupAddis vibe-coded contribution.</div></td><td class="location"><a href="https://github.com/jerichoNega"><span class="pill both">Live + ZIP</span></a></td></tr>
+  </table>
+
+  <!-- ============================================== -->
+  <h2 id="goal-3">5 · Goal 3 — Evidence Index</h2>
+  <table class="appendix">
+    <tr><th>ID</th><th>Title</th><th>Status</th></tr>
+    <tr><td class="id">J1</td><td>Thonie van Lieburg email correspondence (3 Nov 2025)<div class="sub">Hiring manager call; React, TypeScript, CI/CD named as non-negotiable.</div></td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+    <tr><td class="id">J2</td><td>MICA Open Agency Night, Leeuwarden (2 April 2026)<div class="sub">Met Gerben (linkedin.com/in/gerbenjk/).</div></td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+    <tr><td class="id">J3</td><td>Job Fair for Internationals certificate (12 February 2026)</td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+    <tr><td class="id">J4</td><td>LinkedIn connections sheet<div class="sub">Gerben, Justin van Dongen, Neil Langereis, Erik Bell, Noah van Rossum.</div></td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+  </table>
+
+  <!-- ============================================== -->
+  <h2>6 · Received feedback &amp; mentors</h2>
+  <table class="appendix">
+    <tr><th>ID</th><th>Title</th><th>Status</th></tr>
+    <tr><td class="id">C</td><td>Coach rubric assessment — Indicators 5a + 5c (October 2025)<div class="sub">Overall grade 8.25; quoted directly across all three reflections.</div></td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+    <tr><td class="id">D1</td><td>Twan Wouters WhatsApp — LinkedIn visibility (12 October 2025)<div class="sub">Personal communication (APA 7).</div></td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+    <tr><td class="id">D2</td><td>Twan Wouters WhatsApp — AI and the future of programming (2026)<div class="sub">Personal communication (APA 7); quoted in Goal 2 and Opinion Piece Section 2.</div></td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+    <tr><td class="id">E</td><td>Wesley Plugers (Scherp Online) LinkedIn post<div class="sub">Public reference to the networking exchange.</div></td><td class="location"><a href="https://www.linkedin.com/in/wesleyplugers/"><span class="pill both">Live + ZIP</span></a></td></tr>
+    <tr><td class="id">F</td><td>Marije Rispens verbal feedback note + Meet the Board group photo<div class="sub">With explicit permission to cite for PPD.</div></td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+  </table>
+
+  <!-- ============================================== -->
+  <h2>7 · Personal foundation (carried from PPD Plan)</h2>
+  <table class="appendix">
+    <tr><th>ID</th><th>Title</th><th>Status</th></tr>
+    <tr><td class="id">A</td><td>16Personalities ENFJ-T result (October 2025)</td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+    <tr><td class="id">B</td><td>Digital Abyssinia Technologies company profile (2024)</td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+  </table>
+
+  <!-- ============================================== -->
+  <h2>8 · Opinion piece prototype evidence</h2>
+  <table class="appendix">
+    <tr><th>ID</th><th>Title</th><th>Status</th></tr>
+    <tr><td class="id">K1</td><td>Published opinion article on this website<div class="sub">From Automation to Architecture (May 2026).</div></td><td class="location"><a href="automation-architecture.html"><span class="pill both">Live + ZIP</span></a></td></tr>
+    <tr><td class="id">K2</td><td>Make.com recruitment-pipeline governance architecture diagram<div class="sub">Visual representation used inside the article.</div></td><td class="location"><span class="pill zip">In ZIP</span></td></tr>
+  </table>
+
+  <!-- ============================================== -->
+  <h2>9 · Logbook</h2>
+  <p class="ppd-p">Completed PPD logbook uploaded separately to Blackboard as <code>PPD_MCMS_Logbook_DEGU_Completed.xlsx</code>. Five sheets: Identification, Monthly Summary (Sep 2025 – May 2026), Weekly Entries (milestone weeks colour-coded by goal), Daily Highlights (the dated milestones referenced in the reflections), and Goal Totals (hours per goal with end-of-year status).</p>
+
+  <!-- ============================================== -->
+  <hr>
+  <h2>How this archive relates to the Blackboard submission</h2>
+  <ul class="clean">
+    <li><strong style="color:#fff">Template (graded document):</strong> <code>5692792_DEGU_PPDPortfolio_2026_Final.docx</code> — uploaded to Blackboard.</li>
+    <li><strong style="color:#fff">Logbook:</strong> <code>PPD_MCMS_Logbook_DEGU_Completed.xlsx</code> — uploaded to Blackboard.</li>
+    <li><strong style="color:#fff">Evidence ZIP:</strong> <code>5692792_DEGU_Evidence.zip</code> — uploaded to Blackboard (under 10 MB cap). Folders A through K match the appendix identifiers above 1:1.</li>
+    <li><strong style="color:#fff">This online archive:</strong> optional supplementary navigation surface, mapping each appendix to its live counterpart where applicable.</li>
+  </ul>
+
+  <footer class="ppd-footer">
+    <div>Beyaricko Nega Degu · 5692792 · MCMS 2025–2026 · NHL Stenden</div>
+    <div><a href="index.html">← back to portfolio</a></div>
+  </footer>
+</div>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
