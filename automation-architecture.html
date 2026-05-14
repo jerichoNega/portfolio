@@ -477,7 +477,7 @@
 <header class="article-hero">
   <div class="article-hero-inner">
     <p class="article-tag">Opinion · AI Governance · PPD</p>
-    <h1 class="article-title">From Automation<br><span class="accent">to Architecture</span></h1>
+    <h1 class="article-title">From Automation to Architecture</h1>
     <p class="article-subtitle">Why the Dutch digital industry needs AI governance professionals — not just AI users</p>
     <div class="article-meta">
       <span>Beyaricko Degu</span>
@@ -500,7 +500,7 @@
 
     <p>The Dutch media and marketing industry has an AI problem. Not the kind that makes headlines — not deepfakes or hallucinating chatbots — but a quieter, more corrosive problem: agencies are automating content at scale without building the governance architecture to make it trustworthy.</p>
 
-    <p>I have spent the last year building 11 agentic workflows in Make.com — tools that screen job applicants, generate client documents, schedule multi-channel content, and deliver AI-summarised news briefings. Each one taught me the same uncomfortable lesson: the technical part is the easy part. The hard part is designing the system to be <em>accountable</em> when something goes wrong.</p>
+    <p>I have spent the last year building 11 agentic workflows in Make.com — tools that screen job applicants, generate client documents, schedule multi-channel content, and deliver AI-summarised news briefings. Each one taught me the same uncomfortable lesson: the technical part is the easy part. The hard part is designing the system to be accountable when something goes wrong.</p>
 
     <blockquote>
       "The professionals who will be most valuable in the next five years are not those who can use AI tools. They are those who can architect the governance systems that make AI deployments safe, compliant, and commercially sustainable."
@@ -512,20 +512,20 @@
 
     <p>Research from the Reuters Institute confirms that trust in digital media continues to decline, and that readers are developing heightened scepticism toward content that feels algorithmically produced (Newman et al., 2024). This trajectory is not commercially neutral. It destroys brand equity, accumulates legal exposure, and produces exactly the kind of low-quality content that search engines are now actively penalising.</p>
 
-    <p>The current default is <strong>AI for speed</strong>. The professional standard we need to build toward is <strong>AI for governed precision</strong>.</p>
+    <p>The current default is AI for speed. The standard we need is AI for governed precision. Mollick (2024) frames it directly: the professionals who create the most value in the AI transition are the ones who deploy AI inside human systems, not those who simply use AI tools.</p>
 
     <h2>What the EU AI Act Actually Means for Dutch Agencies</h2>
 
-    <p>The EU AI Act (Regulation (EU) 2024/1689), which entered into force in August 2024, establishes binding obligations for organisations deploying AI systems that generate or personalise content at scale. Dutch businesses in the digital media space — agencies, consultancies, content platforms — are subject to these rules whether they have read them or not.</p>
+    <p>The EU AI Act (Regulation (EU) 2024/1689), in force since August 2024, binds organisations deploying AI systems that generate or personalise content at scale. Dutch businesses in the digital media space are subject to these rules whether they have read them or not.</p>
 
     <div class="callout">
       <strong>Key obligation for marketing AI</strong>
-      Systems that use AI to make or influence decisions affecting individuals — including personalised content targeting — must include transparency disclosures, maintain audit trails, and ensure human oversight at consequential decision points. This is not a future requirement. It applies now.
+      Systems that influence decisions about individuals — including personalised content targeting — must include transparency disclosures, audit trails, and human oversight at consequential decision points. This is not a future requirement. It applies now.
     </div>
 
-    <p>Organisations that treat compliance as a burden will face both regulatory risk and reputational damage. Organisations that treat it as a <em>competitive architecture</em> will build systems that are faster, safer, and more trusted than their competitors. The Rijksoverheid's national digitalisation strategy explicitly calls for innovation that is responsible, data-governed, and human-centred (Rijksoverheid, 2024). The AI Act is the legal expression of that strategy.</p>
+    <p>Organisations that treat compliance as a burden face regulatory risk and reputational damage. Organisations that treat it as a competitive architecture build systems that are faster, safer, and more trusted than their competitors. The Rijksoverheid national digitalisation strategy explicitly calls for innovation that is responsible, data-governed, and human-centred (Rijksoverheid, 2024). The AI Act is the legal expression of that strategy.</p>
 
-    <h2>Governance Layers: What They Look Like in Practice</h2>
+    <h2>Governance Layers in Practice</h2>
 
     <p>A Governance Layer is not a compliance checkbox. It is a set of systematic checkpoints built into the architecture of an agentic workflow that verify factual accuracy, test for bias, enforce brand alignment, and confirm legal compliance before any output reaches a human audience.</p>
 
@@ -546,43 +546,47 @@
         <span class="wf-arrow">→</span>
         <span class="wf-step">Log to Sheet</span>
       </div>
-      <p class="workflow-note">17 executions · 0 errors · Human review node is non-optional — it is an architectural constraint, not a preference.</p>
+      <p class="workflow-note">17 executions · 0 errors</p>
     </div>
 
-    <p>The human review node is not optional. It is an architectural constraint I build in from the start, because I understand what happens when it is absent. This is what I call <strong>Human-in-the-Loop (HITL) by design</strong> — not as a feature added afterward, but as a structural commitment encoded into the core of the system.</p>
+    <p>The human review node is not optional. It is an architectural constraint I build in from the start, because I understand what happens when it is absent. This is Human-in-the-Loop (HITL) by design — not a feature added afterward, but a structural commitment encoded into the core of the system.</p>
 
     <h2>Three Principles Every AI Architect Should Build With</h2>
 
     <ul class="principles">
       <li>
         <span class="num">1</span>
-        <div><strong>Human-in-the-Loop by Design.</strong> Every agentic workflow that affects truth, representation, or user experience must have a mandatory human approval stage. This is a design standard, not a preference.</div>
+        <div><strong>Human-in-the-Loop by Design.</strong> Every agentic workflow that affects truth, representation, or user experience must have a mandatory human approval stage.</div>
       </li>
       <li>
         <span class="num">2</span>
-        <div><strong>Privacy by Design.</strong> Agentic workflows move data across nodes, tools, APIs, and external services at speed. Data containment must be designed into the architecture from the first node — not retrofitted after the system is built.</div>
+        <div><strong>Privacy by Design.</strong> Agentic workflows move data across nodes, tools, APIs, and external services at speed. Data containment must be designed in from the first node, not retrofitted later.</div>
       </li>
       <li>
         <span class="num">3</span>
-        <div><strong>Radical Transparency.</strong> If a piece of content or a business decision was shaped by an AI system, the end user deserves to know. Transparency is not a communication strategy — it is a structural commitment encoded into the system through disclosure layers, audit trails, and documented decision logic.</div>
+        <div><strong>Radical Transparency.</strong> If a piece of content or a business decision was shaped by AI, the end user deserves to know. Transparency is a structural commitment, not a communication strategy.</div>
       </li>
     </ul>
+
+    <h2>The 18-to-24-Month Window</h2>
+
+    <p>The Dutch digital industry has roughly 18 to 24 months to choose between governance-by-architecture and governance-by-crisis. The professionals who lead the transition will be the practitioners who design the AI Act's obligations into the first node of their workflows, not the ones who hire consultants to retrofit compliance after a complaint, an audit, or a public failure. After that window, catching up will be measurable in lost contracts, regulatory fines and reputational damage that compounds with every AI-shaped decision a non-governed system makes.</p>
 
     <h2>What This Means for the Dutch Market</h2>
 
     <p>The Dutch digital market is well-positioned to lead on this, but only if it produces professionals who understand both the strategic context and the technical detail. From conversations with hiring managers and digital professionals across the Netherlands over the past year, one pattern emerged consistently: organisations know AI is changing how they work, but they lack the technical confidence to evaluate what "good" AI implementation actually looks like.</p>
 
-    <p>That gap is an opportunity. Not for AI users, but for AI architects — professionals who can walk into a Dutch agency, audit their current automation setup, identify the governance risks, and redesign the system to be compliant, auditable, and commercially sustainable. The question for digital professionals building their career in this market is: which side of that gap do you want to be on?</p>
+    <p>That gap is an opportunity. Not for AI users, but for AI architects — professionals who can walk into a Dutch agency, audit their automation setup, identify the governance risks, and redesign the system to be compliant, auditable, and commercially sustainable. The question for digital professionals building their career in this market is: which side of that gap do you want to be on?</p>
 
     <!-- Author card -->
     <div class="article-author">
       <p class="author-label">// About the author</p>
       <p class="author-name">Beyaricko Degu</p>
-      <p class="author-bio">Digital strategist and AI automation practitioner studying MA Content &amp; Media Strategy at NHL Stenden, Netherlands. He builds agentic workflows in Make.com and n8n, and writes about the intersection of AI governance, digital marketing, and professional ethics.</p>
+      <p class="author-bio">Beyaricko Degu — Digital strategist and AI automation practitioner finishing his Master of Content and Media Strategy at NHL Stenden, Netherlands. He builds agentic workflows in Make.com and n8n, and writes about AI governance, digital marketing, and professional ethics.</p>
       <div class="author-links">
         <a href="https://github.com/JerichoNega" target="_blank" rel="noopener" class="author-link">GitHub</a>
         <a href="https://www.linkedin.com/in/beyarickonega" target="_blank" rel="noopener" class="author-link">LinkedIn</a>
-        <a href="index.html" class="author-link">← Portfolio</a>
+        <a href="index.html" class="author-link">Portfolio</a>
       </div>
     </div>
 
@@ -591,6 +595,7 @@
       <h2>References</h2>
       <ol>
         <li>European Parliament. (2024). <em>Regulation (EU) 2024/1689 of the European Parliament and of the Council laying down harmonised rules on artificial intelligence (Artificial Intelligence Act).</em> Official Journal of the European Union. https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689</li>
+        <li>Mollick, E. (2024). <em>Co-Intelligence: Living and Working with AI.</em> Portfolio / Penguin.</li>
         <li>Newman, N., Fletcher, R., Robertson, C. T., Eddy, K., &amp; Nielsen, R. K. (2024). <em>Reuters Institute Digital News Report 2024.</em> Reuters Institute for the Study of Journalism. https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2024</li>
         <li>Rijksoverheid. (2024). <em>Nederland Digitaal 2024–2028: Nationale digitaliseringsstrategie.</em> https://www.nederlanddigitaal.nl/</li>
       </ol>
