@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The T-Shaped Professional in the Age of AI: Why Breadth Still Wins | Beyaricko Degu</title>
+  <meta name="description" content="The people thriving right now aren't the pure coders or the pure creatives — they're the ones who learned to move fluidly between both. A field report from someone building at the seam." />
+  <meta name="author" content="Beyaricko Degu" />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="The T-Shaped Professional in the Age of AI: Why Breadth Still Wins | Beyaricko Degu" />
+  <meta property="og:description" content="The people thriving right now aren't the pure coders or the pure creatives — they're the ones who learned to move fluidly between both. A field report from someone building at the seam." />
+  <meta property="og:type"        content="article" />
+
+  <!-- Same fonts as portfolio -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Sora:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <!-- Portfolio base styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Article-specific overrides -->
+  <style>
+
+    /* ── ARTICLE HERO ── */
+    .article-hero {
+      position: relative;
+      z-index: 2;
+      min-height: 62vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 10rem 4rem 5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .article-hero-inner { max-width: 900px; }
+
+    .article-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    .article-tag::before { content: '> '; color: var(--cyan); }
+
+    .article-title {
+      font-family: 'Orbitron', monospace;
+      font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      line-height: 1.05;
+      letter-spacing: -.01em;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      opacity: 1;
+      animation: none;
+    }
+
+    .article-title .accent { color: var(--cyan); }
+
+    .article-subtitle {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 640px;
+      margin-bottom: 2.5rem;
+    }
+
+    .article-meta {
+      font-family: 'Space Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .15em;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .article-meta .sep { color: var(--border); }
+
+    /* ── BACK BAR ── */
+    .back-bar {
+      position: relative;
+      z-index: 2;
+      padding: 1.25rem 4rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(4,4,10,0.6);
+    }
+
+    .back-link {
+      font-family: 'Space Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      transition: color .2s;
+    }
+
+    .back-link::before { content: '←'; color: var(--orange); }
+    .back-link:hover { color: var(--cyan); }
+
+    /* ── ARTICLE BODY ── */
+    .article-body {
+      position: relative;
+      z-index: 2;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 4rem;
+    }
+
+    .article-container {
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    .article-container p {
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      line-height: 1.95;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .article-container strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .article-container em {
+      color: var(--cyan);
+      font-style: normal;
+    }
+
+    .article-container h2 {
+      font-family: 'Space Mono', monospace;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      line-height: 1;
+      margin: 3.5rem 0 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+    }
+
+    .article-container h2::before {
+      content: '//';
+      color: var(--orange);
+      letter-spacing: 0;
+    }
+
+    .article-container blockquote {
+      border-left: 3px solid var(--cyan);
+      background: var(--bg3);
+      padding: 1.75rem 2rem;
+      margin: 2.5rem 0;
+      font-family: 'Sora', sans-serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.8;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-container blockquote::before {
+      content: '"';
+      position: absolute;
+      top: -1rem;
+      right: 1.5rem;
+      font-family: 'Orbitron', monospace;
+      font-size: 6rem;
+      color: rgba(0,229,212,0.05);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .callout {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--orange);
+      padding: 1.5rem 2rem;
+      margin: 2.5rem 0;
+      font-family: 'Sora', sans-serif;
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .callout strong {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--orange) !important;
+      margin-bottom: .85rem;
+      font-weight: 700;
+    }
+
+    .principles {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin: 2rem 0;
+    }
+
+    .principles li {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      font-family: 'Sora', sans-serif;
+      font-size: .95rem;
+      line-height: 1.75;
+      color: var(--muted);
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 1.25rem 1.5rem;
+      transition: border-color .2s;
+    }
+
+    .principles li:hover { border-color: rgba(0,229,212,0.3); }
+
+    .principles .num {
+      font-family: 'Orbitron', monospace;
+      font-size: .6rem;
+      font-weight: 700;
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(0,229,212,0.4);
+      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .article-author {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      margin: 4rem 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-author::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--orange));
+    }
+
+    .author-label {
+      font-family: 'Space Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: .75rem;
+    }
+
+    .author-name {
+      font-family: 'Orbitron', monospace;
+      font-size: .9rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: .05em;
+      margin-bottom: .6rem;
+    }
+
+    .author-bio {
+      font-family: 'Sora', sans-serif;
+      font-size: .88rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .author-links {
+      display: flex;
+      gap: .75rem;
+      flex-wrap: wrap;
+    }
+
+    .author-link {
+      font-family: 'Space Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      text-decoration: none;
+      border: 1px solid rgba(0,229,212,0.25);
+      padding: .4rem .9rem;
+      transition: all .2s;
+    }
+
+    .author-link:hover {
+      background: var(--cyan-dim);
+      border-color: rgba(0,229,212,0.5);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .article-hero { padding: 8rem 1.5rem 3rem; min-height: 52vh; }
+      .article-body { padding: 3rem 1.5rem; }
+      .back-bar { padding: 1.25rem 1.5rem; }
+    }
+
+    @media (max-width: 560px) {
+      .article-title { font-size: clamp(1.8rem, 8vw, 2.6rem); }
+      .article-subtitle { font-size: .95rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="glow"></div>
+
+<!-- ═══════════════════════════ NAV ═══════════════════════════ -->
+<nav>
+  <a href="index.html" class="nav-logo">BD</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="index.html#portfolio">Work</a></li>
+    <li><a href="ppd-archive.html" style="color:var(--cyan);">PPD Archive</a></li>
+    <li><a href="index.html#blog">Blog</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="cv.html" target="_blank">CV</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">Hire Me</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#about"     class="mobile-nav-link">About</a>
+  <a href="index.html#services"  class="mobile-nav-link">Services</a>
+  <a href="index.html#skills"    class="mobile-nav-link">Skills</a>
+  <a href="index.html#portfolio" class="mobile-nav-link">Work</a>
+  <a href="ppd-archive.html"     class="mobile-nav-link" style="color:var(--cyan);">PPD Archive</a>
+  <a href="index.html#blog"      class="mobile-nav-link">Blog</a>
+  <a href="index.html#contact"   class="mobile-nav-link">Contact</a>
+  <a href="cv.html"              class="mobile-nav-link" target="_blank" style="color:var(--orange);">CV</a>
+  <a href="index.html#contact"   class="mobile-nav-link" style="color:var(--cyan);">Hire Me</a>
+</div>
+
+<!-- ═══════════════════════════ ARTICLE HERO ═══════════════════════════ -->
+<header class="article-hero">
+  <div class="article-hero-inner">
+    <p class="article-tag">Career &amp; Growth</p>
+    <h1 class="article-title">The T-Shaped Professional<br>in the Age of AI:<br>Why <span class="accent">Breadth</span> Still Wins</h1>
+    <p class="article-subtitle">The people thriving right now aren't the pure coders or the pure creatives — they're the ones who learned to move fluidly between both. A field report from someone building at the seam.</p>
+    <div class="article-meta">
+      <span>Beyaricko Degu</span>
+      <span class="sep">/</span>
+      <span>Feb 2026</span>
+      <span class="sep">/</span>
+      <span>4 min read</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════ BACK BAR ═══════════════════════════ -->
+<div class="back-bar">
+  <a href="index.html#blog" class="back-link">Back to blog</a>
+</div>
+
+<!-- ═══════════════════════════ ARTICLE BODY ═══════════════════════════ -->
+<main class="article-body">
+  <div class="article-container">
+
+    <p>I study content and media strategy. I build React apps and agentic workflows. I write brand copy and governance frameworks. In most professional environments from five years ago, that combination would have been politely described as "unfocused." Today it is the thing I get hired for most often.</p>
+
+    <p>The AI transition has done something counterintuitive to the value of breadth: it has made it more valuable, not less. And it has done so in a way that isn't immediately obvious if you're looking at the surface — at the tools, at the job titles, at the discourse about specialisation.</p>
+
+    <blockquote>
+      "AI narrows the execution gap between specialists and generalists. What it cannot narrow is the comprehension gap — the ability to see across domains and make decisions that require understanding more than one of them at once."
+    </blockquote>
+
+    <h2>What the T-Shape Actually Means</h2>
+
+    <p>The T-shaped professional concept has been in circulation since the 1990s. The model is simple: depth in one domain (the vertical bar of the T), breadth across adjacent domains (the horizontal bar). The argument was always that depth alone makes you brittle and breadth alone makes you shallow — but T-shaped professionals can do specialised work while also collaborating effectively across disciplines.</p>
+
+    <p>That model still holds. But AI has changed the dynamics in a specific way. <strong>The vertical bar — deep expertise — is now under AI pressure.</strong> Many narrow, deep specialisations are being automated, augmented, or commoditised faster than practitioners can retrain. The horizontal bar — broad comprehension and cross-domain fluency — is not under the same pressure, because it is precisely the capability that tells you how to deploy AI wisely.</p>
+
+    <div class="callout">
+      <strong>The real differentiation in 2026</strong>
+      It is not "can you use the tools?" — everyone can. It is "do you have enough domain breadth to know which tool to use, for which problem, in which context, with which safeguards?" That judgment cannot be prompted. It has to be built.
+    </div>
+
+    <h2>Field Report: Building at the Seam</h2>
+
+    <p>In the past year, I've built a Dutch-language AI tutor, an automated recruitment screening pipeline, a multi-channel content calendar system, a real-time crypto dashboard, and a live competition leaderboard. None of those projects lives cleanly in a single discipline.</p>
+
+    <p>The tutor needed language pedagogy, UX design, prompt engineering, and API integration. The recruitment pipeline needed HR process knowledge, AI ethics, Make.com workflow design, and document parsing. The content system needed media strategy, scheduling logic, brand governance, and automation architecture.</p>
+
+    <p>In every case, the thing that made the work good was not depth in any one domain — it was the ability to cross between domains without losing coherence. To hold the brand requirement and the technical constraint in the same frame. To know when the AI's output was technically correct but contextually wrong. That is the horizontal bar doing its job.</p>
+
+    <h2>Three Moves That Build Horizontal Strength</h2>
+
+    <ul class="principles">
+      <li>
+        <span class="num">1</span>
+        <div><strong>Work on projects that don't fit your job description.</strong> The horizontal bar is built by working outside your primary domain on purpose. Volunteer for the brief that crosses into adjacent territory. Say yes to the project that requires you to learn something new to deliver it. The discomfort is the training.</div>
+      </li>
+      <li>
+        <span class="num">2</span>
+        <div><strong>Read across disciplines, not just within them.</strong> The mental models that produce insight are almost always imported from another field. Complexity theory from biology, trust architecture from game theory, narrative structure from literary criticism. Read widely. The cross-domain connections compound.</div>
+      </li>
+      <li>
+        <span class="num">3</span>
+        <div><strong>Ship things that require you to do more than one job.</strong> The fastest way to build horizontal fluency is to own something end-to-end — from strategy to execution to delivery. You cannot fake the skill gaps when you are accountable for the whole outcome.</div>
+      </li>
+    </ul>
+
+    <h2>The Market Signal Is Already There</h2>
+
+    <p>I've spoken with enough hiring managers and creative directors over the past year to feel confident about this: the professionals they are struggling to find are not the deepest specialists. They are the people who can bridge between the technical team and the client, between the strategy and the execution, between the AI system and the human who has to trust it.</p>
+
+    <p>That is a T-shape problem. The bridge is the horizontal bar. And right now, most organisations have plenty of verticals and not enough horizontals.</p>
+
+    <p>If you're early in your career and trying to figure out how to position yourself — or if you're mid-career and wondering whether your breadth is an asset or a liability — here is my honest field report: <strong>the seam is where the work is.</strong> The people who learned to operate fluidly across disciplines are the ones I watch get hired for the interesting problems, trusted with the complex deployments, and invited into the conversations that actually shape how organisations use AI.</p>
+
+    <p>Stay broad. Go deep where it counts. Build at the seam.</p>
+
+    <!-- Author card -->
+    <div class="article-author">
+      <p class="author-label">// About the author</p>
+      <p class="author-name">Beyaricko Degu</p>
+      <p class="author-bio">Beyaricko Degu — Digital strategist and AI automation practitioner finishing his Master of Content and Media Strategy at NHL Stenden, Netherlands. He builds agentic workflows in Make.com and n8n, and writes about AI governance, digital marketing, and professional ethics.</p>
+      <div class="author-links">
+        <a href="https://github.com/JerichoNega" target="_blank" rel="noopener" class="author-link">GitHub</a>
+        <a href="https://www.linkedin.com/in/beyarickonega" target="_blank" rel="noopener" class="author-link">LinkedIn</a>
+        <a href="index.html" class="author-link">Portfolio</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer>
+  <span class="footer-logo">BEYARICKO DEGU</span>
+  <span class="footer-copy">© 2026 — All systems operational</span>
+</footer>
+
+<script>
+  const glow = document.getElementById('glow');
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top  = e.clientY + 'px';
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+  }
+
+  const hamburger  = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Stay Sharp When AI Is Making Everyone Lazier | Beyaricko Degu</title>
+  <meta name="description" content="AI tools are incredible — and they're quietly training us to stop thinking. Here's the mindset shift that separates the people AI empowers from the ones it replaces." />
+  <meta name="author" content="Beyaricko Degu" />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="How to Stay Sharp When AI Is Making Everyone Lazier | Beyaricko Degu" />
+  <meta property="og:description" content="AI tools are incredible — and they're quietly training us to stop thinking. Here's the mindset shift that separates the people AI empowers from the ones it replaces." />
+  <meta property="og:type"        content="article" />
+
+  <!-- Same fonts as portfolio -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Sora:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <!-- Portfolio base styles -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <!-- Article-specific overrides -->
+  <style>
+
+    /* ── ARTICLE HERO ── */
+    .article-hero {
+      position: relative;
+      z-index: 2;
+      min-height: 62vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 10rem 4rem 5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .article-hero-inner { max-width: 900px; }
+
+    .article-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    .article-tag::before { content: '> '; color: var(--cyan); }
+
+    .article-title {
+      font-family: 'Orbitron', monospace;
+      font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3.8rem);
+      line-height: 1.05;
+      letter-spacing: -.01em;
+      color: #fff;
+      margin-bottom: 1.5rem;
+      opacity: 1;
+      animation: none;
+    }
+
+    .article-title .accent { color: var(--cyan); }
+
+    .article-subtitle {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 640px;
+      margin-bottom: 2.5rem;
+    }
+
+    .article-meta {
+      font-family: 'Space Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .15em;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .article-meta .sep { color: var(--border); }
+
+    /* ── BACK BAR ── */
+    .back-bar {
+      position: relative;
+      z-index: 2;
+      padding: 1.25rem 4rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(4,4,10,0.6);
+    }
+
+    .back-link {
+      font-family: 'Space Mono', monospace;
+      font-size: .62rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      transition: color .2s;
+    }
+
+    .back-link::before { content: '←'; color: var(--orange); }
+    .back-link:hover { color: var(--cyan); }
+
+    /* ── ARTICLE BODY ── */
+    .article-body {
+      position: relative;
+      z-index: 2;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 5rem 4rem;
+    }
+
+    .article-container {
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    .article-container p {
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      line-height: 1.95;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .article-container strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .article-container em {
+      color: var(--cyan);
+      font-style: normal;
+    }
+
+    .article-container h2 {
+      font-family: 'Space Mono', monospace;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      line-height: 1;
+      margin: 3.5rem 0 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+    }
+
+    .article-container h2::before {
+      content: '//';
+      color: var(--orange);
+      letter-spacing: 0;
+    }
+
+    .article-container blockquote {
+      border-left: 3px solid var(--cyan);
+      background: var(--bg3);
+      padding: 1.75rem 2rem;
+      margin: 2.5rem 0;
+      font-family: 'Sora', sans-serif;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.8;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-container blockquote::before {
+      content: '"';
+      position: absolute;
+      top: -1rem;
+      right: 1.5rem;
+      font-family: 'Orbitron', monospace;
+      font-size: 6rem;
+      color: rgba(0,229,212,0.05);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .callout {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--orange);
+      padding: 1.5rem 2rem;
+      margin: 2.5rem 0;
+      font-family: 'Sora', sans-serif;
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .callout strong {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--orange) !important;
+      margin-bottom: .85rem;
+      font-weight: 700;
+    }
+
+    .principles {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin: 2rem 0;
+    }
+
+    .principles li {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      font-family: 'Sora', sans-serif;
+      font-size: .95rem;
+      line-height: 1.75;
+      color: var(--muted);
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 1.25rem 1.5rem;
+      transition: border-color .2s;
+    }
+
+    .principles li:hover { border-color: rgba(0,229,212,0.3); }
+
+    .principles .num {
+      font-family: 'Orbitron', monospace;
+      font-size: .6rem;
+      font-weight: 700;
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(0,229,212,0.4);
+      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .article-author {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      margin: 4rem 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .article-author::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--orange));
+    }
+
+    .author-label {
+      font-family: 'Space Mono', monospace;
+      font-size: .58rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: .75rem;
+    }
+
+    .author-name {
+      font-family: 'Orbitron', monospace;
+      font-size: .9rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: .05em;
+      margin-bottom: .6rem;
+    }
+
+    .author-bio {
+      font-family: 'Sora', sans-serif;
+      font-size: .88rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .author-links {
+      display: flex;
+      gap: .75rem;
+      flex-wrap: wrap;
+    }
+
+    .author-link {
+      font-family: 'Space Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      text-decoration: none;
+      border: 1px solid rgba(0,229,212,0.25);
+      padding: .4rem .9rem;
+      transition: all .2s;
+    }
+
+    .author-link:hover {
+      background: var(--cyan-dim);
+      border-color: rgba(0,229,212,0.5);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .article-hero { padding: 8rem 1.5rem 3rem; min-height: 52vh; }
+      .article-body { padding: 3rem 1.5rem; }
+      .back-bar { padding: 1.25rem 1.5rem; }
+    }
+
+    @media (max-width: 560px) {
+      .article-title { font-size: clamp(1.8rem, 8vw, 2.6rem); }
+      .article-subtitle { font-size: .95rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="glow"></div>
+
+<!-- ═══════════════════════════ NAV ═══════════════════════════ -->
+<nav>
+  <a href="index.html" class="nav-logo">BD</a>
+  <ul class="nav-links">
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#skills">Skills</a></li>
+    <li><a href="index.html#portfolio">Work</a></li>
+    <li><a href="ppd-archive.html" style="color:var(--cyan);">PPD Archive</a></li>
+    <li><a href="index.html#blog">Blog</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+    <li><a href="cv.html" target="_blank">CV</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">Hire Me</a>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#about"     class="mobile-nav-link">About</a>
+  <a href="index.html#services"  class="mobile-nav-link">Services</a>
+  <a href="index.html#skills"    class="mobile-nav-link">Skills</a>
+  <a href="index.html#portfolio" class="mobile-nav-link">Work</a>
+  <a href="ppd-archive.html"     class="mobile-nav-link" style="color:var(--cyan);">PPD Archive</a>
+  <a href="index.html#blog"      class="mobile-nav-link">Blog</a>
+  <a href="index.html#contact"   class="mobile-nav-link">Contact</a>
+  <a href="cv.html"              class="mobile-nav-link" target="_blank" style="color:var(--orange);">CV</a>
+  <a href="index.html#contact"   class="mobile-nav-link" style="color:var(--cyan);">Hire Me</a>
+</div>
+
+<!-- ═══════════════════════════ ARTICLE HERO ═══════════════════════════ -->
+<header class="article-hero">
+  <div class="article-hero-inner">
+    <p class="article-tag">AI &amp; Society</p>
+    <h1 class="article-title">How to Stay Sharp When AI<br>Is Making Everyone <span class="accent">Lazier</span></h1>
+    <p class="article-subtitle">AI tools are incredible — and they're quietly training us to stop thinking. Here's the mindset shift that separates the people AI empowers from the ones it replaces.</p>
+    <div class="article-meta">
+      <span>Beyaricko Degu</span>
+      <span class="sep">/</span>
+      <span>Apr 2026</span>
+      <span class="sep">/</span>
+      <span>5 min read</span>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════ BACK BAR ═══════════════════════════ -->
+<div class="back-bar">
+  <a href="index.html#blog" class="back-link">Back to blog</a>
+</div>
+
+<!-- ═══════════════════════════ ARTICLE BODY ═══════════════════════════ -->
+<main class="article-body">
+  <div class="article-container">
+
+    <p>There is a specific kind of dangerous comfort in watching Claude, ChatGPT, or Gemini produce a first draft in seven seconds. It feels like leverage. And it is — until the moment it becomes a replacement for your own thinking. That moment is quieter than you'd expect, and most people miss it completely.</p>
+
+    <p>I've been building with AI tools intensively for over a year. I use them every day. I've watched colleagues use them every day too. And I've noticed something that doesn't get discussed honestly enough: <strong>the people who are becoming more capable through AI are a different type of user than the people who are becoming more dependent on it.</strong> The gap between those two types is growing. Fast.</p>
+
+    <blockquote>
+      "The tool that makes you faster at producing output, without forcing you to understand the output, is not a productivity tool. It's an atrophy machine."
+    </blockquote>
+
+    <h2>What Cognitive Atrophy Actually Looks Like</h2>
+
+    <p>It doesn't look like laziness. It looks like efficiency. You ask the AI to write the brief, summarise the research, draft the email, generate the analysis. Each individual step feels reasonable. The output is good enough. You ship it. You do it again tomorrow.</p>
+
+    <p>What you don't notice is the compounding effect. The skill of constructing an argument from scratch — of holding a half-formed idea long enough to pressure-test it — starts to rust. Not because you're incapable, but because you stopped practising. The same way a muscle you don't load eventually stops responding, the mental effort of genuine first-principles thinking weakens when you outsource it every time.</p>
+
+    <p>I watched this happen to a teammate last year. Extraordinarily capable person. Started using AI for every deliverable. Three months later, asked to present a strategic recommendation live in a client meeting — without the tool — and struggled to structure the argument verbally. The thinking had been happening inside a chat interface, not inside their head.</p>
+
+    <div class="callout">
+      <strong>The uncomfortable question</strong>
+      When did you last solve a complex problem without opening an AI interface first? Not because the tool was unavailable — but because you wanted to build the answer from your own reasoning before you compared it to what the model produces?
+    </div>
+
+    <h2>The Mindset That Actually Scales</h2>
+
+    <p>The professionals I've seen thrive with AI share one specific habit: they <strong>formulate before they prompt</strong>. They spend two minutes thinking through what they actually believe before asking the model. They use the AI output as a check against their own reasoning — not as a replacement for it.</p>
+
+    <p>This sounds small. It changes everything. When you have a prior view, you can evaluate the AI's response critically. You notice when it's generic. You catch when it contradicts something domain-specific you know to be true. You push back. You iterate toward something better than either you or the model could have produced alone. That's the leverage model that compounds.</p>
+
+    <p>When you don't have a prior view, you accept whatever the model produces. You optimise for speed of output over quality of thought. And you get faster and faster at producing work that has less and less of you in it.</p>
+
+    <h2>Three Practices I Use to Stay Sharp</h2>
+
+    <ul class="principles">
+      <li>
+        <span class="num">1</span>
+        <div><strong>Deliberate no-AI windows.</strong> I block one hour each morning for high-cognition work with no AI tools open. Strategy documents, first-principles problem framing, positioning decisions. The constraint is the point. It forces the mental load that keeps the skill active.</div>
+      </li>
+      <li>
+        <span class="num">2</span>
+        <div><strong>Critique before accepting.</strong> Every AI output I use gets a written critique before I incorporate it. Even if the critique is one sentence. It keeps me in the driver's seat of my own work and surfaces errors I would otherwise miss by reading too fast.</div>
+      </li>
+      <li>
+        <span class="num">3</span>
+        <div><strong>Own the reasoning, delegate the production.</strong> The judgment — what matters, what the right answer is, what the audience needs — stays mine. The AI handles phrasing, structure, and first-draft generation. The moment I start delegating judgment, I've crossed the line from leverage into dependence.</div>
+      </li>
+    </ul>
+
+    <h2>Why This Is a Career Issue, Not Just a Personal One</h2>
+
+    <p>Here's the professional reality that most people aren't talking about: organisations are already learning to distinguish between people who use AI and people who <em>think</em> with AI. The former produces more output. The latter produces better decisions. As AI tools become universal, output volume stops being a differentiator. What remains scarce — and therefore valuable — is the quality of judgment behind the output.</p>
+
+    <p>The professionals who will command the most leverage in the next five years are not the fastest prompters. They are the ones who used the AI transition to sharpen their thinking, not replace it. Who stayed in the loop on their own reasoning. Who can walk into a room without a tool and still be the smartest person in the conversation.</p>
+
+    <p>The tool is extraordinary. Use it. Just don't let it use you back.</p>
+
+    <!-- Author card -->
+    <div class="article-author">
+      <p class="author-label">// About the author</p>
+      <p class="author-name">Beyaricko Degu</p>
+      <p class="author-bio">Beyaricko Degu — Digital strategist and AI automation practitioner finishing his Master of Content and Media Strategy at NHL Stenden, Netherlands. He builds agentic workflows in Make.com and n8n, and writes about AI governance, digital marketing, and professional ethics.</p>
+      <div class="author-links">
+        <a href="https://github.com/JerichoNega" target="_blank" rel="noopener" class="author-link">GitHub</a>
+        <a href="https://www.linkedin.com/in/beyarickonega" target="_blank" rel="noopener" class="author-link">LinkedIn</a>
+        <a href="index.html" class="author-link">Portfolio</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+<footer>
+  <span class="footer-logo">BEYARICKO DEGU</span>
+  <span class="footer-copy">© 2026 — All systems operational</span>
+</footer>
+
+<script>
+  const glow = document.getElementById('glow');
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top  = e.clientY + 'px';
+  });
+
+  const revealEls = document.querySelectorAll('.reveal');
+  if (revealEls.length) {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+  }
+
+  const hamburger  = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+</script>
+</body>
+</html>
