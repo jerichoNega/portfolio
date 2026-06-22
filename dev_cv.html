@@ -3,556 +3,538 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beyaricko Degu - Developer CV</title>
+  <title>Beyaricko Degu - CV</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --ink:      #0f1117;
-      --ink2:     #374151;
-      --muted:    #6b7280;
-      --accent:   #0066cc;
-      --line:     #e5e7eb;
-      --bg:       #ffffff;
-      --tag-bg:   #f3f4f6;
+      --teal:      #0b6e72;
+      --teal-light:#e6f4f5;
+      --teal-mid:  #d0eaeb;
+      --ink:       #1a1a1a;
+      --ink2:      #3d3d3d;
+      --muted:     #7a7a7a;
+      --line:      #dce8e9;
+      --sidebar:   #f2f8f8;
+      --white:     #ffffff;
     }
 
-    html { font-size: 10pt; }
+    html { font-size: 9.8pt; }
 
     body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: #f0f0f0;
+      font-family: 'Poppins', sans-serif;
+      background: #e0e0e0;
       color: var(--ink);
       line-height: 1.5;
     }
 
+    .print-hint {
+      text-align: center;
+      font-size: 8pt;
+      color: #999;
+      padding: 0.5rem;
+    }
+    .print-hint a { color: var(--teal); text-decoration: none; margin-right: 1rem; }
+
+    /* PAGE */
     .page {
       width: 210mm;
       min-height: 297mm;
-      background: var(--bg);
-      margin: 2rem auto;
-      padding: 14mm 15mm 14mm 15mm;
-      box-shadow: 0 4px 32px rgba(0,0,0,0.12);
+      margin: 1.5rem auto;
+      display: grid;
+      grid-template-columns: 66mm 1fr;
+      background: var(--white);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.15);
     }
 
-    .header {
-      padding-bottom: 10px;
-      margin-bottom: 12px;
-      border-bottom: 2px solid var(--ink);
-    }
-
-    .header-name {
-      font-size: 26pt;
-      font-weight: 700;
-      letter-spacing: -.02em;
-      color: var(--ink);
-      line-height: 1;
-    }
-
-    .header-title {
-      font-size: 10.5pt;
-      font-weight: 500;
-      color: var(--accent);
-      margin-top: 4px;
-      letter-spacing: .01em;
-    }
-
-    .header-contact {
+    /* SIDEBAR */
+    .sidebar {
+      background: var(--sidebar);
+      border-right: 1px solid var(--line);
+      padding: 0;
       display: flex;
-      flex-wrap: wrap;
-      gap: 4px 18px;
-      margin-top: 8px;
-      font-size: 8.5pt;
-      color: var(--ink2);
+      flex-direction: column;
     }
 
-    .header-contact a { color: var(--ink2); text-decoration: none; }
-    .header-contact a:hover { color: var(--accent); }
+    /* PHOTO + NAME BLOCK */
+    .sidebar-header {
+      background: var(--teal);
+      padding: 22px 18px 18px;
+      text-align: center;
+    }
 
-    .contact-item { display: flex; align-items: center; gap: 4px; }
-
-    .contact-dot {
-      width: 4px; height: 4px;
+    .photo-circle {
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
-      background: var(--accent);
+      background: rgba(255,255,255,0.18);
+      border: 2px solid rgba(255,255,255,0.5);
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22pt;
+      font-weight: 700;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: -1px;
+    }
+
+    .sidebar-name {
+      font-size: 12pt;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      letter-spacing: 0.01em;
+    }
+
+    .sidebar-title {
+      font-size: 7.5pt;
+      font-weight: 400;
+      color: rgba(255,255,255,0.78);
+      margin-top: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    /* SIDEBAR BODY */
+    .sidebar-body { padding: 16px 16px; flex: 1; }
+
+    .s-block { margin-bottom: 16px; }
+
+    .s-label {
+      font-size: 6.5pt;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 7px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid var(--teal-mid);
+    }
+
+    /* CONTACT */
+    .contact-row {
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+      margin-bottom: 6px;
+      font-size: 7.5pt;
+      color: var(--ink2);
+      line-height: 1.4;
+    }
+
+    .contact-row .icon {
+      color: var(--teal);
+      font-size: 8pt;
+      margin-top: 1px;
       flex-shrink: 0;
     }
 
-    .layout {
-      display: grid;
-      grid-template-columns: 1fr 58mm;
-      gap: 0 16px;
-      margin-top: 12px;
-    }
+    .contact-row a { color: var(--ink2); text-decoration: none; }
 
-    .section { margin-bottom: 14px; }
+    /* SKILLS */
+    .skill-group { margin-bottom: 9px; }
 
-    .section-title {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 7.5pt;
-      font-weight: 500;
-      letter-spacing: .14em;
+    .skill-group-name {
+      font-size: 7pt;
+      font-weight: 600;
+      color: var(--ink);
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 7px;
-      padding-bottom: 3px;
-      border-bottom: 1px solid var(--line);
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
     }
 
-    .summary {
-      font-size: 9pt;
-      line-height: 1.65;
+    .skill-list {
+      font-size: 7.5pt;
       color: var(--ink2);
+      line-height: 1.7;
     }
 
-    .summary strong { color: var(--ink); font-weight: 600; }
+    /* LANGUAGES */
+    .lang-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+      font-size: 8pt;
+    }
 
-    .exp-item { margin-bottom: 11px; }
-    .exp-item:last-child { margin-bottom: 0; }
+    .lang-name { color: var(--ink2); font-weight: 500; }
 
-    .exp-header {
+    .lang-dots { display: flex; gap: 3px; }
+
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--teal-mid);
+    }
+    .dot.filled { background: var(--teal); }
+
+    /* EDUCATION sidebar */
+    .edu-row { margin-bottom: 9px; }
+    .edu-row:last-child { margin-bottom: 0; }
+
+    .edu-degree {
+      font-size: 8pt;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .edu-school { font-size: 7.5pt; color: var(--teal); margin-top: 2px; }
+    .edu-year { font-size: 7pt; color: var(--muted); margin-top: 1px; }
+
+    /* CERTS */
+    .cert-row {
+      font-size: 7.5pt;
+      color: var(--ink2);
+      margin-bottom: 5px;
+      padding-left: 10px;
+      position: relative;
+    }
+    .cert-row::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 6px;
+      width: 5px; height: 1px;
+      background: var(--teal);
+    }
+    .cert-row small { display: block; font-size: 6.5pt; color: var(--muted); }
+
+    /* MAIN */
+    .main { padding: 22px 20px 20px; background: var(--white); }
+
+    /* PROFILE */
+    .profile-box {
+      background: var(--teal-light);
+      border-left: 3px solid var(--teal);
+      padding: 11px 13px;
+      margin-bottom: 18px;
+      font-size: 8.5pt;
+      color: var(--ink2);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    /* SECTION */
+    .m-block { margin-bottom: 16px; }
+
+    .m-label {
+      font-size: 7pt;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid var(--teal-mid);
+    }
+
+    /* ENTRY */
+    .entry { margin-bottom: 11px; }
+    .entry:last-child { margin-bottom: 0; }
+
+    .entry-top {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      gap: 8px;
+      gap: 6px;
     }
 
-    .exp-role { font-size: 9.5pt; font-weight: 600; color: var(--ink); }
+    .entry-role {
+      font-size: 9pt;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.3;
+    }
 
-    .exp-date {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 7.5pt;
+    .entry-date {
+      font-size: 7pt;
       color: var(--muted);
       white-space: nowrap;
       flex-shrink: 0;
+      font-weight: 400;
     }
 
-    .exp-company {
-      font-size: 8.5pt;
-      color: var(--accent);
+    .entry-org {
+      font-size: 8pt;
+      color: var(--teal);
       font-weight: 500;
       margin-top: 1px;
     }
 
-    .exp-bullets { margin-top: 5px; padding-left: 12px; list-style: none; }
+    .entry-sub {
+      font-size: 7.5pt;
+      color: var(--muted);
+      margin-top: 1px;
+      font-style: italic;
+    }
 
-    .exp-bullets li {
-      font-size: 8.5pt;
+    .entry-bullets { margin-top: 5px; padding-left: 13px; }
+
+    .entry-bullets li {
+      font-size: 8pt;
       color: var(--ink2);
       line-height: 1.55;
       margin-bottom: 3px;
-      position: relative;
+      font-weight: 300;
     }
 
-    .exp-bullets li::before {
-      content: '▸';
-      position: absolute;
-      left: -11px;
-      color: var(--accent);
-      font-size: 7pt;
-      top: 1px;
-    }
-
-    .exp-bullets li strong { color: var(--ink); font-weight: 600; }
-    .exp-bullets li a { color: var(--accent); text-decoration: none; }
-
-    .sidebar .section { margin-bottom: 13px; }
-
-    .skill-group { margin-bottom: 9px; }
-
-    .skill-group-label {
-      font-size: 7.5pt;
-      font-weight: 600;
-      color: var(--ink);
-      margin-bottom: 4px;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-    }
-
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 3px; }
-
-    .skill-tag {
-      font-size: 7pt;
-      background: var(--tag-bg);
-      color: var(--ink2);
-      padding: 2px 6px;
-      border-radius: 3px;
-      border: 1px solid var(--line);
-      white-space: nowrap;
-    }
-
-    .skill-tag.highlight {
-      background: #dbeafe;
-      color: #1d4ed8;
-      border-color: #bfdbfe;
-    }
-
-    .edu-item { margin-bottom: 8px; }
-    .edu-item:last-child { margin-bottom: 0; }
-
-    .edu-degree { font-size: 8.5pt; font-weight: 600; color: var(--ink); }
-    .edu-school { font-size: 8pt; color: var(--accent); margin-top: 1px; }
-
-    .edu-year {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 7.5pt;
-      color: var(--muted);
-      margin-top: 1px;
-    }
-
-    .cert-badge {
-      font-size: 6.5pt;
-      background: #dcfce7;
-      color: #166534;
-      border: 1px solid #bbf7d0;
-      padding: 1px 5px;
-      border-radius: 2px;
-      white-space: nowrap;
-      margin-top: 1px;
-      display: inline-block;
-    }
-
-    .lang-item {
-      display: flex;
-      justify-content: space-between;
-      font-size: 8pt;
-      color: var(--ink2);
-      margin-bottom: 4px;
-    }
-
-    .lang-level { font-size: 7.5pt; color: var(--muted); font-style: italic; }
-
-    .link-item {
-      font-size: 8pt;
-      color: var(--ink2);
-      margin-bottom: 4px;
-      display: flex;
-      gap: 5px;
-      align-items: baseline;
-    }
-
-    .link-label {
-      font-weight: 600;
-      color: var(--ink);
-      font-size: 7.5pt;
-      min-width: 28px;
-    }
-
-    .link-item a {
-      color: var(--accent);
-      text-decoration: none;
-      font-size: 7.5pt;
-      word-break: break-all;
-    }
+    .entry-bullets li strong { font-weight: 600; color: var(--ink); }
+    .entry-bullets li a { color: var(--teal); text-decoration: none; }
 
     @media print {
       body { background: white; }
-      .page {
-        margin: 0;
-        padding: 12mm 14mm;
-        box-shadow: none;
-        width: 100%;
-        min-height: auto;
-      }
-      a { color: inherit !important; }
+      .page { margin: 0; box-shadow: none; width: 100%; }
       .print-hint { display: none; }
-    }
-
-    .print-hint {
-      text-align: center;
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 9pt;
-      color: #888;
-      padding: .5rem;
-      margin-bottom: .5rem;
     }
   </style>
 </head>
 <body>
 
 <p class="print-hint">
-  <a href="index.html" style="color:#0066cc;text-decoration:none;margin-right:2rem;">Back to Portfolio</a>
-  Press <strong>Ctrl/Cmd + P</strong> to save as PDF
+  <a href="index.html">Back to Portfolio</a>
+  Ctrl / Cmd + P to save as PDF
 </p>
 
 <div class="page">
 
-  <header class="header">
-    <div class="header-name">BEYARICKO DEGU</div>
-    <div class="header-title">Software Developer</div>
-    <div class="header-contact">
-      <span class="contact-item"><span class="contact-dot"></span>+31 6 45 11 27 60</span>
-      <span class="contact-item"><span class="contact-dot"></span><a href="mailto:beyaricko.nega@gmail.com">beyaricko.nega@gmail.com</a></span>
-      <span class="contact-item"><span class="contact-dot"></span>Leeuwarden, Netherlands</span>
-      <span class="contact-item"><span class="contact-dot"></span><a href="https://github.com/jerichoNega" target="_blank">github.com/jerichoNega</a></span>
-      <span class="contact-item"><span class="contact-dot"></span><a href="https://jerichonega.github.io/portfolio/" target="_blank">jerichonega.github.io/portfolio</a></span>
-      <span class="contact-item"><span class="contact-dot"></span><a href="https://www.linkedin.com/in/beyaricko-degu-707272159" target="_blank">linkedin.com/in/beyaricko-degu</a></span>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-header">
+      <div class="photo-circle">BD</div>
+      <div class="sidebar-name">Beyaricko Degu</div>
+      <div class="sidebar-title">Software Developer</div>
     </div>
-  </header>
 
-  <div class="layout">
+    <div class="sidebar-body">
 
-    <main>
-
-      <section class="section">
-        <h2 class="section-title">Profile</h2>
-        <p class="summary">
-          Software Engineering graduate with five years of experience building websites and web applications for clients across different industries. Over the past year I have been learning AI and automation independently: working with LLMs via API, building local AI systems, and integrating tools like Make.com and n8n into real workflows. Currently finishing an MA in Content and Media Strategy at NHL Stenden, which built up the communication and research side alongside the technical background. I like building things that actually work and get used.
-        </p>
-      </section>
-
-      <section class="section">
-        <h2 class="section-title">Projects</h2>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">Second Brain - Full Stack AI System</span>
-            <span class="exp-date">2025 - present</span>
-          </div>
-          <div class="exp-company">Node.js, Next.js, TypeScript, SQLite, Ollama, Telegram, MCP</div>
-          <ul class="exp-bullets">
-            <li>Personal productivity system built from scratch: Telegram bot, Express API, cron scheduler, SQLite database and a Next.js dashboard all connected to a local LLM running via Ollama.</li>
-            <li>Designed and wrote the full architecture myself to get proper hands-on experience with end-to-end AI integration.</li>
-            <li><a href="https://github.com/jerichoNega" target="_blank">github.com/jerichoNega</a></li>
-          </ul>
+      <div class="s-block">
+        <div class="s-label">Contact</div>
+        <div class="contact-row">
+          <span class="icon">&#9742;</span>
+          <span>+31 6 45 11 27 60</span>
         </div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">MyNewsJericho AI - News Aggregation Dashboard</span>
-            <span class="exp-date">2025</span>
-          </div>
-          <div class="exp-company">Python, REST APIs, Render, Netlify</div>
-          <ul class="exp-bullets">
-            <li>Full stack news dashboard that aggregates and analyses AI research in real time from sources including OpenAI, Google AI, arXiv, TechCrunch, VentureBeat, and HackerNews. Publicly deployed.</li>
-            <li><a href="https://github.com/jerichoNega/MyNewsJericho" target="_blank">github.com/jerichoNega/MyNewsJericho</a></li>
-          </ul>
+        <div class="contact-row">
+          <span class="icon">&#9993;</span>
+          <a href="mailto:beyaricko.nega@gmail.com">beyaricko.nega@gmail.com</a>
         </div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">Content Automation Bot</span>
-            <span class="exp-date">2025</span>
-          </div>
-          <div class="exp-company">Python, Claude API</div>
-          <ul class="exp-bullets">
-            <li>Takes a topic and generates a LinkedIn post, email hook, and full blog article in parallel via API calls. Includes a manual review step before anything publishes.</li>
-            <li><a href="https://github.com/jerichoNega/content-automation-bot" target="_blank">github.com/jerichoNega/content-automation-bot</a></li>
-          </ul>
+        <div class="contact-row">
+          <span class="icon">&#9679;</span>
+          <span>Leeuwarden, Nederland</span>
         </div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">Dutch Tutor App</span>
-            <span class="exp-date">2025</span>
-          </div>
-          <div class="exp-company">Next.js, TypeScript</div>
-          <ul class="exp-bullets">
-            <li>Language learning app built with Next.js and TypeScript. <a href="https://github.com/jerichoNega/dutch-tutor" target="_blank">github.com/jerichoNega/dutch-tutor</a></li>
-          </ul>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">React Crypto Dashboard</span>
-            <span class="exp-date">2024</span>
-          </div>
-          <div class="exp-company">React, JavaScript, CoinGecko API, Recharts</div>
-          <ul class="exp-bullets">
-            <li>Live crypto price tracker with charts, search, and coin detail pages. <a href="https://github.com/jerichoNega/react-crypto-dashboard" target="_blank">github.com/jerichoNega/react-crypto-dashboard</a></li>
-          </ul>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">Build Up Addis - Client Websites</span>
-            <span class="exp-date">2019 - present</span>
-          </div>
-          <div class="exp-company">WordPress, Webflow, Shopify, Figma, Elementor</div>
-          <ul class="exp-bullets">
-            <li>20+ websites for clients across entertainment, healthcare, law, music, and trade. Full process from brief to design, build, and handover. <a href="https://buildupaddis.com" target="_blank">buildupaddis.com</a></li>
-          </ul>
-        </div>
-
-      </section>
-
-      <section class="section">
-        <h2 class="section-title">Experience</h2>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">Co-Founder and Digital Lead</span>
-            <span class="exp-date">2019 - Present</span>
-          </div>
-          <div class="exp-company">Build Up Addis (Digital Web Studio) - Remote / International</div>
-          <ul class="exp-bullets">
-            <li>Delivered <strong>20+ websites</strong> and handled full project lifecycle: discovery, UX, development, analytics, and launch.</li>
-            <li>SEO strategies averaging <strong>40% improvement</strong> in organic rankings across client portfolio.</li>
-            <li>Integrated Make.com and n8n automation workflows into client content operations.</li>
-          </ul>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">Digital Marketing Specialist</span>
-            <span class="exp-date">2021 - 2023</span>
-          </div>
-          <div class="exp-company">Barcon Getta - Ottawa, Canada (Part-time / Remote)</div>
-          <ul class="exp-bullets">
-            <li>Multi-channel campaigns, <strong>30% engagement increase</strong>, WordPress optimisation, Google Tag Manager setup.</li>
-          </ul>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">SEO and Content Strategist</span>
-            <span class="exp-date">2021 - 2023</span>
-          </div>
-          <div class="exp-company">ip4sure - Eindhoven, Netherlands (Part-time)</div>
-          <ul class="exp-bullets">
-            <li><strong>25% ranking improvement</strong> through technical SEO, B2B content strategy, GA4 migration, and custom dashboards.</li>
-          </ul>
-        </div>
-
-      </section>
-
-    </main>
-
-    <aside class="sidebar">
-
-      <section class="section">
-        <h2 class="section-title">Skills</h2>
-
-        <div class="skill-group">
-          <div class="skill-group-label">Languages</div>
-          <div class="skill-tags">
-            <span class="skill-tag highlight">JavaScript (ES6+)</span>
-            <span class="skill-tag highlight">TypeScript</span>
-            <span class="skill-tag highlight">Python</span>
-            <span class="skill-tag highlight">HTML5</span>
-            <span class="skill-tag highlight">CSS3</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <div class="skill-group-label">Frameworks</div>
-          <div class="skill-tags">
-            <span class="skill-tag highlight">React</span>
-            <span class="skill-tag highlight">Next.js</span>
-            <span class="skill-tag highlight">Node.js</span>
-            <span class="skill-tag">Express</span>
-            <span class="skill-tag">REST APIs</span>
-            <span class="skill-tag">SQLite</span>
-            <span class="skill-tag">Git</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <div class="skill-group-label">AI and Automation</div>
-          <div class="skill-tags">
-            <span class="skill-tag">Ollama</span>
-            <span class="skill-tag">Claude API</span>
-            <span class="skill-tag">OpenAI API</span>
-            <span class="skill-tag">Make.com</span>
-            <span class="skill-tag">n8n</span>
-            <span class="skill-tag">MCP</span>
-            <span class="skill-tag">LangChain</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <div class="skill-group-label">CMS and Platforms</div>
-          <div class="skill-tags">
-            <span class="skill-tag">WordPress</span>
-            <span class="skill-tag">Webflow</span>
-            <span class="skill-tag">Shopify</span>
-            <span class="skill-tag">Figma</span>
-            <span class="skill-tag">Framer</span>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <div class="skill-group-label">Analytics</div>
-          <div class="skill-tags">
-            <span class="skill-tag">Google Analytics 4</span>
-            <span class="skill-tag">Google Tag Manager</span>
-            <span class="skill-tag">Technical SEO</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="section">
-        <h2 class="section-title">Education</h2>
-        <div class="edu-item">
-          <div class="edu-degree">BSc - Software Engineering</div>
-          <div class="edu-school">Arba Minch University</div>
-          <div class="edu-year">Ethiopia</div>
-        </div>
-        <div class="edu-item">
-          <div class="edu-degree">MA - Content and Media Strategy</div>
-          <div class="edu-school">NHL Stenden University</div>
-          <div class="edu-year">Leeuwarden, NL - Expected 2026</div>
-        </div>
-      </section>
-
-      <section class="section">
-        <h2 class="section-title">Certifications</h2>
-        <div class="edu-item">
-          <div class="edu-degree">Google Analytics (GA4)</div>
-          <div class="edu-school">Google</div>
-          <span class="cert-badge">Certified</span>
-        </div>
-        <div class="edu-item">
-          <div class="edu-degree">Content Marketing</div>
-          <div class="edu-school">HubSpot Academy</div>
-          <span class="cert-badge">Certified</span>
-        </div>
-        <div class="edu-item">
-          <div class="edu-degree">Digital Marketing</div>
-          <div class="edu-school">Udemy</div>
-        </div>
-        <div class="edu-item">
-          <div class="edu-degree">SEO and SEM</div>
-          <div class="edu-school">Udemy</div>
-        </div>
-      </section>
-
-      <section class="section">
-        <h2 class="section-title">Languages</h2>
-        <div class="lang-item">
-          <span>English</span>
-          <span class="lang-level">C2 - Fluent</span>
-        </div>
-        <div class="lang-item">
-          <span>Dutch</span>
-          <span class="lang-level">B1 - Intermediate</span>
-        </div>
-        <div class="lang-item">
-          <span>Amharic</span>
-          <span class="lang-level">Native</span>
-        </div>
-      </section>
-
-      <section class="section">
-        <h2 class="section-title">Links</h2>
-        <div class="link-item">
-          <span class="link-label">GitHub</span>
+        <div class="contact-row">
+          <span class="icon">&#9679;</span>
           <a href="https://github.com/jerichoNega" target="_blank">github.com/jerichoNega</a>
         </div>
-        <div class="link-item">
-          <span class="link-label">Web</span>
+        <div class="contact-row">
+          <span class="icon">&#9679;</span>
           <a href="https://jerichonega.github.io/portfolio/" target="_blank">jerichonega.github.io/portfolio</a>
         </div>
-        <div class="link-item">
-          <span class="link-label">Studio</span>
-          <a href="https://buildupaddis.com" target="_blank">buildupaddis.com</a>
+        <div class="contact-row">
+          <span class="icon">&#9679;</span>
+          <a href="https://www.linkedin.com/in/beyaricko-degu-707272159" target="_blank">LinkedIn</a>
         </div>
-      </section>
+      </div>
 
-    </aside>
-  </div>
+      <div class="s-block">
+        <div class="s-label">Skills</div>
+        <div class="skill-group">
+          <div class="skill-group-name">Languages</div>
+          <div class="skill-list">JavaScript, TypeScript, Python, HTML5, CSS3</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Frameworks</div>
+          <div class="skill-list">React, Next.js, Node.js, Express, REST APIs, SQLite, Git</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">AI and Automation</div>
+          <div class="skill-list">Ollama, Claude API, OpenAI API, Make.com, n8n, MCP, LangChain</div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">CMS and Platforms</div>
+          <div class="skill-list">WordPress, Webflow, Shopify, Figma, Framer</div>
+        </div>
+      </div>
+
+      <div class="s-block">
+        <div class="s-label">Languages</div>
+        <div class="lang-row">
+          <span class="lang-name">English</span>
+          <div class="lang-dots">
+            <div class="dot filled"></div><div class="dot filled"></div>
+            <div class="dot filled"></div><div class="dot filled"></div>
+            <div class="dot filled"></div>
+          </div>
+        </div>
+        <div class="lang-row">
+          <span class="lang-name">Dutch</span>
+          <div class="lang-dots">
+            <div class="dot filled"></div><div class="dot filled"></div>
+            <div class="dot filled"></div><div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </div>
+        <div class="lang-row">
+          <span class="lang-name">Amharic</span>
+          <div class="lang-dots">
+            <div class="dot filled"></div><div class="dot filled"></div>
+            <div class="dot filled"></div><div class="dot filled"></div>
+            <div class="dot filled"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="s-block">
+        <div class="s-label">Education</div>
+        <div class="edu-row">
+          <div class="edu-degree">BSc Software Engineering</div>
+          <div class="edu-school">Arba Minch University</div>
+          <div class="edu-year">2015 - 2019</div>
+        </div>
+        <div class="edu-row">
+          <div class="edu-degree">MA Content and Media Strategy</div>
+          <div class="edu-school">NHL Stenden, Leeuwarden</div>
+          <div class="edu-year">2024 - 2026 (verwacht)</div>
+        </div>
+      </div>
+
+      <div class="s-block">
+        <div class="s-label">Certifications</div>
+        <div class="cert-row">
+          Google Analytics (GA4)
+          <small>Google</small>
+        </div>
+        <div class="cert-row">
+          Content Marketing
+          <small>HubSpot Academy</small>
+        </div>
+        <div class="cert-row">
+          Digital Marketing
+          <small>Udemy</small>
+        </div>
+        <div class="cert-row">
+          SEO and SEM
+          <small>Udemy</small>
+        </div>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <div class="profile-box">
+      Software Engineering graduate with five years of experience building websites and web applications for clients. Over the past year I have been learning AI and automation independently: working with LLMs, building local AI systems, and integrating tools like Make.com and n8n into real workflows. Currently finishing an MA in Content and Media Strategy at NHL Stenden. I like building things that work and get used.
+    </div>
+
+    <div class="m-block">
+      <div class="m-label">Projects</div>
+
+      <div class="entry">
+        <div class="entry-top">
+          <span class="entry-role">Second Brain - Full Stack AI System</span>
+          <span class="entry-date">2025 - present</span>
+        </div>
+        <div class="entry-org">Node.js, Next.js, TypeScript, SQLite, Ollama, Telegram, MCP</div>
+        <ul class="entry-bullets">
+          <li>Personal productivity system built from scratch: Telegram bot, Express API, cron scheduler, SQLite database and Next.js dashboard connected to a local LLM via Ollama.</li>
+          <li>Designed and wrote the full architecture myself to get hands-on experience with end-to-end AI integration.</li>
+          <li><a href="https://github.com/jerichoNega" target="_blank">github.com/jerichoNega</a></li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-top">
+          <span class="entry-role">MyNewsJericho AI - News Dashboard</span>
+          <span class="entry-date">2025</span>
+        </div>
+        <div class="entry-org">Python, REST APIs, deployed on Render / Netlify</div>
+        <ul class="entry-bullets">
+          <li>Full stack news aggregator tracking AI research in real time from OpenAI, Google AI, arXiv, TechCrunch, VentureBeat, and HackerNews. Publicly deployed.</li>
+          <li><a href="https://github.com/jerichoNega/MyNewsJericho" target="_blank">github.com/jerichoNega/MyNewsJericho</a></li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-top">
+          <span class="entry-role">Content Automation Bot</span>
+          <span class="entry-date">2025</span>
+        </div>
+        <div class="entry-org">Python, Claude API</div>
+        <ul class="entry-bullets">
+          <li>Generates a LinkedIn post, email hook, and full blog article in parallel from a single topic input. Manual review step before anything publishes. <a href="https://github.com/jerichoNega/content-automation-bot" target="_blank">github.com/jerichoNega/content-automation-bot</a></li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-top">
+          <span class="entry-role">React Crypto Dashboard</span>
+          <span class="entry-date">2024</span>
+        </div>
+        <div class="entry-org">React, JavaScript, CoinGecko API, Recharts</div>
+        <ul class="entry-bullets">
+          <li>Live price tracker with charts, search, and coin detail pages. <a href="https://github.com/jerichoNega/react-crypto-dashboard" target="_blank">github.com/jerichoNega/react-crypto-dashboard</a></li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-top">
+          <span class="entry-role">Build Up Addis - Client Websites</span>
+          <span class="entry-date">2019 - present</span>
+        </div>
+        <div class="entry-org">WordPress, Webflow, Shopify, Figma, Elementor</div>
+        <ul class="entry-bullets">
+          <li>20+ websites for clients across entertainment, healthcare, law, and trade. Full process from brief to design, build, and handover. <a href="https://buildupaddis.com" target="_blank">buildupaddis.com</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="m-block">
+      <div class="m-label">Experience</div>
+
+      <div class="entry">
+        <div class="entry-top">
+          <span class="entry-role">Co-Founder and Digital Lead</span>
+          <span class="entry-date">2019 - present</span>
+        </div>
+        <div class="entry-org">Build Up Addis - Remote / International</div>
+        <ul class="entry-bullets">
+          <li>Delivered <strong>20+ websites</strong> and handled full project lifecycle from discovery and design through to development, analytics, and launch.</li>
+          <li>SEO strategies averaging <strong>40% improvement</strong> in organic rankings across client portfolio.</li>
+          <li>Integrated Make.com and n8n automation workflows into client content operations.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-top">
+          <span class="entry-role">Digital Marketing Specialist</span>
+          <span class="entry-date">2021 - 2023</span>
+        </div>
+        <div class="entry-org">Barcon Getta - Ottawa, Canada (Part-time / Remote)</div>
+        <ul class="entry-bullets">
+          <li>Multi-channel campaigns, <strong>30% engagement increase</strong>, WordPress optimisation and Google Tag Manager setup.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
+        <div class="entry-top">
+          <span class="entry-role">SEO and Content Strategist</span>
+          <span class="entry-date">2021 - 2023</span>
+        </div>
+        <div class="entry-org">ip4sure - Eindhoven, Netherlands (Part-time)</div>
+        <ul class="entry-bullets">
+          <li><strong>25% ranking improvement</strong> through technical SEO, B2B content strategy, GA4 migration and custom dashboards.</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </main>
 
 </div>
 
