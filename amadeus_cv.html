@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jericho Degu - CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:      #0f1117;
+      --ink2:     #374151;
+      --muted:    #6b7280;
+      --accent:   #0066cc;
+      --line:     #e5e7eb;
+      --bg:       #ffffff;
+      --tag-bg:   #f3f4f6;
+    }
+
+    html { font-size: 10pt; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #f0f0f0;
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      background: var(--bg);
+      margin: 2rem auto;
+      padding: 14mm 15mm 14mm 15mm;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.12);
+    }
+
+    .header {
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .header-name { font-size: 26pt; font-weight: 700; letter-spacing: -.02em; color: var(--ink); line-height: 1; }
+    .header-title { font-size: 10.5pt; font-weight: 500; color: var(--accent); margin-top: 4px; letter-spacing: .01em; }
+
+    .header-contact { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 8px; font-size: 8.5pt; color: var(--ink2); }
+    .header-contact a { color: var(--ink2); text-decoration: none; }
+    .header-contact a:hover { color: var(--accent); }
+    .contact-item { display: flex; align-items: center; gap: 4px; }
+    .contact-dot { width: 1px; height: 10px; background: #d1d5db; flex-shrink: 0; }
+
+    .layout { display: grid; grid-template-columns: 1fr 58mm; gap: 0 16px; margin-top: 12px; }
+
+    .section { margin-bottom: 14px; }
+
+    .section-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 7.5pt;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 7px;
+      padding-bottom: 3px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .summary { font-size: 9pt; line-height: 1.65; color: var(--ink2); }
+    .summary strong { color: var(--ink); font-weight: 600; }
+
+    .exp-item { margin-bottom: 11px; }
+    .exp-item:last-child { margin-bottom: 0; }
+
+    .exp-header { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+    .exp-role { font-size: 9.5pt; font-weight: 600; color: var(--ink); }
+
+    .exp-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 7.5pt;
+      color: var(--muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .exp-company { font-size: 8.5pt; color: var(--accent); font-weight: 500; margin-top: 1px; }
+
+    .exp-bullets { margin-top: 5px; padding-left: 12px; list-style: none; }
+
+    .exp-bullets li {
+      font-size: 8.5pt;
+      color: var(--ink2);
+      line-height: 1.55;
+      margin-bottom: 3px;
+      position: relative;
+    }
+
+    .exp-bullets li::before {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: 6px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #9ca3af;
+    }
+
+    .exp-bullets li strong { color: var(--ink); font-weight: 600; }
+    .exp-bullets li a { color: var(--accent); text-decoration: none; }
+
+    .sidebar .section { margin-bottom: 13px; }
+
+    .skill-group { margin-bottom: 9px; }
+
+    .skill-group-label { font-size: 7.5pt; font-weight: 600; color: var(--ink); margin-bottom: 4px; text-transform: uppercase; letter-spacing: .06em; }
+
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 3px; }
+
+    .skill-tag {
+      font-size: 7pt;
+      background: #fff;
+      color: var(--ink2);
+      padding: 2px 8px;
+      border-radius: 20px;
+      border: 1px solid #d1d5db;
+      white-space: nowrap;
+    }
+
+    .skill-tag.highlight { background: #f0fdf4; color: #166534; border-color: #86efac; }
+
+    .edu-item { margin-bottom: 8px; }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-degree { font-size: 8.5pt; font-weight: 600; color: var(--ink); }
+    .edu-school { font-size: 8pt; color: var(--accent); margin-top: 1px; }
+    .edu-year { font-family: 'IBM Plex Mono', monospace; font-size: 7.5pt; color: var(--muted); margin-top: 1px; }
+
+    .cert-badge {
+      font-size: 6.5pt;
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+      padding: 1px 5px;
+      border-radius: 2px;
+      white-space: nowrap;
+      margin-top: 1px;
+      display: inline-block;
+    }
+
+    .lang-item { display: flex; justify-content: space-between; font-size: 8pt; color: var(--ink2); margin-bottom: 4px; }
+    .lang-level { font-size: 7.5pt; color: var(--muted); font-style: italic; }
+
+    .link-item { font-size: 8pt; color: var(--ink2); margin-bottom: 4px; display: flex; gap: 5px; align-items: baseline; }
+    .link-label { font-weight: 600; color: var(--ink); font-size: 7.5pt; min-width: 28px; }
+    .link-item a { color: var(--accent); text-decoration: none; font-size: 7.5pt; word-break: break-all; }
+
+    @media print {
+      body { background: white; }
+      .page { margin: 0; padding: 12mm 14mm; box-shadow: none; width: 100%; min-height: auto; }
+      a { color: inherit !important; }
+      .print-hint { display: none; }
+    }
+
+    .print-hint {
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 9pt;
+      color: #888;
+      padding: .5rem;
+      margin-bottom: .5rem;
+    }
+  </style>
+</head>
+<body>
+
+<p class="print-hint">
+  <a href="index.html" style="color:#0066cc;text-decoration:none;margin-right:2rem;">Back to Portfolio</a>
+  Press <strong>Ctrl/Cmd + P</strong> to save as PDF
+</p>
+
+<div class="page">
+
+  <header class="header">
+    <div class="header-name">JERICHO DEGU</div>
+    <div class="header-title">IT and Digitalization Support</div>
+    <div class="header-contact">
+      <span class="contact-item"><span class="contact-dot"></span>+31 6 45 11 27 60</span>
+      <span class="contact-item"><span class="contact-dot"></span><a href="mailto:beyaricko.nega@gmail.com">beyaricko.nega@gmail.com</a></span>
+      <span class="contact-item"><span class="contact-dot"></span>Beek en Donk, Noord-Brabant</span>
+      <span class="contact-item"><span class="contact-dot"></span><a href="https://www.linkedin.com/in/beyaricko-degu-707272159" target="_blank">linkedin.com/in/beyaricko-degu</a></span>
+      <span class="contact-item"><span class="contact-dot"></span><a href="https://jerichonega.github.io/portfolio/" target="_blank">jerichonega.github.io/portfolio</a></span>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <main>
+
+      <section class="section">
+        <h2 class="section-title">Profile</h2>
+        <p class="summary">
+          Software Engineering graduate with a recently completed MA in Content and Media Strategy. I have practical experience supporting clients and colleagues with digital tools and systems, managing websites and applications, and translating technical problems into clear solutions. I enjoy being the person someone can turn to when something isn't working, and I take the time to make sure they actually understand what changed and why. I am looking for a role where I can contribute directly and keep learning in a team environment.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Experience</h2>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Co-Founder and Digital Lead</span>
+            <span class="exp-date">2024 - present</span>
+          </div>
+          <div class="exp-company">Build Up Addis - Remote / International</div>
+          <ul class="exp-bullets">
+            <li>First point of contact for clients on all digital and technical matters: troubleshooting, updates, access management, and application issues.</li>
+            <li>Onboarded clients into new digital systems, trained them on how to use tools, and documented processes so they could work independently.</li>
+            <li>Managed the full digital environment for each project including CMS platforms, analytics, SEO tools, and third party integrations.</li>
+            <li>Built and deployed websites across WordPress, Webflow, and Shopify for clients in healthcare, law, entertainment, and trade.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Co-Founder and Web Designer</span>
+            <span class="exp-date">Jan 2021 - Jan 2025</span>
+          </div>
+          <div class="exp-company">Digital Abyssinia Technologies - Addis Ababa, Ethiopia</div>
+          <ul class="exp-bullets">
+            <li>Co-founded a software and digital agency delivering websites and digital solutions for international clients.</li>
+            <li>Responsible for application management, client support, and ensuring smooth digital operations across projects.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Web Designer and Digital Marketing Specialist</span>
+            <span class="exp-date">2021 - 2023</span>
+          </div>
+          <div class="exp-company">Barcon Getta - Ottawa, Canada (Part-time / Remote)</div>
+          <ul class="exp-bullets">
+            <li>Managed digital tools and platforms, optimised WordPress environments, and set up Google Tag Manager tracking.</li>
+            <li>Supported the team in working with analytics tools and reporting dashboards. Improved customer engagement by 30%.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">SEO and Content Strategist</span>
+            <span class="exp-date">2021 - 2023</span>
+          </div>
+          <div class="exp-company">Cyberlab - Eindhoven, Netherlands (Part-time)</div>
+          <ul class="exp-bullets">
+            <li>Conducted technical audits, supported GA4 migration, and built custom reporting dashboards for clients.</li>
+            <li>Worked closely with clients to understand their needs and explain findings in plain language. Improved organic rankings by 25%.</li>
+          </ul>
+        </div>
+
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Relevant Projects</h2>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Digital Workflow Automation</span>
+            <span class="exp-date">2024 - present</span>
+          </div>
+          <div class="exp-company">Make.com, n8n, various integrations</div>
+          <ul class="exp-bullets">
+            <li>Built automation workflows connecting different applications and tools to reduce manual work and avoid errors. Applied across client operations and personal projects.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Second Brain - Personal Productivity System</span>
+            <span class="exp-date">2025 - present</span>
+          </div>
+          <div class="exp-company">Node.js, Next.js, SQLite, Telegram, Ollama</div>
+          <ul class="exp-bullets">
+            <li>Built a full system from scratch to manage daily tasks, logging, and reminders. Practical experience designing and maintaining an application end to end. <a href="https://github.com/jerichoNega" target="_blank">github.com/jerichoNega</a></li>
+          </ul>
+        </div>
+
+      </section>
+
+    </main>
+
+    <aside class="sidebar">
+
+      <section class="section">
+        <h2 class="section-title">Skills</h2>
+
+        <div class="skill-group">
+          <div class="skill-group-label">IT Support</div>
+          <div class="skill-tags">
+            <span class="skill-tag highlight">Application Management</span>
+            <span class="skill-tag highlight">User Support</span>
+            <span class="skill-tag highlight">Process Documentation</span>
+            <span class="skill-tag highlight">Office 365</span>
+            <span class="skill-tag">Incident Handling</span>
+            <span class="skill-tag">SLA Monitoring</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Platforms and CMS</div>
+          <div class="skill-tags">
+            <span class="skill-tag highlight">WordPress</span>
+            <span class="skill-tag highlight">Webflow</span>
+            <span class="skill-tag highlight">Shopify</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Framer</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Automation and AI</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Make.com</span>
+            <span class="skill-tag">n8n</span>
+            <span class="skill-tag">Claude API</span>
+            <span class="skill-tag">OpenAI API</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Development</div>
+          <div class="skill-tags">
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Git</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-label">Analytics and Data</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Google Analytics 4</span>
+            <span class="skill-tag">Google Tag Manager</span>
+            <span class="skill-tag">Technical SEO</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Education</h2>
+        <div class="edu-item">
+          <div class="edu-degree">BSc - Software Engineering</div>
+          <div class="edu-school">Arba Minch University</div>
+          <div class="edu-year">Ethiopia</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-degree">MA - Content and Media Strategy</div>
+          <div class="edu-school">NHL Stenden University</div>
+          <div class="edu-year">Leeuwarden, NL - 2026</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Certifications</h2>
+        <div class="edu-item">
+          <div class="edu-degree">Google Analytics (GA4)</div>
+          <div class="edu-school">Google</div>
+          <span class="cert-badge">Certified</span>
+        </div>
+        <div class="edu-item">
+          <div class="edu-degree">Content Marketing</div>
+          <div class="edu-school">HubSpot Academy</div>
+          <span class="cert-badge">Certified</span>
+        </div>
+        <div class="edu-item">
+          <div class="edu-degree">Digital Marketing</div>
+          <div class="edu-school">Udemy</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-degree">SEO and SEM</div>
+          <div class="edu-school">Udemy</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Languages</h2>
+        <div class="lang-item"><span>English</span></div>
+        <div class="lang-item"><span>Dutch - B1 (learning)</span></div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Links</h2>
+        <div class="link-item">
+          <span class="link-label">Web</span>
+          <a href="https://jerichonega.github.io/portfolio/" target="_blank">jerichonega.github.io/portfolio</a>
+        </div>
+        <div class="link-item">
+          <span class="link-label">GitHub</span>
+          <a href="https://github.com/jerichoNega" target="_blank">github.com/jerichoNega</a>
+        </div>
+      </section>
+
+    </aside>
+  </div>
+
+</div>
+
+<script>
+  if (new URLSearchParams(window.location.search).get('print') === '1') {
+    window.addEventListener('load', () => setTimeout(() => window.print(), 500));
+  }
+</script>
+</body>
+</html>
