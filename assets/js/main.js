@@ -2,85 +2,123 @@
  * Portfolio — main.js
  * Author: Beyaricko Degu
  * https://github.com/jerichoNega/portfolio
+ *
+ * Shared by the homepage and the article pages, so every block
+ * checks that its elements exist first.
  */
 
-/* ── CURSOR GLOW ── */
-const glow = document.getElementById('glow');
-document.addEventListener('mousemove', e => {
-  glow.style.left = e.clientX + 'px';
-  glow.style.top  = e.clientY + 'px';
-});
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ── TYPEWRITER ── */
-const roles = [
-  'Software Engineer',
-  'AI Automation Specialist',
-  'Web Designer',
-  'Content Strategist',
-  'Entrepreneur',
-  'Digital Builder'
-];
-
-let roleIndex  = 0;
-let charIndex  = 0;
-let isDeleting = false;
-
 const typedEl = document.getElementById('typed');
 
-function type() {
-  const word = roles[roleIndex];
+if (typedEl && !reduceMotion) {
+  const roles = [
+    'AI Automation Engineer',
+    'Full-Stack Web Developer',
+    'Content & Media Strategist'
+  ];
 
-  if (!isDeleting) {
-    typedEl.textContent = word.slice(0, ++charIndex);
-    if (charIndex === word.length) {
-      isDeleting = true;
-      setTimeout(type, 1800);
-      return;
+  let roleIndex  = 0;
+  let charIndex  = roles[0].length;
+  let isDeleting = true;
+
+  function type() {
+    const word = roles[roleIndex];
+
+    if (!isDeleting) {
+      typedEl.textContent = word.slice(0, ++charIndex);
+      if (charIndex === word.length) {
+        isDeleting = true;
+        setTimeout(type, 2200);
+        return;
+      }
+    } else {
+      typedEl.textContent = word.slice(0, --charIndex);
+      if (charIndex === 0) {
+        isDeleting = false;
+        roleIndex  = (roleIndex + 1) % roles.length;
+      }
     }
-  } else {
-    typedEl.textContent = word.slice(0, --charIndex);
-    if (charIndex === 0) {
-      isDeleting = false;
-      roleIndex  = (roleIndex + 1) % roles.length;
-    }
+
+    setTimeout(type, isDeleting ? 45 : 80);
   }
 
-  setTimeout(type, isDeleting ? 55 : 90);
+  setTimeout(type, 2600);
 }
-
-setTimeout(type, 1800);
 
 /* ── SCROLL REVEAL ── */
 const revealEls = document.querySelectorAll('.reveal');
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach((entry, i) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => entry.target.classList.add('visible'), i * 80);
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12 });
+if (reduceMotion || !('IntersectionObserver' in window)) {
+  revealEls.forEach(el => el.classList.add('visible'));
+} else {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
 
-revealEls.forEach(el => observer.observe(el));
+  revealEls.forEach(el => observer.observe(el));
+}
 
 /* ── MOBILE HAMBURGER ── */
 const hamburger  = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 
-hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+if (hamburger && mobileMenu) {
+  const setMenu = open => {
+    mobileMenu.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  };
 
-document.querySelectorAll('.mobile-nav-link').forEach(link => {
-  link.addEventListener('click', () => mobileMenu.classList.remove('open'));
-});
+  hamburger.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
 
-/* ── CONTACT FORM FEEDBACK ── */
-document.querySelector('.btn-submit').addEventListener('click', function () {
-  this.textContent   = 'Message Sent ✓';
-  this.style.background = '#00ff88';
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => setMenu(false));
+  });
 
-  setTimeout(() => {
-    this.textContent   = 'Send Message →';
-    this.style.background = 'var(--cyan)';
-  }, 3000);
-});
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') setMenu(false);
+  });
+}
+
+/* ── CONTACT FORM (FormSubmit AJAX endpoint) ── */
+const form = document.getElementById('contactForm');
+
+if (form) {
+  const status = document.getElementById('formStatus');
+  const button = form.querySelector('.btn-submit');
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    button.disabled    = true;
+    button.textContent = 'Sending…';
+    status.textContent = '';
+    status.className   = 'form-status';
+
+    try {
+      const res = await fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(form)
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || String(data.success) !== 'true') throw new Error(data.message || 'Request failed');
+
+      form.reset();
+      status.textContent = 'Thanks, your message is on its way. I will reply within two working days.';
+      status.classList.add('ok');
+    } catch {
+      status.innerHTML = 'Something went wrong. Please email me directly at <a href="mailto:beyaricko.nega@gmail.com">beyaricko.nega@gmail.com</a>.';
+      status.classList.add('error');
+    } finally {
+      button.disabled    = false;
+      button.textContent = 'Send message';
+    }
+  });
+}
