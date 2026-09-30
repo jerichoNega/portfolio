@@ -87,7 +87,7 @@ if (hamburger && mobileMenu) {
   });
 }
 
-/* ── CONTACT FORM (FormSubmit AJAX endpoint) ── */
+/* ── CONTACT FORM (Web3Forms) ── */
 const form = document.getElementById('contactForm');
 
 if (form) {
@@ -102,7 +102,7 @@ if (form) {
     status.className   = 'form-status';
 
     try {
-      const res = await fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+      const res = await fetch(form.action, {
         method: 'POST',
         headers: { Accept: 'application/json' },
         body: new FormData(form)
