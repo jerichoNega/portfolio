@@ -11,7 +11,7 @@ Personal portfolio of Beyaricko Degu, AI automation engineer and web developer b
 
 - Dark, cyan-accented design with subtle grid background and scroll reveal
 - Project cards with live screenshots, live demo and code links
-- Working contact form via [FormSubmit](https://formsubmit.co) (AJAX, honeypot spam trap)
+- Working contact form via [Web3Forms](https://web3forms.com) (AJAX, honeypot spam trap). The access key in `index.html` is public by design; it only allows sending to the inbox it was issued for.
 - Downloadable PDF CV generated from `cv.html`
 - SEO: canonical URLs, Open Graph / Twitter image, JSON-LD Person data, `sitemap.xml`
 - Accessibility: skip link, labelled form fields, visible focus, `aria-expanded` menu, `prefers-reduced-motion` support, AA text contrast
