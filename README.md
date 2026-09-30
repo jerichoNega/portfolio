@@ -1,34 +1,36 @@
-# Beyaricko Degu — Portfolio
+# Beyaricko Degu · Portfolio
 
 [![Live Site](https://img.shields.io/badge/Live-jerichonega.github.io%2Fportfolio-00e5d4?style=flat-square&logo=github)](https://jerichonega.github.io/portfolio/)
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 
-Personal portfolio site for Beyaricko Degu — Engineer · Builder · Strategist.
+Personal portfolio of Beyaricko Degu, AI automation engineer and web developer based in the Netherlands.
 
 ## Features
 
-- Dark cyberpunk aesthetic with scanline overlay and animated grid background
-- Cursor-following glow effect
-- Typewriter role animation
-- Scroll-triggered reveal animations via IntersectionObserver
-- Mobile-responsive layout with hamburger navigation
-- Skills, Services, Portfolio, Blog, and Contact sections
-- Zero frameworks — pure HTML, CSS, and vanilla JavaScript
+- Dark, cyan-accented design with subtle grid background and scroll reveal
+- Project cards with live screenshots, live demo and code links
+- Working contact form via [Web3Forms](https://web3forms.com) (AJAX, honeypot spam trap). The access key in `index.html` is public by design; it only allows sending to the inbox it was issued for.
+- Downloadable PDF CV generated from `cv.html`
+- SEO: canonical URLs, Open Graph / Twitter image, JSON-LD Person data, `sitemap.xml`
+- Accessibility: skip link, labelled form fields, visible focus, `aria-expanded` menu, `prefers-reduced-motion` support, AA text contrast
+- Zero frameworks: pure HTML, CSS and vanilla JavaScript
 
 ## Project Structure
 
 ```
 portfolio/
-├── index.html          # Markup only — no embedded styles or scripts
+├── index.html                  # Homepage (markup only)
+├── cv.html                     # Web CV (print-ready)
+├── *.html                      # Articles and PPD archive
+├── sitemap.xml
 ├── assets/
-│   ├── css/
-│   │   └── style.css   # All styles, variables, animations, responsive rules
-│   └── js/
-│       └── main.js     # Typewriter, scroll reveal, hamburger, form feedback
-├── resume.pdf          # CV download (add your own)
-└── README.md
+│   ├── css/style.css           # All shared styles and tokens
+│   ├── js/main.js              # Typewriter, reveal, menu, contact form
+│   ├── img/                    # Favicon, OG image, project screenshots
+│   └── Beyaricko-Degu-CV.pdf   # Regenerate after editing cv.html (see below)
+└── .github/workflows/pages.yml # Deploys to GitHub Pages on push to main
 ```
 
 ## Run Locally
@@ -53,9 +55,11 @@ xdg-open index.html    # Linux
 - **IntersectionObserver** — performant scroll reveal without scroll event listeners
 - **`defer` on scripts** — JS loads after HTML parse, no render blocking
 
-## What's Next
+## Updating the CV PDF
 
-- [ ] Wire blog articles to real content
-- [ ] Add live demo link for AI Content Engine
-- [ ] Connect contact form to a backend or Formspree
-- [ ] Add Open Graph image for social previews
+After editing `cv.html`, regenerate the PDF with headless Chrome:
+
+```bash
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new \
+  --no-pdf-header-footer --print-to-pdf=assets/Beyaricko-Degu-CV.pdf "file://$PWD/cv.html"
+```
