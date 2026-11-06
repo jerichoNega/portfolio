@@ -2,6 +2,19 @@
 
 All notable changes to this project are documented here.
 
+## [2.0.0] - 2026-11-06
+
+### Changed
+- New design and copy: yellow, green and red, Atkinson Hyperlegible Next self-hosted, no scroll effects
+- JKC Media work added as case studies, CV rewritten and PDF regenerated
+- Articles moved onto the new stylesheet
+
+### Added
+- Hero that reports its own LCP, CLS and page weight
+
+### Removed
+- Old stylesheet, typewriter, cursor glow and Google Fonts
+
 ## [1.2.0] — 2026-04-23
 
 ### Added
