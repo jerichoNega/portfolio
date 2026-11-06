@@ -1,136 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PPD Archive — Master's Portfolio Evidence | Beyaricko Degu</title>
-  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
-  <meta property="og:image" content="https://jerichonega.github.io/portfolio/assets/img/og-image.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="description" content="PPD Portfolio archive for Beyaricko Degu — Master of Content and Media Strategy at NHL Stenden. Evidence index for the three learning goals and the industry opinion piece.">
-  
-  <!-- Same fonts as portfolio -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600&display=swap" rel="stylesheet" />
-
-  <!-- Portfolio base styles -->
-  <link rel="stylesheet" href="assets/css/style.css" />
-
-  <style>
-    :root {
-      /* Blend PPD colors with Portfolio variables where possible */
-      --ppd-ink: var(--text);
-      --ppd-ink-dim: var(--muted);
-      --ppd-accent: var(--cyan);
-      --ppd-warn: var(--orange);
-      --ppd-rule: var(--border);
-      --ppd-card: var(--bg2);
-    }
-
-    /* Override PPD body base to use portfolio font but keep mono for text as per word-for-word request */
-    .ppd-wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 120px 24px 96px; /* Space for nav */
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      line-height: 1.55;
-    }
-
-    .ppd-wrap a { color: var(--ppd-accent); text-decoration: none; }
-    .ppd-wrap a:hover { text-decoration: underline; }
-
-    .kicker { color: var(--ppd-ink-dim); text-transform: uppercase; letter-spacing: .18em; font-size: 11px; margin-bottom: 10px; }
-    
-    .ppd-wrap h1 { font-family: 'Orbitron', sans-serif; font-size: 38px; line-height: 1.1; color: #fff; margin: 0 0 18px; letter-spacing: -.02em; }
-    .ppd-wrap h2 { font-family: 'Orbitron', sans-serif; font-size: 22px; color: #fff; margin: 48px 0 14px; letter-spacing: -.01em; border-bottom: 1px solid var(--ppd-rule); padding-bottom: 8px; }
-    .ppd-wrap h3 { font-family: 'Sora', sans-serif; font-size: 15px; color: #fff; margin: 24px 0 8px; letter-spacing: .02em; }
-    
-    p.lead { color: var(--ppd-ink); max-width: 760px; font-size: 15px; line-height: 1.65; margin: 0 0 14px; }
-    p.ppd-p { color: var(--ppd-ink-dim); max-width: 760px; margin: 0 0 14px; }
-
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 20px; }
-    .card { background: var(--ppd-card); border: 1px solid var(--ppd-rule); border-radius: 8px; padding: 18px; transition: transform .3s, border-color .3s; }
-    .card:hover { transform: translateY(-4px); border-color: var(--ppd-accent); }
-    
-    .card .lbl { color: var(--ppd-accent); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 6px; }
-    .card .title { color: #fff; font-size: 14px; margin: 0 0 8px; line-height: 1.4; }
-    .card .meta { color: var(--ppd-ink-dim); font-size: 12px; margin-bottom: 10px; }
-    .card .desc { color: var(--ppd-ink); font-size: 13px; line-height: 1.55; margin-bottom: 12px; }
-    .card .links a { display: inline-block; margin-right: 10px; font-size: 12px; }
-
-    .tag { display: inline-block; padding: 2px 8px; border: 1px solid var(--ppd-rule); border-radius: 999px; font-size: 11px; color: var(--ppd-ink-dim); margin-right: 6px; }
-    .tag.live { color: var(--ppd-accent); border-color: var(--ppd-accent); }
-    .tag.zip { color: var(--ppd-warn); border-color: var(--ppd-warn); }
-
-    table.appendix { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 13px; background: rgba(255,255,255,0.02); }
-    table.appendix th, table.appendix td { padding: 12px; border-bottom: 1px solid var(--ppd-rule); text-align: left; vertical-align: top; }
-    table.appendix th { color: var(--ppd-ink-dim); font-weight: 600; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
-    table.appendix td.id { color: var(--ppd-accent); white-space: nowrap; width: 90px; font-weight: 700; }
-    table.appendix td.location { white-space: nowrap; width: 120px; }
-
-    .pill { display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--ppd-rule); color: var(--ppd-ink-dim); }
-    .pill.live { color: var(--ppd-accent); border-color: var(--ppd-accent); }
-    .pill.zip { color: var(--ppd-warn); border-color: var(--ppd-warn); }
-    
-    .sub { color: var(--ppd-ink-dim); font-size: 12px; margin-top: 4px; }
-    
-    .ppd-footer { margin-top: 80px; padding: 40px 0; border-top: 1px solid var(--ppd-rule); color: var(--ppd-ink-dim); font-size: 12px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-    
-    .goal-strip { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 20px; }
-    .goal-strip span { font-size: 11px; color: var(--ppd-ink-dim); padding: 3px 10px; border: 1px solid var(--ppd-rule); border-radius: 999px; background: rgba(255,255,255,0.05); }
-    
-    hr { border: none; border-top: 1px solid var(--ppd-rule); margin: 48px 0; }
-    ul.clean { list-style: none; padding: 0; margin: 0; }
-    ul.clean li { padding: 12px 0; border-bottom: 1px dashed var(--ppd-rule); font-size: 13px; }
-    ul.clean li:last-child { border: none; }
-    
-    code { background: var(--bg3); padding: 2px 6px; border-radius: 4px; color: var(--ppd-accent); font-size: 12px; }
-
-    @media (max-width: 768px) {
-      .ppd-wrap { padding-top: 100px; }
-      .ppd-wrap h1 { font-size: 28px; }
-      .grid { grid-template-columns: 1fr; }
-      table.appendix { font-size: 12px; }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PPD Archive — Master's Portfolio Evidence | Jericho Degu</title>
+  <meta name="description" content="PPD Portfolio archive for Jericho Degu — Master of Content and Media Strategy at NHL Stenden. Evidence index for the three learning goals and the industry opinion piece.">
+  <meta name="author" content="Jericho Degu">
+  <link rel="canonical" href="https://jerichonega.github.io/portfolio/ppd-archive.html">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="PPD Archive — Master's Portfolio Evidence | Jericho Degu">
+  <meta property="og:description" content="PPD Portfolio archive for Jericho Degu — Master of Content and Media Strategy at NHL Stenden. Evidence index for the three learning goals and the industry opinion piece.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://jerichonega.github.io/portfolio/assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="assets/fonts/hanken-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
-
-
-<!-- ═══════════════════════════ NAV (Global Portfolio Nav) ═══════════════════════════ -->
-<a href="#main" class="skip-link">Skip to content</a>
-
-<nav aria-label="Main">
-  <a href="index.html" class="nav-logo" aria-label="Beyaricko Degu, home">BD</a>
-  <ul class="nav-links">
-    <li><a href="index.html#about">About</a></li>
-    <li><a href="index.html#work">Work</a></li>
-    <li><a href="index.html#services">Services</a></li>
-    <li><a href="index.html#skills">Skills</a></li>
-    <li><a href="index.html#writing">Writing</a></li>
-    <li><a href="cv.html">CV</a></li>
-  </ul>
-  <a href="index.html#contact" class="nav-cta">Get in touch</a>
-  <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html#about"    class="mobile-nav-link">About</a>
-  <a href="index.html#work"     class="mobile-nav-link">Work</a>
-  <a href="index.html#services" class="mobile-nav-link">Services</a>
-  <a href="index.html#skills"   class="mobile-nav-link">Skills</a>
-  <a href="index.html#writing"  class="mobile-nav-link">Writing</a>
-  <a href="cv.html"             class="mobile-nav-link">CV</a>
-  <a href="index.html#contact"  class="mobile-nav-link accent">Get in touch</a>
-</div>
-
-<div class="ppd-wrap" id="main">
+<a class="skip" href="#main">Skip to content</a>
+<nav class="page-top" aria-label="Main"><a class="me" href="./">Jericho Degu</a><span><a href="./#writing">Writing</a> &nbsp; <a href="cv.html">CV</a></span></nav>
+<main class="article ppd" id="main">
+<div class="ppd-wrap">
 
   <div class="kicker">PPD Archive · Master of Content & Media Strategy · NHL Stenden</div>
   <h1>Personal &amp; Professional<br>Development Archive</h1>
-  <p class="lead">A supplementary archive accompanying the PPD Portfolio submission of <strong style="color:#fff">Beyaricko Nega Degu</strong> (student number 5692792, Group C, coaches Martine van der Heide and Marije Rispens). The portfolio template, completed logbook, and full evidence ZIP are uploaded to Blackboard. This page maps each appendix reference in the template to its live online artefact, so the work can be inspected in its native context.</p>
+  <p class="lead">A supplementary archive accompanying the PPD Portfolio submission of <strong>Beyaricko Nega Degu</strong> (student number 5692792, Group C, coaches Martine van der Heide and Marije Rispens). The portfolio template, completed logbook, and full evidence ZIP are uploaded to Blackboard. This page maps each appendix reference in the template to its live online artefact, so the work can be inspected in its native context.</p>
 
   <div class="goal-strip">
     <span>Submission · 15 May 2026</span>
@@ -256,18 +150,13 @@
   <hr>
   <h2>How this archive relates to the Blackboard submission</h2>
   <ul class="clean">
-    <li><strong style="color:#fff">Template (graded document):</strong> <code>5692792_DEGU_PPDPortfolio_2026_Final.docx</code> — uploaded to Blackboard.</li>
-    <li><strong style="color:#fff">Logbook:</strong> <code>PPD_MCMS_Logbook_DEGU_Completed.xlsx</code> — uploaded to Blackboard.</li>
-    <li><strong style="color:#fff">Evidence ZIP:</strong> <code>5692792_DEGU_Evidence.zip</code> — uploaded to Blackboard (under 10 MB cap). Folders A through K match the appendix identifiers above 1:1.</li>
-    <li><strong style="color:#fff">This online archive:</strong> optional supplementary navigation surface, mapping each appendix to its live counterpart where applicable.</li>
+    <li><strong>Template (graded document):</strong> <code>5692792_DEGU_PPDPortfolio_2026_Final.docx</code> — uploaded to Blackboard.</li>
+    <li><strong>Logbook:</strong> <code>PPD_MCMS_Logbook_DEGU_Completed.xlsx</code> — uploaded to Blackboard.</li>
+    <li><strong>Evidence ZIP:</strong> <code>5692792_DEGU_Evidence.zip</code> — uploaded to Blackboard (under 10 MB cap). Folders A through K match the appendix identifiers above 1:1.</li>
+    <li><strong>This online archive:</strong> optional supplementary navigation surface, mapping each appendix to its live counterpart where applicable.</li>
   </ul>
 
-  <footer class="ppd-footer">
-    <div>Beyaricko Nega Degu · 5692792 · MCMS 2025–2026 · NHL Stenden</div>
-    <div><a href="index.html">← back to portfolio</a></div>
-  </footer>
-</div>
-
-<script src="assets/js/main.js" defer></script>
+  </main>
+<footer><p><a href="./">Back to the portfolio</a></p></footer>
 </body>
 </html>

@@ -1,11 +1,11 @@
-# Beyaricko Degu · Portfolio
+# Jericho Degu · Portfolio
 
 [![Live Site](https://img.shields.io/badge/Live-jerichonega.github.io%2Fportfolio-00e5d4?style=flat-square&logo=github)](https://jerichonega.github.io/portfolio/)
 ![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
 
-Personal portfolio of Beyaricko Degu, AI automation engineer and web developer based in the Netherlands.
+Personal portfolio of Jericho Degu, AI automation engineer and web developer based in the Netherlands.
 
 ## Features
 
@@ -29,7 +29,7 @@ portfolio/
 │   ├── css/style.css           # All shared styles and tokens
 │   ├── js/main.js              # Typewriter, reveal, menu, contact form
 │   ├── img/                    # Favicon, OG image, project screenshots
-│   └── Beyaricko-Degu-CV.pdf   # Regenerate after editing cv.html (see below)
+│   └── Jericho-Degu-CV.pdf   # Regenerate after editing cv.html (see below)
 └── .github/workflows/pages.yml # Deploys to GitHub Pages on push to main
 ```
 
@@ -61,5 +61,5 @@ After editing `cv.html`, regenerate the PDF with headless Chrome:
 
 ```bash
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new \
-  --no-pdf-header-footer --print-to-pdf=assets/Beyaricko-Degu-CV.pdf "file://$PWD/cv.html"
+  --no-pdf-header-footer --print-to-pdf=assets/Jericho-Degu-CV.pdf "file://$PWD/cv.html"
 ```

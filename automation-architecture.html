@@ -1,508 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>From Automation to Architecture | Beyaricko Degu</title>
-  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
-  <meta property="og:image" content="https://jerichonega.github.io/portfolio/assets/img/og-image.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="description" content="Why the Dutch digital industry needs AI governance professionals, not just AI users." />
-  <meta name="author" content="Beyaricko Degu" />
-
-  <!-- Open Graph -->
-  <meta property="og:title"       content="From Automation to Architecture | Beyaricko Degu" />
-  <meta property="og:description" content="Why the Dutch digital industry needs AI governance professionals — not just AI users." />
-  <meta property="og:type"        content="article" />
-
-  <!-- Same fonts as portfolio -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600&display=swap" rel="stylesheet" />
-
-  <!-- Portfolio base styles -->
-  <link rel="stylesheet" href="assets/css/style.css" />
-
-  <!-- Article-specific overrides -->
-  <style>
-
-    /* ── ARTICLE HERO ── */
-    .article-hero {
-      position: relative;
-      z-index: 2;
-      min-height: 62vh;
-      display: flex;
-      align-items: flex-end;
-      padding: 10rem 4rem 5rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .article-hero-inner { max-width: 900px; }
-
-    .article-tag {
-      font-family: 'Space Mono', monospace;
-      font-size: .6rem;
-      letter-spacing: .3em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 1.75rem;
-      display: flex;
-      align-items: center;
-      gap: .6rem;
-    }
-
-    .article-tag::before { content: '> '; color: var(--cyan); }
-
-    /* Reset the global h1 animation for the article title */
-    .article-title {
-      font-family: 'Orbitron', monospace;
-      font-weight: 900;
-      font-size: clamp(2rem, 5vw, 3.8rem);
-      line-height: 1.05;
-      letter-spacing: -.01em;
-      color: #fff;
-      margin-bottom: 1.5rem;
-      opacity: 1;
-      animation: none;
-    }
-
-    .article-title .accent { color: var(--cyan); }
-
-    .article-subtitle {
-      font-family: 'Sora', sans-serif;
-      font-size: 1.1rem;
-      line-height: 1.75;
-      color: var(--muted);
-      max-width: 640px;
-      margin-bottom: 2.5rem;
-    }
-
-    .article-meta {
-      font-family: 'Space Mono', monospace;
-      font-size: .62rem;
-      letter-spacing: .15em;
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      flex-wrap: wrap;
-    }
-
-    .article-meta .sep { color: var(--border); }
-
-    /* ── BACK BAR ── */
-    .back-bar {
-      position: relative;
-      z-index: 2;
-      padding: 1.25rem 4rem;
-      border-bottom: 1px solid var(--border);
-      background: rgba(4,4,10,0.6);
-    }
-
-    .back-link {
-      font-family: 'Space Mono', monospace;
-      font-size: .62rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: .6rem;
-      transition: color .2s;
-    }
-
-    .back-link::before { content: '←'; color: var(--orange); }
-    .back-link:hover { color: var(--cyan); }
-
-    /* ── ARTICLE BODY ── */
-    .article-body {
-      position: relative;
-      z-index: 2;
-      background: var(--bg2);
-      border-bottom: 1px solid var(--border);
-      padding: 5rem 4rem;
-    }
-
-    .article-container {
-      max-width: 740px;
-      margin: 0 auto;
-    }
-
-    /* Paragraphs */
-    .article-container p {
-      font-family: 'Sora', sans-serif;
-      font-size: 1rem;
-      line-height: 1.95;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
-
-    .article-container strong {
-      color: #fff;
-      font-weight: 600;
-    }
-
-    .article-container em {
-      color: var(--cyan);
-      font-style: normal;
-    }
-
-    /* Section headings — override global h2 inside article */
-    .article-container h2 {
-      font-family: 'Space Mono', monospace;
-      font-size: .65rem;
-      font-weight: 700;
-      letter-spacing: .3em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      line-height: 1;
-      margin: 3.5rem 0 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: .65rem;
-    }
-
-    .article-container h2::before {
-      content: '//';
-      color: var(--orange);
-      letter-spacing: 0;
-    }
-
-    /* Blockquote */
-    .article-container blockquote {
-      border-left: 3px solid var(--cyan);
-      background: var(--bg3);
-      padding: 1.75rem 2rem;
-      margin: 2.5rem 0;
-      font-family: 'Sora', sans-serif;
-      font-size: 1.05rem;
-      font-style: italic;
-      color: var(--text);
-      line-height: 1.8;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .article-container blockquote::before {
-      content: '"';
-      position: absolute;
-      top: -1rem;
-      right: 1.5rem;
-      font-family: 'Orbitron', monospace;
-      font-size: 6rem;
-      color: rgba(0,229,212,0.05);
-      line-height: 1;
-      pointer-events: none;
-    }
-
-    /* Callout box */
-    .callout {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--orange);
-      padding: 1.5rem 2rem;
-      margin: 2.5rem 0;
-      font-family: 'Sora', sans-serif;
-      font-size: .9rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    .callout strong {
-      display: block;
-      font-family: 'Space Mono', monospace;
-      font-size: .58rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--orange) !important;
-      margin-bottom: .85rem;
-      font-weight: 700;
-    }
-
-    /* Workflow diagram */
-    .workflow {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      padding: 2rem;
-      margin: 2.5rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .workflow::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 2px;
-      background: linear-gradient(90deg, var(--cyan), var(--orange));
-    }
-
-    .workflow-title {
-      font-family: 'Space Mono', monospace;
-      font-size: .58rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 1.5rem;
-    }
-
-    .wf-steps {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .5rem;
-      align-items: center;
-    }
-
-    .wf-step {
-      font-family: 'Space Mono', monospace;
-      font-size: .6rem;
-      letter-spacing: .05em;
-      background: rgba(0,229,212,0.07);
-      color: var(--cyan);
-      border: 1px solid rgba(0,229,212,0.2);
-      padding: .45rem .9rem;
-      font-weight: 700;
-    }
-
-    .wf-step.human {
-      background: rgba(0,229,212,0.15);
-      border-color: rgba(0,229,212,0.45);
-    }
-
-    .wf-step.check {
-      background: rgba(255,107,53,0.1);
-      border-color: rgba(255,107,53,0.3);
-      color: var(--orange);
-    }
-
-    .wf-arrow {
-      color: var(--muted);
-      font-size: .9rem;
-    }
-
-    .workflow-note {
-      font-family: 'Space Mono', monospace;
-      font-size: .58rem;
-      letter-spacing: .05em;
-      color: var(--muted);
-      margin-top: 1.25rem;
-      line-height: 1.7;
-      border-top: 1px solid var(--border);
-      padding-top: 1rem;
-    }
-
-    /* Principles list */
-    .principles {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      margin: 2rem 0;
-    }
-
-    .principles li {
-      display: flex;
-      gap: 1.25rem;
-      align-items: flex-start;
-      font-family: 'Sora', sans-serif;
-      font-size: .95rem;
-      line-height: 1.75;
-      color: var(--muted);
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      padding: 1.25rem 1.5rem;
-      transition: border-color .2s;
-    }
-
-    .principles li:hover { border-color: rgba(0,229,212,0.3); }
-
-    .principles .num {
-      font-family: 'Orbitron', monospace;
-      font-size: .6rem;
-      font-weight: 700;
-      width: 28px;
-      height: 28px;
-      border: 1px solid rgba(0,229,212,0.4);
-      color: var(--cyan);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-
-    /* Author card */
-    .article-author {
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      padding: 2rem;
-      margin: 4rem 0 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .article-author::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 2px;
-      background: linear-gradient(90deg, var(--cyan), var(--orange));
-    }
-
-    .author-label {
-      font-family: 'Space Mono', monospace;
-      font-size: .58rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: .75rem;
-    }
-
-    .author-name {
-      font-family: 'Orbitron', monospace;
-      font-size: .9rem;
-      font-weight: 700;
-      color: #fff;
-      letter-spacing: .05em;
-      margin-bottom: .6rem;
-    }
-
-    .author-bio {
-      font-family: 'Sora', sans-serif;
-      font-size: .88rem;
-      line-height: 1.75;
-      color: var(--muted);
-      margin-bottom: 1.5rem;
-    }
-
-    .author-links {
-      display: flex;
-      gap: .75rem;
-      flex-wrap: wrap;
-    }
-
-    .author-link {
-      font-family: 'Space Mono', monospace;
-      font-size: .6rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      text-decoration: none;
-      border: 1px solid rgba(0,229,212,0.25);
-      padding: .4rem .9rem;
-      transition: all .2s;
-    }
-
-    .author-link:hover {
-      background: var(--cyan-dim);
-      border-color: rgba(0,229,212,0.5);
-    }
-
-    /* References */
-    .refs {
-      margin-top: 4rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .refs h2 {
-      /* inherits article h2 override above */
-    }
-
-    .refs ol {
-      padding-left: 1.25rem;
-      margin-top: 1.25rem;
-    }
-
-    .refs li {
-      font-family: 'Space Mono', monospace;
-      font-size: .6rem;
-      line-height: 1.9;
-      color: var(--muted);
-      margin-bottom: .85rem;
-      letter-spacing: .02em;
-    }
-
-    .refs li em {
-      color: var(--muted) !important;
-      font-style: italic;
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .article-hero { padding: 8rem 1.5rem 3rem; min-height: 52vh; }
-      .article-body { padding: 3rem 1.5rem; }
-      .back-bar { padding: 1.25rem 1.5rem; }
-    }
-
-    @media (max-width: 560px) {
-      .article-title { font-size: clamp(1.8rem, 8vw, 2.6rem); }
-      .article-subtitle { font-size: .95rem; }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>From Automation to Architecture, Jericho Degu</title>
+  <meta name="description" content="Why the Dutch digital industry needs AI governance professionals, not just AI users.">
+  <meta name="author" content="Jericho Degu">
+  <link rel="canonical" href="https://jerichonega.github.io/portfolio/automation-architecture.html">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="From Automation to Architecture, Jericho Degu">
+  <meta property="og:description" content="Why the Dutch digital industry needs AI governance professionals, not just AI users.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://jerichonega.github.io/portfolio/assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="assets/fonts/hanken-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css">
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="page-top" aria-label="Main"><a class="me" href="./">Jericho Degu</a><span><a href="./#writing">Writing</a> &nbsp; <a href="cv.html">CV</a></span></nav>
+<main class="article" id="main">
+<h1>From Automation to Architecture</h1>
+<p class="byline">Jericho Degu, May 2026</p>
+<p><b>Why the Dutch digital industry needs AI governance professionals, not just AI users</b></p>
 
 
-<!-- ═══════════════════════════ NAV (identical to homepage) ═══════════════════════════ -->
-<a href="#main" class="skip-link">Skip to content</a>
+    <p>The Dutch media and marketing industry has an AI problem. Not the kind that makes headlines, not deepfakes or hallucinating chatbots, but a quieter, more corrosive problem: agencies are automating content at scale without building the governance architecture to make it trustworthy.</p>
 
-<nav aria-label="Main">
-  <a href="index.html" class="nav-logo" aria-label="Beyaricko Degu, home">BD</a>
-  <ul class="nav-links">
-    <li><a href="index.html#about">About</a></li>
-    <li><a href="index.html#work">Work</a></li>
-    <li><a href="index.html#services">Services</a></li>
-    <li><a href="index.html#skills">Skills</a></li>
-    <li><a href="index.html#writing">Writing</a></li>
-    <li><a href="cv.html">CV</a></li>
-  </ul>
-  <a href="index.html#contact" class="nav-cta">Get in touch</a>
-  <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<div class="mobile-menu" id="mobileMenu">
-  <a href="index.html#about"    class="mobile-nav-link">About</a>
-  <a href="index.html#work"     class="mobile-nav-link">Work</a>
-  <a href="index.html#services" class="mobile-nav-link">Services</a>
-  <a href="index.html#skills"   class="mobile-nav-link">Skills</a>
-  <a href="index.html#writing"  class="mobile-nav-link">Writing</a>
-  <a href="cv.html"             class="mobile-nav-link">CV</a>
-  <a href="index.html#contact"  class="mobile-nav-link accent">Get in touch</a>
-</div>
-
-<!-- ═══════════════════════════ ARTICLE HERO ═══════════════════════════ -->
-<header class="article-hero" id="main">
-  <div class="article-hero-inner">
-    <p class="article-tag">Opinion · AI Governance · PPD</p>
-    <h1 class="article-title">From Automation to Architecture</h1>
-    <p class="article-subtitle">Why the Dutch digital industry needs AI governance professionals — not just AI users</p>
-    <div class="article-meta">
-      <span>Beyaricko Degu</span>
-      <span class="sep">/</span>
-      <span>May 2026</span>
-      <span class="sep">/</span>
-      <span>7 min read</span>
-    </div>
-  </div>
-</header>
-
-<!-- ═══════════════════════════ BACK BAR ═══════════════════════════ -->
-<div class="back-bar">
-  <a href="index.html#writing" class="back-link">Back to blog</a>
-</div>
-
-<!-- ═══════════════════════════ ARTICLE BODY ═══════════════════════════ -->
-<main class="article-body">
-  <div class="article-container">
-
-    <p>The Dutch media and marketing industry has an AI problem. Not the kind that makes headlines — not deepfakes or hallucinating chatbots — but a quieter, more corrosive problem: agencies are automating content at scale without building the governance architecture to make it trustworthy.</p>
-
-    <p>I have spent the last year building 11 agentic workflows in Make.com — tools that screen job applicants, generate client documents, schedule multi-channel content, and deliver AI-summarised news briefings. Each one taught me the same uncomfortable lesson: the technical part is the easy part. The hard part is designing the system to be accountable when something goes wrong.</p>
+    <p>I have spent the last year building 11 agentic workflows in Make.com, tools that screen job applicants, generate client documents, schedule multi-channel content, and deliver AI-summarised news briefings. Each one taught me the same uncomfortable lesson: the technical part is the easy part. The hard part is designing the system to be accountable when something goes wrong.</p>
 
     <blockquote>
       "The professionals who will be most valuable in the next five years are not those who can use AI tools. They are those who can architect the governance systems that make AI deployments safe, compliant, and commercially sustainable."
@@ -510,9 +35,9 @@
 
     <h2>The Automation Trap</h2>
 
-    <p>Many agencies have rushed to adopt AI primarily as a cost-reduction mechanism — using automation pipelines to generate high volumes of content with minimal human involvement. The output is fast, cheap, and increasingly untrustworthy. Audiences notice.</p>
+    <p>Many agencies have rushed to adopt AI primarily as a cost-reduction mechanism, using automation pipelines to generate high volumes of content with minimal human involvement. The output is fast, cheap, and increasingly untrustworthy. Audiences notice.</p>
 
-    <p>Research from the Reuters Institute confirms that trust in digital media continues to decline, and that readers are developing heightened scepticism toward content that feels algorithmically produced (Newman et al., 2024). This trajectory is not commercially neutral. It destroys brand equity, accumulates legal exposure, and produces exactly the kind of low-quality content that search engines are now actively penalising.</p>
+    <p>Research from the Reuters Institute confirms that trust in digital media continues to decline, and that readers are developing heightened scepticism toward content that feels algorithmically produced (Newman et al. 2024). This trajectory is not commercially neutral. It destroys brand equity, accumulates legal exposure, and produces exactly the kind of low-quality content that search engines are now actively penalising.</p>
 
     <p>The current default is AI for speed. The standard we need is AI for governed precision. Mollick (2024) frames it directly: the professionals who create the most value in the AI transition are the ones who deploy AI inside human systems, not those who simply use AI tools.</p>
 
@@ -522,7 +47,7 @@
 
     <div class="callout">
       <strong>Key obligation for marketing AI</strong>
-      Systems that influence decisions about individuals — including personalised content targeting — must include transparency disclosures, audit trails, and human oversight at consequential decision points. This is not a future requirement. It applies now.
+      Systems that influence decisions about individuals, including personalised content targeting, must include transparency disclosures, audit trails, and human oversight at consequential decision points. This is not a future requirement. It applies now.
     </div>
 
     <p>Organisations that treat compliance as a burden face regulatory risk and reputational damage. Organisations that treat it as a competitive architecture build systems that are faster, safer, and more trusted than their competitors. The Rijksoverheid national digitalisation strategy explicitly calls for innovation that is responsible, data-governed, and human-centred (Rijksoverheid, 2024). The AI Act is the legal expression of that strategy.</p>
@@ -534,24 +59,24 @@
     <p>In the AI recruitment pipeline I built this year, the governance layer works like this:</p>
 
     <div class="workflow">
-      <p class="workflow-title">// AI Recruitment Pipeline — Governance Architecture</p>
+      <p class="workflow-title">AI Recruitment Pipeline, Governance Architecture</p>
       <div class="wf-steps">
-        <span class="wf-step">CV → Drive</span>
-        <span class="wf-arrow">→</span>
+        <span class="wf-step">CV to Drive</span>
+        <span class="wf-arrow">then</span>
         <span class="wf-step">PDF.co extracts text</span>
-        <span class="wf-arrow">→</span>
+        <span class="wf-arrow">then</span>
         <span class="wf-step">AI Agent screens</span>
-        <span class="wf-arrow">→</span>
+        <span class="wf-arrow">then</span>
         <span class="wf-step check">Criteria check</span>
-        <span class="wf-arrow">→</span>
-        <span class="wf-step human">Human review ✓</span>
-        <span class="wf-arrow">→</span>
+        <span class="wf-arrow">then</span>
+        <span class="wf-step human">Human review Done:</span>
+        <span class="wf-arrow">then</span>
         <span class="wf-step">Log to Sheet</span>
       </div>
       <p class="workflow-note">17 executions · 0 errors</p>
     </div>
 
-    <p>The human review node is not optional. It is an architectural constraint I build in from the start, because I understand what happens when it is absent. This is Human-in-the-Loop (HITL) by design — not a feature added afterward, but a structural commitment encoded into the core of the system.</p>
+    <p>The human review node is not optional. It is an architectural constraint I build in from the start, because I understand what happens when it is absent. This is Human-in-the-Loop (HITL) by design, not a feature added afterward, but a structural commitment encoded into the core of the system.</p>
 
     <h2>Three Principles Every AI Architect Should Build With</h2>
 
@@ -578,46 +103,11 @@
 
     <p>The Dutch digital market is well-positioned to lead on this, but only if it produces professionals who understand both the strategic context and the technical detail. From conversations with hiring managers and digital professionals across the Netherlands over the past year, one pattern emerged consistently: organisations know AI is changing how they work, but they lack the technical confidence to evaluate what "good" AI implementation actually looks like.</p>
 
-    <p>That gap is an opportunity. Not for AI users, but for AI architects — professionals who can walk into a Dutch agency, audit their automation setup, identify the governance risks, and redesign the system to be compliant, auditable, and commercially sustainable. The question for digital professionals building their career in this market is: which side of that gap do you want to be on?</p>
+    <p>That gap is an opportunity. Not for AI users, but for AI architects, professionals who can walk into a Dutch agency, audit their automation setup, identify the governance risks, and redesign the system to be compliant, auditable, and commercially sustainable. The question for digital professionals building their career in this market is: which side of that gap do you want to be on?</p>
 
     <!-- Author card -->
-    <div class="article-author">
-      <p class="author-label">// About the author</p>
-      <p class="author-name">Beyaricko Degu</p>
-      <p class="author-bio">Beyaricko Degu — Digital strategist and AI automation practitioner with a Master of Content and Media Strategy from NHL Stenden, Netherlands. He builds agentic workflows in Make.com and n8n, and writes about AI governance, digital marketing, and professional ethics.</p>
-      <div class="author-links">
-        <a href="https://github.com/JerichoNega" target="_blank" rel="noopener" class="author-link">GitHub</a>
-        <a href="https://www.linkedin.com/in/beyarickonega" target="_blank" rel="noopener" class="author-link">LinkedIn</a>
-        <a href="index.html" class="author-link">Portfolio</a>
-      </div>
-    </div>
-
-    <!-- References -->
-    <div class="refs">
-      <h2>References</h2>
-      <ol>
-        <li>European Parliament. (2024). <em>Regulation (EU) 2024/1689 of the European Parliament and of the Council laying down harmonised rules on artificial intelligence (Artificial Intelligence Act).</em> Official Journal of the European Union. https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689</li>
-        <li>Mollick, E. (2024). <em>Co-Intelligence: Living and Working with AI.</em> Portfolio / Penguin.</li>
-        <li>Newman, N., Fletcher, R., Robertson, C. T., Eddy, K., &amp; Nielsen, R. K. (2024). <em>Reuters Institute Digital News Report 2024.</em> Reuters Institute for the Study of Journalism. https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2024</li>
-        <li>Rijksoverheid. (2024). <em>Nederland Digitaal 2024–2028: Nationale digitaliseringsstrategie.</em> https://www.nederlanddigitaal.nl/</li>
-      </ol>
-    </div>
-
-  </div>
+    
 </main>
-
-<!-- ═══════════════════════════ FOOTER (identical to homepage) ═══════════════════════════ -->
-<footer>
-  <span class="footer-logo">BEYARICKO DEGU</span>
-  <nav class="footer-links" aria-label="Footer">
-    <a href="cv.html">CV</a>
-    <a href="https://www.linkedin.com/in/beyaricko-degu-707272159" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://github.com/jerichoNega" target="_blank" rel="noopener">GitHub</a>
-    <a href="ppd-archive.html">PPD Archive</a>
-  </nav>
-  <span class="footer-copy">© 2026 Beyaricko Degu</span>
-</footer>
-
-<script src="assets/js/main.js" defer></script>
+<footer><p><a href="./">Back to the portfolio</a></p></footer>
 </body>
 </html>

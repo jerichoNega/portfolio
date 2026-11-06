@@ -1,505 +1,442 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beyaricko Degu · AI Automation Engineer &amp; Web Developer</title>
-
-  <!-- SEO -->
-  <meta name="description" content="Beyaricko Degu, AI automation engineer and web developer in the Netherlands. I build human-in-the-loop AI workflows, web products and content systems that deliver measurable results." />
-  <meta name="author" content="Beyaricko Degu" />
-  <meta name="google-site-verification" content="erGvpt0YmbMG4vleoUn-14C2_1x0NteLRmyGzt2FcKE" />
-  <link rel="canonical" href="https://jerichonega.github.io/portfolio/" />
-  <meta name="theme-color" content="#04040a" />
-  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
-
-  <!-- Open Graph -->
-  <meta property="og:title"       content="Beyaricko Degu · AI Automation Engineer &amp; Web Developer" />
-  <meta property="og:description" content="I build human-in-the-loop AI workflows, web products and content systems that deliver measurable results." />
-  <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://jerichonega.github.io/portfolio/" />
-  <meta property="og:image"       content="https://jerichonega.github.io/portfolio/assets/img/og-image.png" />
-  <meta property="og:image:width"  content="1200" />
-  <meta property="og:image:height" content="630" />
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Beyaricko Degu · AI Automation Engineer &amp; Web Developer" />
-  <meta name="twitter:description" content="Human-in-the-loop AI workflows, web products and content systems." />
-  <meta name="twitter:image"       content="https://jerichonega.github.io/portfolio/assets/img/og-image.png" />
-
-  <!-- Structured data -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jericho Degu, web developer in Eindhoven</title>
+  <meta name="description" content="Web developer in Eindhoven. I build fast, accessible marketing sites and the AI automation behind them.">
+  <meta name="author" content="Jericho Degu">
+  <meta name="google-site-verification" content="erGvpt0YmbMG4vleoUn-14C2_1x0NteLRmyGzt2FcKE">
+  <link rel="canonical" href="https://jerichonega.github.io/portfolio/">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <meta property="og:title" content="Jericho Degu, web developer in Eindhoven">
+  <meta property="og:description" content="Fast, accessible marketing sites and the AI automation behind them.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jerichonega.github.io/portfolio/">
+  <meta property="og:image" content="https://jerichonega.github.io/portfolio/assets/img/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="assets/fonts/anybody-name.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/anybody-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/hanken-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css">
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Beyaricko Degu",
-    "jobTitle": "AI Automation Engineer & Web Developer",
-    "url": "https://jerichonega.github.io/portfolio/",
-    "email": "mailto:beyaricko.nega@gmail.com",
-    "address": { "@type": "PostalAddress", "addressCountry": "NL" },
-    "alumniOf": [
-      { "@type": "CollegeOrUniversity", "name": "NHL Stenden University of Applied Sciences" },
-      { "@type": "CollegeOrUniversity", "name": "Arba Minch University" }
-    ],
-    "sameAs": [
-      "https://www.linkedin.com/in/beyaricko-degu-707272159",
-      "https://github.com/jerichoNega"
-    ]
-  }
+  {"@context":"https://schema.org","@type":"Person","name":"Jericho Degu","jobTitle":"Web Developer",
+   "address":{"@type":"PostalAddress","addressLocality":"Eindhoven","addressCountry":"NL"},
+   "url":"https://jerichonega.github.io/portfolio/",
+   "sameAs":["https://github.com/jerichoNega","https://www.linkedin.com/in/beyaricko-degu-707272159"]}
   </script>
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Space+Mono:wght@400;700&family=Sora:wght@300;400;600&display=swap" rel="stylesheet" />
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <script src="assets/js/vendor/gsap.min.js" defer></script>
+  <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
+  <script src="assets/js/site.js" defer></script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<a href="#main" class="skip-link">Skip to content</a>
-
-<!-- ═══════════════════════════ NAV ═══════════════════════════ -->
-<nav aria-label="Main">
-  <a href="#hero" class="nav-logo" aria-label="Beyaricko Degu, home">BD</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#writing">Writing</a></li>
-    <li><a href="cv.html">CV</a></li>
-  </ul>
-  <a href="#contact" class="nav-cta">Get in touch</a>
-  <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
-    <span></span><span></span><span></span>
-  </button>
+<nav class="top" aria-label="Main">
+  <a class="me" href="./">Jericho Degu</a>
+  <span>
+    <a href="#fit">For marketing teams</a>
+    <a href="#work">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#master">Master's</a>
+    <a href="cv.html">CV</a>
+    <a href="#contact">Contact</a>
+  </span>
 </nav>
 
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#about"    class="mobile-nav-link">About</a>
-  <a href="#work"     class="mobile-nav-link">Work</a>
-  <a href="#services" class="mobile-nav-link">Services</a>
-  <a href="#skills"   class="mobile-nav-link">Skills</a>
-  <a href="#writing"  class="mobile-nav-link">Writing</a>
-  <a href="cv.html"   class="mobile-nav-link">CV</a>
-  <a href="#contact"  class="mobile-nav-link accent">Get in touch</a>
-</div>
+<header class="hero">
+  <div class="name-wrap">
+    <h1 id="name"><span>Jericho</span> <span>Degu</span></h1>
+    <canvas id="field" aria-hidden="true"></canvas>
+    <div class="side">
+      <p class="lead">Web developer in Eindhoven. I build fast, accessible marketing sites, and the AI automation that keeps them moving.</p>
+      <p class="links"><a class="btn" href="#projects">See the work</a> <a class="btn quiet" href="assets/Jericho-Degu-CV.pdf">Download CV</a></p>
+    </div>
+  </div>
+</header>
 
 <main id="main">
 
-<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
-<section id="hero">
-  <div class="hero-inner">
-    <p class="hero-label">Netherlands · AI automation · Web · Content strategy</p>
-    <h1>BEYARICKO<br><span class="accent">DEGU</span></h1>
-    <p class="hero-roles">
-      <span class="visually-hidden">AI Automation Engineer, Full-Stack Web Developer, Content &amp; Media Strategist</span>
-      <span aria-hidden="true">&gt;&nbsp;<span class="typed-text" id="typed">AI Automation Engineer</span><span class="cursor"></span></span>
+<section class="fit" id="fit">
+  <h2>For marketing teams</h2>
+  <div class="rows">
+    <article>
+      <div><h3>Build</h3><canvas class="verb" data-verb="build" aria-hidden="true"></canvas></div>
+      <p>Landing pages, templates and components from a brief or a Figma file. Webflow at my agency, custom WordPress in my daily work, and JavaScript, CSS and HTML under all of it.</p>
+      <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#webflow"/></svg>Webflow</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#wordpress"/></svg>WordPress</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#javascript"/></svg>JavaScript</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#gsap"/></svg>GSAP</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#nextdotjs"/></svg>Next.js</li></ul>
+    </article>
+    <article>
+      <div><h3>Measure</h3><canvas class="verb" data-verb="measure" aria-hidden="true"></canvas></div>
+      <p>Core Web Vitals, WCAG and technical SEO, fixed from traces and audits. This page audits itself further down, in your browser.</p>
+      <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#googlechrome"/></svg>DevTools traces</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#googleanalytics"/></svg>GA4</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#googlesearchconsole"/></svg>Search Console</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#looker"/></svg>Looker Studio</li><li>schema</li></ul>
+    </article>
+    <article>
+      <div><h3>Reach</h3><canvas class="verb" data-verb="reach" aria-hidden="true"></canvas></div>
+      <p>Multilingual sites, conversion tracking, and getting found in AI search. I run marketing too and hold a master's in content and media strategy, so I know what a page is for.</p>
+      <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#googletagmanager"/></svg>GTM</li><li>hreflang</li><li>AI search checks</li></ul>
+    </article>
+    <article>
+      <div><h3>Automate</h3><canvas class="verb" data-verb="automate" aria-hidden="true"></canvas></div>
+      <p>I build AI agents with Claude Code every day, each with a narrow job and a person approving what goes out. Make.com and n8n cover the rest, so the repeated work stops being anyone's job.</p>
+      <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#claude"/></svg>Claude Code</li><li>agents</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#modelcontextprotocol"/></svg>MCP</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#make"/></svg>Make.com</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#n8n"/></svg>n8n</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#python"/></svg>Python</li></ul>
+    </article>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <h2>Right now</h2>
+  <p class="intro">I work at an agency in Eindhoven as a developer who also does marketing. Too much of the week was the same work repeated, so I started replacing it with software. Everything below runs on invented data.</p>
+</section>
+
+<section class="exhibit bone" id="terminal" aria-label="Interactive terminal session with invented data">
+  <h2>I live in the terminal</h2>
+  <div class="exhibit-copy">
+    <h3>Claude on top, the rest in the harness</h3>
+    <p>Most of my day runs from a terminal. Claude Code sits on top and does the bulk of it. Under it I experiment with Codex, Antigravity and whatever comes next, and I am the human in the loop. That mostly means pressing y, and knowing when to press n.</p>
+    <p>The status bar is the harness showing itself: usage per agent, context, the state of the repo and how many agents are running. Same skills and same checks, whichever model does the job.</p>
+    <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#claude"/></svg>Claude Code</li><li>Codex</li><li>Antigravity</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#googlegemini"/></svg>Gemini CLI</li></ul>
+    <p class="tech">Invented session. It waits for you.</p>
+  </div>
+  <div class="term">
+    <div class="term-log" id="term-log" aria-live="polite"></div>
+    <p class="term-ask" id="term-ask">
+      <button class="mini" type="button" data-term="y">y, ship it</button>
+      <button class="mini" type="button" data-term="n">n, send it back</button>
     </p>
-    <p class="hero-desc">
-      I build AI workflows that keep people in control, and the web products
-      around them. A software engineer by training with a master's in content
-      and media strategy, I connect the technical build to the business result.
+    <div class="term-bar" id="term-bar"></div>
+  </div>
+</section>
+
+<section class="exhibit dark" id="dashboard" aria-label="The dashboard in demo mode">
+  <h2>The dashboard</h2>
+  <div class="exhibit-copy">
+    <h3>One screen for a whole marketing team's week</h3>
+    <p id="desk-note">The map shows how people move through a site: what they search, where they land and where they convert. Thicker lines mean more people, so the weak spots are visible at a glance.</p>
+    <p class="mini-row" id="desk-tabs">
+      <button class="mini" type="button" aria-pressed="true" data-src="desk-map" data-alt="Map of how people move through a site, from searches and channels to pages and checkout." data-note="The map shows how people move through a site: what they search, where they land and where they convert. Thicker lines mean more people, so the weak spots are visible at a glance.">Map</button>
+      <button class="mini" type="button" aria-pressed="false" data-src="desk-today" data-alt="Today view: agent rules, and work finished by the system, grouped by project." data-note="Today ranks what needs a person, with the reason and one button per action. What the agents finished on their own sits below, so nothing happens out of sight.">Today</button>
+      <button class="mini" type="button" aria-pressed="false" data-src="desk-work" data-alt="Work view: everything that needs a person across all projects, in one list." data-note="Work puts every project in one list: what needs you, what got done since you last looked, and what did not work out.">Work</button>
+      <button class="mini" type="button" aria-pressed="false" data-src="desk-lanes" data-alt="Lanes view: tasks grouped by kind of work, with a start button per project." data-note="Lanes group one kind of work across all projects. Open the tools once, then start each one with Claude.">Lanes</button>
     </p>
-    <div class="hero-actions">
-      <a href="#work"    class="btn-primary">View my work</a>
-      <a href="#contact" class="btn-secondary">Get in touch</a>
-      <a href="assets/Beyaricko-Degu-CV.pdf" class="btn-secondary btn-cv" download>Download CV (PDF)</a>
+    <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#python"/></svg>Python</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#javascript"/></svg>JavaScript</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#claude"/></svg>Claude Code</li></ul>
+    <p class="tech">Demo mode: invented data only.</p>
+  </div>
+  <div class="browser"><p class="url">localhost, demo mode</p><img id="desk-shot" src="assets/img/projects/desk-map.webp" width="1440" height="900" loading="lazy" decoding="async" alt="Map of how people move through a site, from searches and channels to pages and checkout."></div>
+</section>
+
+<section class="exhibit flowmap" id="map" aria-label="Interactive growth map on an invented shop">
+  <h2>Where people flow</h2>
+  <div class="exhibit-copy">
+    <h3>Try it yourself</h3>
+    <p>From the map, the system ranks the next moves from the data. A person picks one, and the result gets measured at 28 and 56 days. Here it is on an invented coffee shop. Pick a move and watch the flow change.</p>
+    <div class="moves" id="moves"></div>
+    <p class="flow-total" id="flow-total" role="status"></p>
+    <p class="sim-note">Invented shop, invented numbers.</p>
+  </div>
+  <svg id="flow-svg" role="img" aria-label="Visitors flow from Google, AI search, social and email to four pages, and from there to orders and newsletter signups."></svg>
+</section>
+
+<section class="exhibit bone" id="data" aria-label="Interactive analytics dashboard with invented data">
+  <h2>Clean the data first</h2>
+  <div class="exhibit-copy">
+    <h3>GA4 and Looker Studio dashboards</h3>
+    <p>Most reports count too much: staff logging in, bots, a page view tagged as a conversion. I set up GA4 and GTM, take that noise out, and build Looker Studio and custom dashboards per channel, with a line in plain words under the numbers so a marketing team knows what to do next.</p>
+    <p>Switch between raw and cleaned, then pick a channel. The shop and its numbers are invented.</p>
+    <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#googleanalytics"/></svg>GA4</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#looker"/></svg>Looker Studio</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#googletagmanager"/></svg>GTM</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#googlesearchconsole"/></svg>Search Console</li></ul>
+  </div>
+  <div class="dash">
+    <p class="mini-row" id="dash-view"><button class="mini" type="button" data-view="raw" aria-pressed="false">Raw GA4</button> <button class="mini" type="button" data-view="clean" aria-pressed="true">Cleaned</button></p>
+    <p class="mini-row" id="dash-channel"></p>
+    <div class="kpis" id="dash-kpis"></div>
+    <p class="legend"><span class="key"></span>Cleaned <span class="key dashed"></span>Raw <span class="key mark"></span>Change made</p>
+    <div class="chart" id="dash-chart"><div class="chart-tip" id="dash-tip" hidden></div></div>
+    <p class="dash-read" id="dash-read" aria-live="polite"></p>
+    <details class="dash-table"><summary>Show as a table</summary><div id="dash-table"></div></details>
+  </div>
+</section>
+
+<section class="exhibit teal" id="agents" aria-label="Interactive simulation of an agent pipeline">
+  <h2>Run the pipeline</h2>
+  <div class="exhibit-copy">
+    <h3>The agent loop behind it</h3>
+    <p>I designed and built the system alone. It notices work, sends subagents out for the facts in parallel, and loops each draft through checks until it passes. A person decides what goes out, the result gets measured, and each lesson makes the next run quicker. Try it: nothing passes Decision until you click, and a rejected draft goes back round.</p>
+    <p class="count" id="sim-count">0 waiting for you</p>
+    <div class="sim-actions">
+      <button id="approve" disabled>Approve</button>
+      <button id="reject" class="quiet" disabled>Reject</button>
     </div>
-    <div class="status-bar">
-      <span class="status-dot" aria-hidden="true"></span>
-      <span class="status-text">Open to new roles and freelance projects</span>
-    </div>
-    <dl class="hero-stats">
+    <ol class="sim-log" id="sim-log" aria-live="off"></ol>
+  </div>
+  <svg viewBox="0 0 600 380" id="sim-svg" role="img" aria-label="Events move around a loop of six stations. Subagents branch off at Facts, drafts circle a check loop, everything stops at the human decision, and lessons return to the centre.">
+    <path id="sim-path" d="M90 50H510a60 60 0 0 1 60 60V270a60 60 0 0 1-60 60H90a60 60 0 0 1-60-60V110a60 60 0 0 1 60-60Z"/>
+    <g id="sim-subs"></g>
+    <g id="sim-stations"></g>
+    <g id="sim-tokens"></g>
+    <text x="300" y="232" class="mid" id="sim-big">0</text>
+    <text x="300" y="262" class="mid-label">lessons learned</text>
+  </svg>
+</section>
+
+<section class="exhibit bone" aria-label="Interactive demo of a review tour">
+  <h2>Review on the page</h2>
+  <div class="exhibit-copy">
+    <h3>A Chrome extension for reviewing changes</h3>
+    <p>Change lists get skimmed. So I built an extension that walks people through what changed, on the live page itself. Click through this invented coffee site to see how a review feels.</p>
+    <ul class="logos tech"><li>Manifest V3</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#javascript"/></svg>JavaScript</li></ul>
+  </div>
+  <div class="browser">
+    <p class="url">northwind-coffee.example</p>
+    <div class="serp" id="t-serp"><span id="t-serp-text">Home | Northwind</span></div>
+    <div class="fake">
       <div>
-        <dt class="stat-label">Years building</dt>
-        <dd class="stat-num">7+</dd>
+        <p class="fake-logo">Northwind Coffee</p>
+        <p class="fake-h" id="t-head">Welcome to our website</p>
+        <span class="fake-btn" id="t-btn">Order beans</span>
+      </div>
+      <div class="fake-img" id="t-img">Photo</div>
+    </div>
+    <div class="tour">
+      <p><b id="tour-title"></b> <span id="tour-note"></span></p>
+      <div><span id="tour-step"></span> <button id="tour-back" type="button">Back</button> <button id="tour-next" type="button">Next</button></div>
+    </div>
+  </div>
+</section>
+
+<section class="exhibit dark" aria-label="Example of raw and compact tool output">
+  <h2>Less noise for Claude</h2>
+  <div class="exhibit-copy">
+    <h3>Tooling for Claude Code</h3>
+    <p>An agent is only as good as what it reads. I write CLIs and MCP servers that turn bulky API responses into the few lines Claude needs, a skill library that stores every lesson so it gets applied on the next run, and an Obsidian vault that keeps what we learn findable.</p>
+    <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#python"/></svg>Python</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#modelcontextprotocol"/></svg>MCP</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#claude"/></svg>Claude Code skills</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#obsidian"/></svg>Obsidian</li></ul>
+    <p class="mini-row"><button class="mini" type="button" data-show="raw" aria-pressed="false">Raw API response</button> <button class="mini" type="button" data-show="compact" aria-pressed="true">What Claude gets</button></p>
+    <p id="cli-size"></p>
+  </div>
+  <pre tabindex="0" id="cli-out"></pre>
+</section>
+
+<section class="exhibit orange" id="audit" aria-label="Live audit of this page">
+  <h2>This page, live</h2>
+  <div class="exhibit-copy">
+    <h3>Production websites</h3>
+    <p>Custom themes, plugins, JavaScript components and multilingual sites, with speed and accessibility work done from traces and audits. Here is that habit on this page: these results are measured in your browser right now, nothing is hard-coded.</p>
+    <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#php"/></svg>PHP</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#wordpress"/></svg>WordPress</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#woocommerce"/></svg>WooCommerce</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#sass"/></svg>SCSS</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#javascript"/></svg>JavaScript</li></ul>
+  </div>
+  <div class="audit" id="audit-out"></div>
+</section>
+
+<section class="fit proj-head" id="projects">
+  <h2>Built for my own life</h2>
+  <p class="intro">When something annoys me, I build the fix. Moving to the Netherlands gave me plenty: an exam, a housing market, a TV full of ads. These all run in my real life, and I built them with Claude Code.</p>
+</section>
+
+<section class="projects" aria-label="Projects">
+  <article class="card bone">
+    <h2>DutchMaster</h2>
+    <div class="card-body">
+      <div>
+        <p>An AI Dutch tutor I built because I had to pass B1 myself, so every screen got tested by someone with an exam date. Lars holds spoken conversations, the trainer covers the 1,000 most useful words, and lessons follow paths you choose.</p>
+        <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#nextdotjs"/></svg>Next.js</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#react"/></svg>React</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#typescript"/></svg>TypeScript</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#tailwindcss"/></svg>Tailwind</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#googlegemini"/></svg>Gemini API</li></ul>
+        <div class="quiz" id="quiz">
+          <p>De or het? <b id="quiz-word"></b></p>
+          <p class="mini-row"><button class="mini" type="button" data-a="de">de</button> <button class="mini" type="button" data-a="het">het</button> <span id="quiz-out" role="status"></span></p>
+        </div>
+        <p><a href="https://dutch-tutor-eta.vercel.app">Live</a> &nbsp; <a href="https://github.com/jerichoNega/dutch-tutor">Code</a></p>
       </div>
       <div>
-        <dt class="stat-label">Client websites</dt>
-        <dd class="stat-num">20+</dd>
+        <p class="mini-row" id="dutch-tabs">
+          <button class="mini" type="button" aria-pressed="true" data-src="dutch-tutor" data-alt="DutchMaster dashboard with lessons and a voice tutor.">Dashboard</button>
+          <button class="mini" type="button" aria-pressed="false" data-src="dutch-chat" data-alt="Chat with Lars, the Dutch tutor.">Tutor</button>
+          <button class="mini" type="button" aria-pressed="false" data-src="dutch-vocab" data-alt="Vocabulary trainer with a list of B1 words.">Vocabulary</button>
+          <button class="mini" type="button" aria-pressed="false" data-src="dutch-paths" data-alt="Learning paths for professional, social and culture topics.">Paths</button>
+        </p>
+        <a class="shot" href="https://dutch-tutor-eta.vercel.app"><img id="dutch-shot" src="assets/img/projects/dutch-tutor.webp" width="1440" height="900" loading="lazy" decoding="async" alt="DutchMaster dashboard with lessons and a voice tutor."></a>
+      </div>
+    </div>
+  </article>
+  <article class="card dark">
+    <h2>Housing finder</h2>
+    <div class="card-body">
+      <div>
+        <p>A background service that watches Dutch rental sites around the clock, scores each listing and pushes the good ones to Telegram. The hard part was staying online: sites block scrapers differently, so the fetcher remembers which browser fingerprint worked per host.</p>
+        <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#python"/></svg>Python</li><li>launchd</li><li>Playwright</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#telegram"/></svg>Telegram Bot API</li></ul>
+        <p><a href="https://github.com/jerichoNega/housing-finder">Code</a></p>
       </div>
       <div>
-        <dt class="stat-label">AI workflows built</dt>
-        <dd class="stat-num">11</dd>
+        <p class="mini-row" id="house-tabs"><button class="mini" type="button" aria-pressed="true" data-show="scan">Run a scan</button> <button class="mini" type="button" aria-pressed="false" data-show="code">Read the code</button></p>
+        <div id="house-scan" class="scan">
+          <ol id="scan-log"></ol>
+          <div class="tg" id="scan-alert" hidden>
+            <b>NEW, CALL NOW</b>
+            <p>Studio, Eindhoven</p>
+            <p>€950 p/m, 38 m², €25/m²</p>
+            <p>Income 3× rent = €2.850</p>
+          </div>
+          <p class="sim-note">Invented listings. The real alert goes to Telegram.</p>
+        </div>
+        <pre tabindex="0" id="house-code" hidden><code><span class="k">def</span> get(url, method=<span class="s">"GET"</span>, json_body=<span class="k">None</span>, browser=<span class="k">True</span>):
+    host = _host(url)
+    order = [_prefer[host]] <span class="k">if</span> host <span class="k">in</span> _prefer <span class="k">else</span> []
+    order += [f <span class="k">for</span> f <span class="k">in</span> FINGERPRINTS <span class="k">if</span> f <span class="k">not in</span> order]
+    last = <span class="s">""</span>
+    <span class="k">for</span> i, fp <span class="k">in</span> enumerate(order[:<span class="s">4</span>]):
+        <span class="k">try</span>:
+            r = _session(fp).request(method, url, json=json_body, timeout=<span class="s">40</span>,
+                                     headers={<span class="s">"Accept-Language"</span>: <span class="s">"nl-NL,nl;q=0.9,en;q=0.8"</span>})
+        <span class="k">except</span> Exception <span class="k">as</span> e:
+            last = <span class="s">f"{type(e).__name__}: {str(e)[:80]}"</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> r.status_code == <span class="s">200</span> <span class="k">and not</span> _is_challenge(r):
+            _prefer[host] = fp
+            <span class="k">return</span> r.text</code></pre>
       </div>
-    </dl>
+    </div>
+  </article>
+  <article class="card teal">
+    <h2>Radar</h2>
+    <div class="card-body">
+      <div>
+        <p>My own trend radar for AI agents, SEO and AI search. Every Monday it reads 32 trusted sources, drops the hype and writes at most three cards, each with a 15-minute action. It counts what I adopt, not what I read, and ranks its sources on that.</p>
+        <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#python"/></svg>Python</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#githubactions"/></svg>GitHub Actions</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#claude"/></svg>Claude Code</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#pwa"/></svg>PWA</li><li>Web Push</li></ul>
+        <p><a href="https://github.com/jerichoNega/radar-app">App code</a></p>
+      </div>
+      <div class="shot"><img src="assets/img/projects/radar.webp" width="900" height="445" loading="lazy" decoding="async" alt="Radar app: a radar sweep with open items and the headline 10 open, finish one."></div>
+    </div>
+  </article>
+  <article class="card orange">
+    <h2>Thuis</h2>
+    <div class="card-body">
+      <div>
+        <p>Amazon's home screen was mostly ads, so I replaced it. Thuis is a native Android launcher I wrote for my Fire TV: what's trending in the Netherlands, a rain forecast, and an ambient mode when nobody's watching. Plain Java, built without Gradle, and the Amazon bloat is switched off.</p>
+        <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#openjdk"/></svg>Java</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#android"/></svg>Android SDK</li><li>TMDB</li><li>Open-Meteo</li><li>adb</li></ul>
+      </div>
+      <div>
+        <p class="mini-row" id="tv-tabs"><button class="mini" type="button" aria-pressed="true" data-show="compare">Before and after</button> <button class="mini" type="button" aria-pressed="false" data-show="ambient">Ambient mode</button></p>
+        <div class="compare" id="tv-compare">
+          <img src="assets/img/projects/tv-after.webp" width="1440" height="810" loading="lazy" decoding="async" alt="Thuis home screen with a trending series, a rain forecast and app shortcuts.">
+          <img class="tv-before" src="assets/img/projects/tv-before.webp" width="1440" height="810" loading="lazy" decoding="async" alt="The standard Amazon Fire TV home screen, full of promoted content.">
+          <span class="tv-line"></span>
+          <input id="tv-range" type="range" min="0" max="100" value="50" aria-label="Drag to compare the Amazon home screen with Thuis">
+        </div>
+        <div class="compare" id="tv-ambient" hidden><img src="assets/img/projects/tv-ambient.webp" width="1440" height="810" loading="lazy" decoding="async" alt="Thuis ambient mode: a forest stream with the time and weather for Eindhoven."></div>
+      </div>
+    </div>
+  </article>
+  <article class="card bone">
+    <h2>Content bot</h2>
+    <div class="card-body">
+      <div>
+        <p>One topic in, three pieces out: a LinkedIn post, an email hook and a blog article, generated in parallel with the Claude API. Then it stops at a review gate, because nothing posts until a human approves it.</p>
+        <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#python"/></svg>Python</li><li>async</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#anthropic"/></svg>Claude API</li><li>LinkedIn API</li></ul>
+        <p><a href="https://github.com/jerichoNega/content-automation-bot">Code</a></p>
+      </div>
+      <svg class="flow" viewBox="0 0 820 320" role="img" aria-label="One topic splits into a LinkedIn post, an email hook and a blog article, which all stop at human approval before publishing.">
+        <path d="M150 160C220 160 220 50 290 50M150 160H290M150 160C220 160 220 270 290 270M500 50C570 50 570 160 620 160M500 160H620M500 270C570 270 570 160 620 160"/>
+        <rect x="10" y="125" width="140" height="70"/><text x="80" y="167">One topic</text>
+        <rect x="290" y="15" width="210" height="70"/><text x="395" y="57">LinkedIn post</text>
+        <rect x="290" y="125" width="210" height="70"/><text x="395" y="167">Email hook</text>
+        <rect x="290" y="235" width="210" height="70"/><text x="395" y="277">Blog article</text>
+        <rect class="gate" x="620" y="115" width="190" height="90"/><text x="715" y="167">You approve</text>
+      </svg>
+    </div>
+  </article>
+  <article class="card dark">
+    <h2>Build Up Addis</h2>
+    <div class="card-body">
+      <div>
+        <p>The digital agency I co-founded. Years of websites from brief to launch, which is where I learned to work with people who are paying for the result. Today my focus and my work are here in the Netherlands.</p>
+        <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#wordpress"/></svg>WordPress</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#webflow"/></svg>Webflow</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#shopify"/></svg>Shopify</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#javascript"/></svg>JavaScript</li></ul>
+        <p><a href="https://buildupaddis.com">Visit</a></p>
+      </div>
+      <a class="shot" href="https://buildupaddis.com"><img src="assets/img/projects/buildupaddis.webp" width="1440" height="900" loading="lazy" decoding="async" alt="Homepage of Build Up Addis."></a>
+    </div>
+  </article>
+</section>
+
+<section class="fit" aria-label="Smaller tools">
+  <div class="rows">
+    <article>
+      <h3>Life radar</h3>
+      <p>Radar's sibling: a weekly plan for Eindhoven with places to go, food to try and things to learn. I built it after moving here, to get out more.</p>
+      <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#githubactions"/></svg>GitHub Actions</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#pwa"/></svg>PWA</li></ul>
+    </article>
+    <article>
+      <h3>Flight watch</h3>
+      <p>Checks fares every five minutes and alerts me on Telegram when the soonest cheap flight appears.</p>
+      <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#python"/></svg>Python</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#sqlite"/></svg>SQLite</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#telegram"/></svg>Telegram Bot API</li></ul>
+    </article>
   </div>
 </section>
 
-<!-- ═══════════════════════════ ABOUT ═══════════════════════════ -->
-<section id="about">
-  <div class="about-grid">
-    <div class="about-text reveal">
-      <div class="deco-line"></div>
-      <p class="section-label">About</p>
-      <h2>Engineer first.<br>Strategist by design.</h2>
-      <p>
-        I started as a software engineer, co-founded a web studio in Addis Ababa,
-        and have spent the last seven years shipping websites, automations and
-        content systems for clients in entertainment, healthcare, law, music and
-        international trade.
-      </p>
-      <p>
-        Today my focus is AI automation built on <strong>human-in-the-loop</strong>
-        principles: AI does the heavy lifting, and people stay informed, in control
-        and accountable. That is what makes an AI system trustworthy enough to use
-        in a real business, and it is the approach the EU AI Act increasingly expects.
-      </p>
-      <p>
-        I combine that with a master's in Content &amp; Media Strategy from NHL Stenden,
-        so I can own a project from the technical architecture to the audience it serves.
-      </p>
-    </div>
-    <div class="about-card reveal">
-      <p class="about-card-title">Education &amp; credentials</p>
-      <div class="edu-item">
-        <p class="edu-degree">MA, Content &amp; Media Strategy</p>
-        <p class="edu-school">NHL Stenden University of Applied Sciences</p>
-        <p class="edu-year">Leeuwarden, Netherlands · Graduated 2026</p>
-      </div>
-      <div class="edu-item">
-        <p class="edu-degree">BSc, Software Engineering</p>
-        <p class="edu-school">Arba Minch University · Ethiopia</p>
-      </div>
-      <div class="edu-item">
-        <p class="edu-degree">Co-Founder</p>
-        <p class="edu-school">Digital Abyssinia Technologies &amp; Build Up Addis</p>
-        <p class="edu-year">2019 to present</p>
-      </div>
-      <div class="edu-item">
-        <p class="edu-degree">Claude Code in Action</p>
-        <p class="edu-school">Anthropic · May 2026</p>
-        <a class="badge" href="https://verify.skilljar.com/c/fza2jjtswv87" target="_blank" rel="noopener">Verify certificate ↗</a>
-      </div>
-      <div class="edu-item">
-        <p class="edu-degree">Google Analytics (GA4) Certification</p>
-        <p class="edu-school">Google · December 2025</p>
-      </div>
-    </div>
+<section class="exhibit bone" id="master" aria-label="Master's degree">
+  <h2>Content and media strategy</h2>
+  <div class="exhibit-copy">
+    <h3>MA Content &amp; Media Strategy, NHL Stenden, 2026</h3>
+    <p>I studied software engineering first, then took this master's to understand the human part: why people read, trust and act. So a marketing brief makes sense to me before I open an editor, and I can say why a page should exist as well as build it. I stay current by following the field on X, and Radar does the rest.</p>
+  </div>
+  <div class="rows master-rows">
+    <article>
+      <h3>Data-driven strategy</h3>
+      <p>Google Analytics 4 certification, and a Looker Studio dashboard built on live GA4 data from my agency.</p>
+    </article>
+    <article>
+      <h3>Applied AI</h3>
+      <p>From JavaScript and React to Make.com scenarios, including a recruitment pipeline that scores CVs. Finished with Anthropic's Claude Code in Action certificate.</p>
+    </article>
+    <article>
+      <h3>Opinion piece</h3>
+      <p><a href="automation-architecture.html">From Automation to Architecture</a>, on why the Dutch digital industry needs AI governance professionals.</p>
+    </article>
   </div>
 </section>
 
-<!-- ═══════════════════════════ WORK ═══════════════════════════ -->
-<section id="work">
-  <div class="portfolio-header reveal">
-    <p class="section-label">Selected work</p>
-    <h2>Recent projects</h2>
-  </div>
-  <div class="projects-grid reveal">
-
-    <article class="project-card">
-      <div class="project-visual terminal" aria-hidden="true">
-        <span class="t-dim">$</span> python content_pipeline.py<br>
-        <span class="t-dim">topic:</span> AI governance<br>
-        <span class="t-ok">✓</span> LinkedIn post<br>
-        <span class="t-ok">✓</span> Email hook<br>
-        <span class="t-ok">✓</span> Blog article + infographic<br>
-        <span class="t-warn">?</span> Review before publishing? <span class="t-dim">[y/N]</span>
-      </div>
-      <div class="project-body">
-        <p class="project-type">AI automation · Human-in-the-loop</p>
-        <h3 class="project-title">Content Automation Bot</h3>
-        <p class="project-desc">One topic in, three channel-ready pieces out. Generates a LinkedIn post, email hook and full blog article in parallel with the Claude API, then stops at a review gate. Nothing is posted to LinkedIn or the portfolio until a human approves it.</p>
-        <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Claude API</span>
-          <span class="tag">LinkedIn API</span>
-          <span class="tag">Async</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/jerichoNega/content-automation-bot" target="_blank" rel="noopener" class="project-link-btn primary">Code ↗</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="project-card">
-      <img class="project-visual" src="assets/img/projects/dutch-tutor.webp" alt="DutchMaster dashboard showing progress, vocabulary and streak cards" width="960" height="600" loading="lazy" />
-      <div class="project-body">
-        <p class="project-type">AI web app</p>
-        <h3 class="project-title">DutchMaster: AI Dutch Tutor</h3>
-        <p class="project-desc">A Dutch learning app with an AI chat tutor, hands-free voice conversations, a vocabulary trainer and a grammar library, structured around the B1 exam.</p>
-        <div class="project-tags">
-          <span class="tag">Next.js</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">Gemini API</span>
-          <span class="tag">Tailwind</span>
-        </div>
-        <div class="project-links">
-          <a href="https://dutch-tutor-eta.vercel.app" target="_blank" rel="noopener" class="project-link-btn primary">Live demo ↗</a>
-          <a href="https://github.com/jerichoNega/dutch-tutor" target="_blank" rel="noopener" class="project-link-btn">Code ↗</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="project-card">
-      <img class="project-visual" src="assets/img/projects/buildupaddis.webp" alt="Build Up Addis homepage: 360 degree services studio" width="960" height="600" loading="lazy" />
-      <div class="project-body">
-        <p class="project-type">Digital agency · Co-founder</p>
-        <h3 class="project-title">Build Up Addis</h3>
-        <p class="project-desc">Co-founded a full-service web and digital studio. We have delivered 20+ client sites across four continents, from strategy and design to build, launch and analytics.</p>
-        <div class="project-tags">
-          <span class="tag">WordPress</span>
-          <span class="tag">Web design</span>
-          <span class="tag">SEO</span>
-          <span class="tag">GA4</span>
-        </div>
-        <div class="project-links">
-          <a href="https://buildupaddis.com" target="_blank" rel="noopener" class="project-link-btn primary">Visit site ↗</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="project-card">
-      <img class="project-visual" src="assets/img/projects/crypto.webp" alt="Crypto Tracker showing live prices for Bitcoin, Ethereum and other coins" width="960" height="600" loading="lazy" />
-      <div class="project-body">
-        <p class="project-type">React web app</p>
-        <h3 class="project-title">Live Crypto Dashboard</h3>
-        <p class="project-desc">Real-time prices for 100+ cryptocurrencies with search, a watchlist and interactive price-history charts per coin. Global state through the Context API.</p>
-        <div class="project-tags">
-          <span class="tag">React</span>
-          <span class="tag">Vite</span>
-          <span class="tag">Recharts</span>
-          <span class="tag">REST API</span>
-        </div>
-        <div class="project-links">
-          <a href="https://react-crypto-dashboard-pi.vercel.app" target="_blank" rel="noopener" class="project-link-btn primary">Live demo ↗</a>
-          <a href="https://github.com/jerichoNega/react-crypto-dashboard" target="_blank" rel="noopener" class="project-link-btn">Code ↗</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="project-card">
-      <img class="project-visual" src="assets/img/projects/disruptor.webp" alt="Disruptor Pictures homepage with a film still" width="960" height="600" loading="lazy" />
-      <div class="project-body">
-        <p class="project-type">Client websites</p>
-        <h3 class="project-title">Film, Music &amp; Beauty Brands</h3>
-        <p class="project-desc">A selection of client sites: Disruptor Pictures (film production), Birbaux Records (record label) and Dora's Beauty &amp; Haarmode (Rotterdam salon, built in React and TypeScript).</p>
-        <div class="project-tags">
-          <span class="tag">React</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">WordPress</span>
-          <span class="tag">Branding</span>
-        </div>
-        <div class="project-links">
-          <a href="https://www.disruptorpictures.com" target="_blank" rel="noopener" class="project-link-btn primary">Disruptor ↗</a>
-          <a href="https://birbauxrecords.com" target="_blank" rel="noopener" class="project-link-btn">Birbaux ↗</a>
-        </div>
-      </div>
-    </article>
-
-    <article class="project-card">
-      <div class="project-visual terminal" aria-hidden="true">
-        <span class="t-dim">[scan]</span> Ad Hoc · Alvast · Pararius<br>
-        <span class="t-dim">[filter]</span> Eindhoven +15km · ≤ €1,100<br>
-        <span class="t-ok">[new]</span> 2 listings not seen before<br>
-        <span class="t-ok">[sent]</span> Telegram alert ✓<br>
-        <span class="t-dim">[sleep]</span> next check scheduled
-      </div>
-      <div class="project-body">
-        <p class="project-type">Automation · Web scraping</p>
-        <h3 class="project-title">Dutch Housing Finder</h3>
-        <p class="project-desc">A background scraper that watches Dutch rental and anti-squat listings, filters out office and retail space, remembers what it has already seen, and sends new matches straight to Telegram.</p>
-        <div class="project-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Playwright</span>
-          <span class="tag">BeautifulSoup</span>
-          <span class="tag">Telegram API</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/jerichoNega/housing-finder" target="_blank" rel="noopener" class="project-link-btn primary">Code ↗</a>
-        </div>
-      </div>
-    </article>
-
-  </div>
-  <p class="more-work reveal">More on <a href="https://github.com/jerichoNega" target="_blank" rel="noopener">GitHub ↗</a></p>
+<section class="stack" id="stack">
+  <h2>Stack</h2>
+  <dl>
+    <div><dt>Languages</dt><dd><ul class="logos"><li style="--c:#F7DF1E"><svg aria-hidden="true"><use href="assets/img/logos.svg#javascript"/></svg>JavaScript</li><li style="--c:#3178C6"><svg aria-hidden="true"><use href="assets/img/logos.svg#typescript"/></svg>TypeScript</li><li style="--c:#3776AB"><svg aria-hidden="true"><use href="assets/img/logos.svg#python"/></svg>Python</li><li style="--c:#777BB4"><svg aria-hidden="true"><use href="assets/img/logos.svg#php"/></svg>PHP</li><li>SQL</li><li style="--c:#E34F26"><svg aria-hidden="true"><use href="assets/img/logos.svg#html5"/></svg>HTML</li><li style="--c:#663399"><svg aria-hidden="true"><use href="assets/img/logos.svg#css"/></svg>CSS</li></ul></dd></div>
+    <div><dt>Front end</dt><dd><ul class="logos"><li style="--c:#146EF5"><svg aria-hidden="true"><use href="assets/img/logos.svg#webflow"/></svg>Webflow</li><li style="--c:#61DAFB"><svg aria-hidden="true"><use href="assets/img/logos.svg#react"/></svg>React</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#nextdotjs"/></svg>Next.js</li><li style="--c:#06B6D4"><svg aria-hidden="true"><use href="assets/img/logos.svg#tailwindcss"/></svg>Tailwind</li><li style="--c:#0AE448"><svg aria-hidden="true"><use href="assets/img/logos.svg#gsap"/></svg>GSAP</li><li style="--c:#CC6699"><svg aria-hidden="true"><use href="assets/img/logos.svg#sass"/></svg>SCSS</li><li style="--c:#F24E1E"><svg aria-hidden="true"><use href="assets/img/logos.svg#figma"/></svg>Figma</li></ul></dd></div>
+    <div><dt>Back end and data</dt><dd><ul class="logos"><li style="--c:#3776AB"><svg aria-hidden="true"><use href="assets/img/logos.svg#python"/></svg>Python services</li><li>REST APIs</li><li>Webhooks</li><li style="--c:#003B57"><svg aria-hidden="true"><use href="assets/img/logos.svg#sqlite"/></svg>SQLite</li><li style="--c:#21759B"><svg aria-hidden="true"><use href="assets/img/logos.svg#wordpress"/></svg>WordPress</li><li style="--c:#96588A"><svg aria-hidden="true"><use href="assets/img/logos.svg#woocommerce"/></svg>WooCommerce</li></ul></dd></div>
+    <div><dt>AI</dt><dd><ul class="logos"><li>Agents and subagents</li><li>Codex</li><li>Antigravity</li><li style="--c:#D97757"><svg aria-hidden="true"><use href="assets/img/logos.svg#claude"/></svg>Claude Code skills and hooks</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#modelcontextprotocol"/></svg>MCP servers</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#anthropic"/></svg>Claude API</li><li style="--c:#8E75B2"><svg aria-hidden="true"><use href="assets/img/logos.svg#googlegemini"/></svg>Gemini API</li><li style="--c:#7C3AED"><svg aria-hidden="true"><use href="assets/img/logos.svg#obsidian"/></svg>Obsidian</li></ul></dd></div>
+    <div><dt>Automation</dt><dd><ul class="logos"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#make"/></svg>Make.com</li><li style="--c:#EA4B71"><svg aria-hidden="true"><use href="assets/img/logos.svg#n8n"/></svg>n8n</li><li>launchd</li><li>Playwright</li><li style="--c:#2088FF"><svg aria-hidden="true"><use href="assets/img/logos.svg#githubactions"/></svg>GitHub Actions</li></ul></dd></div>
+    <div><dt>Background</dt><dd>BSc Software Engineering. MA Content &amp; Media Strategy, NHL Stenden, 2026.</dd></div>
+  </dl>
 </section>
 
-<!-- ═══════════════════════════ SERVICES ═══════════════════════════ -->
-<section id="services">
-  <div class="services-header reveal">
-    <div>
-      <p class="section-label">What I do</p>
-      <h2>Where I add value</h2>
-    </div>
-  </div>
-  <div class="services-grid reveal">
-    <div class="service-card">
-      <span class="service-num" aria-hidden="true">01</span>
-      <h3 class="service-title">AI Automation</h3>
-      <p class="service-desc">Workflows in Make.com, n8n and Python with the Claude and OpenAI APIs, designed with human review points so they can be trusted in production.</p>
-    </div>
-    <div class="service-card">
-      <span class="service-num" aria-hidden="true">02</span>
-      <h3 class="service-title">Web Development</h3>
-      <p class="service-desc">Fast, responsive sites and web apps in React, Next.js and WordPress, from design through launch, SEO and analytics.</p>
-    </div>
-    <div class="service-card">
-      <span class="service-num" aria-hidden="true">03</span>
-      <h3 class="service-title">Content &amp; Media Strategy</h3>
-      <p class="service-desc">Content systems and measurement (GA4, Looker Studio) that connect what you publish to leads, audience growth and revenue.</p>
-    </div>
-  </div>
+<section class="writing" id="writing">
+  <h2>Writing</h2>
+  <ul>
+    <li><a href="human-in-the-loop.html">Human-in-the-Loop Isn't a Compromise</a></li>
+    <li><a href="automation-architecture.html">From Automation to Architecture</a></li>
+    <li><a href="ai-staying-sharp.html">How to Stay Sharp When AI Is Making Everyone Lazier</a></li>
+    <li><a href="t-shaped-professional.html">The T-Shaped Professional in the Age of AI</a></li>
+  </ul>
 </section>
 
-<!-- ═══════════════════════════ SKILLS ═══════════════════════════ -->
-<section id="skills">
-  <div class="skills-header reveal">
-    <p class="section-label">Tech stack</p>
-    <h2>Skills &amp; tools</h2>
-  </div>
-  <div class="skills-categories reveal">
-    <div class="skill-group">
-      <h3 class="skill-group-title">Frontend</h3>
-      <ul class="skill-list">
-        <li class="skill-item"><span class="skill-dot"></span>JavaScript (ES6+) &amp; TypeScript</li>
-        <li class="skill-item"><span class="skill-dot"></span>React &amp; Next.js</li>
-        <li class="skill-item"><span class="skill-dot"></span>HTML, CSS &amp; Tailwind</li>
-        <li class="skill-item"><span class="skill-dot"></span>WordPress</li>
-        <li class="skill-item"><span class="skill-dot"></span>Figma</li>
-      </ul>
-    </div>
-    <div class="skill-group">
-      <h3 class="skill-group-title">Backend &amp; data</h3>
-      <ul class="skill-list">
-        <li class="skill-item"><span class="skill-dot"></span>Python</li>
-        <li class="skill-item"><span class="skill-dot"></span>REST APIs &amp; webhooks</li>
-        <li class="skill-item"><span class="skill-dot"></span>OAuth2 / API auth</li>
-        <li class="skill-item"><span class="skill-dot"></span>Playwright scraping</li>
-        <li class="skill-item"><span class="skill-dot"></span>Git, GitHub Actions &amp; Vercel</li>
-      </ul>
-    </div>
-    <div class="skill-group">
-      <h3 class="skill-group-title">AI &amp; automation</h3>
-      <ul class="skill-list">
-        <li class="skill-item"><span class="skill-dot"></span>Claude, OpenAI &amp; Gemini APIs</li>
-        <li class="skill-item"><span class="skill-dot"></span>Claude Code</li>
-        <li class="skill-item"><span class="skill-dot"></span>Make.com &amp; n8n</li>
-        <li class="skill-item"><span class="skill-dot"></span>Prompt engineering</li>
-        <li class="skill-item"><span class="skill-dot"></span>Human-in-the-loop design</li>
-      </ul>
-    </div>
-    <div class="skill-group">
-      <h3 class="skill-group-title">Strategy &amp; analytics</h3>
-      <ul class="skill-list">
-        <li class="skill-item"><span class="skill-dot"></span>Content strategy</li>
-        <li class="skill-item"><span class="skill-dot"></span>GA4 &amp; Looker Studio</li>
-        <li class="skill-item"><span class="skill-dot"></span>SEO</li>
-        <li class="skill-item"><span class="skill-dot"></span>Go-to-market</li>
-        <li class="skill-item"><span class="skill-dot"></span>Product management</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════ WRITING ═══════════════════════════ -->
-<section id="writing">
-  <div class="blog-header reveal">
-    <div>
-      <p class="section-label">Writing</p>
-      <h2>Thinking out loud</h2>
-    </div>
-  </div>
-  <div class="blog-grid reveal">
-
-    <a href="automation-architecture.html" class="blog-card">
-      <p class="blog-category">Opinion · AI Governance</p>
-      <h3 class="blog-title">From Automation to Architecture</h3>
-      <p class="blog-excerpt">Why the Dutch digital industry needs AI governance professionals, not just AI users. A reflection on building 11 agentic workflows and what responsible AI architecture actually demands.</p>
-      <div class="blog-meta"><span>May 2026</span><span>7 min read</span></div>
-    </a>
-
-    <a href="ai-staying-sharp.html" class="blog-card">
-      <p class="blog-category">AI &amp; Society</p>
-      <h3 class="blog-title">How to Stay Sharp When AI Is Making Everyone Lazier</h3>
-      <p class="blog-excerpt">AI tools are incredible, and they are quietly training us to stop thinking. The mindset shift that separates the people AI empowers from the ones it replaces.</p>
-      <div class="blog-meta"><span>Apr 2026</span><span>5 min read</span></div>
-    </a>
-
-    <a href="human-in-the-loop.html" class="blog-card">
-      <p class="blog-category">Automation</p>
-      <h3 class="blog-title">Human-in-the-Loop Isn't a Compromise. It's the Strategy.</h3>
-      <p class="blog-excerpt">Every serious AI deployment I've worked on has one thing in common: a human checkpoint that makes the whole system trustworthy. Why responsible AI is also better AI.</p>
-      <div class="blog-meta"><span>Mar 2026</span><span>6 min read</span></div>
-    </a>
-
-    <a href="t-shaped-professional.html" class="blog-card">
-      <p class="blog-category">Career &amp; Growth</p>
-      <h3 class="blog-title">The T-Shaped Professional in the Age of AI: Why Breadth Still Wins</h3>
-      <p class="blog-excerpt">The people thriving right now are not the pure coders or the pure creatives. They are the ones who move fluidly between both. A field report from someone building at the seam.</p>
-      <div class="blog-meta"><span>Feb 2026</span><span>4 min read</span></div>
-    </a>
-
-  </div>
-</section>
-
-<!-- ═══════════════════════════ CONTACT ═══════════════════════════ -->
-<section id="contact">
-  <p class="section-label reveal">Contact</p>
-  <h2 class="reveal">Let's build<br>something.</h2>
+<section class="contact" id="contact">
+  <h2>Let's talk</h2>
   <div class="contact-grid">
-    <div class="reveal">
-      <p class="contact-intro">
-        Hiring for an AI automation, web or content role, or need a project built?
-        Send a message and I'll reply within two working days.
-      </p>
-      <div class="contact-links">
-        <a href="mailto:beyaricko.nega@gmail.com" class="contact-link">
-          <span class="contact-link-icon" aria-hidden="true">@</span>
-          beyaricko.nega@gmail.com
-        </a>
-        <a href="https://www.linkedin.com/in/beyaricko-degu-707272159" target="_blank" rel="noopener" class="contact-link">
-          <span class="contact-link-icon" aria-hidden="true">in</span>
-          LinkedIn: Beyaricko Degu
-        </a>
-        <a href="https://github.com/jerichoNega" target="_blank" rel="noopener" class="contact-link">
-          <span class="contact-link-icon" aria-hidden="true">&lt;/&gt;</span>
-          GitHub: jerichoNega
-        </a>
-      </div>
+    <div>
+      <p class="mail"><a href="mailto:beyaricko.nega@gmail.com">beyaricko.nega@gmail.com</a></p>
+      <p><a href="https://www.linkedin.com/in/beyaricko-degu-707272159">LinkedIn</a> &nbsp; <a href="https://github.com/jerichoNega">GitHub</a></p>
     </div>
-    <form class="reveal" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-      <input type="hidden" name="access_key" value="69100358-1820-4229-ae01-b921d0b65634" />
-      <input type="hidden" name="subject" value="New message from your portfolio" />
-      <input type="hidden" name="from_name" value="Portfolio contact form" />
-      <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
-      <div class="form-group">
-        <label class="form-label" for="cf-name">Name</label>
-        <input id="cf-name" name="name" type="text" class="form-input" placeholder="Your name" autocomplete="name" required />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="cf-email">Email</label>
-        <input id="cf-email" name="email" type="email" class="form-input" placeholder="you@company.com" autocomplete="email" required />
-      </div>
-      <div class="form-group">
-        <label class="form-label" for="cf-message">Message</label>
-        <textarea id="cf-message" name="message" class="form-input" placeholder="What are you working on?" required></textarea>
-      </div>
-      <button type="submit" class="btn-submit">Send message</button>
-      <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="69100358-1820-4229-ae01-b921d0b65634">
+      <input type="hidden" name="subject" value="New message from your portfolio">
+      <input type="hidden" name="from_name" value="Portfolio contact form">
+      <input type="checkbox" name="botcheck" class="sr" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label for="cf-name">Name</label>
+      <input id="cf-name" name="name" type="text" autocomplete="name" required>
+      <label for="cf-email">Email</label>
+      <input id="cf-email" name="email" type="email" autocomplete="email" required>
+      <label for="cf-message">Message</label>
+      <textarea id="cf-message" name="message" rows="4" required></textarea>
+      <button type="submit" class="btn">Send</button>
+      <p id="formStatus" role="status" aria-live="polite"></p>
     </form>
   </div>
 </section>
-
 </main>
 
-<!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
-<footer>
-  <span class="footer-logo">BEYARICKO DEGU</span>
-  <nav class="footer-links" aria-label="Footer">
-    <a href="cv.html">CV</a>
-    <a href="https://www.linkedin.com/in/beyaricko-degu-707272159" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://github.com/jerichoNega" target="_blank" rel="noopener">GitHub</a>
-    <a href="ppd-archive.html">PPD Archive</a>
-  </nav>
-  <span class="footer-copy">© 2026 Beyaricko Degu</span>
-</footer>
-
-<script src="assets/js/main.js" defer></script>
+<footer><p>Plain HTML, CSS and JavaScript, built with Claude Code as pair programmer. <a href="https://github.com/jerichoNega/portfolio">Source</a>.</p></footer>
 </body>
 </html>
