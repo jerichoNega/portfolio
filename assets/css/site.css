@@ -165,3 +165,17 @@ footer a { color: var(--yellow); }
 
 .ppd { overflow-wrap: anywhere; }
 .ppd table { display: block; overflow-x: auto; }
+
+/* Automation sections */
+.runs, .kit { padding: clamp(2.5rem, 6vw, 4.5rem) var(--gutter) 0; }
+.runs h3 + p { margin-top: .8rem; }
+.runs h3:not(:first-child) { margin-top: 2.5rem; }
+.runs h3:not(:first-child) + p { max-width: 74ch; }
+.scroll { overflow-x: auto; }
+.runs table { min-width: 44rem; }
+.runs tbody th { font-weight: 700; white-space: nowrap; }
+.runs td:last-child { color: var(--green-mid); font-weight: 700; }
+.kit { padding-bottom: clamp(2.5rem, 6vw, 4rem); }
+.kit ul { list-style: none; margin: 1rem 0 0; padding: 0; columns: 2 24rem; column-gap: clamp(2rem, 5vw, 4rem); }
+.kit li { break-inside: avoid; margin-bottom: 1rem; }
+.sites { border-top: 6px solid var(--yellow); }

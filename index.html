@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Beyaricko Degu, web developer in Eindhoven</title>
-  <meta name="description" content="Web developer at JKC Media in Eindhoven. I build marketing websites in custom WordPress and plain JavaScript, and measure what each change did.">
+  <meta name="description" content="Web developer at JKC Media in Eindhoven. I build marketing websites and automate the work around them with Claude Code, Python and plain JavaScript.">
   <meta name="author" content="Beyaricko Degu">
   <meta name="google-site-verification" content="erGvpt0YmbMG4vleoUn-14C2_1x0NteLRmyGzt2FcKE">
   <link rel="canonical" href="https://jerichonega.github.io/portfolio/">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <meta property="og:title" content="Beyaricko Degu, web developer in Eindhoven">
-  <meta property="og:description" content="I build marketing websites, then check whether they worked.">
+  <meta property="og:description" content="I build marketing websites and the automation that runs them.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://jerichonega.github.io/portfolio/">
   <meta property="og:image" content="https://jerichonega.github.io/portfolio/assets/img/og-image.png">
@@ -42,8 +42,8 @@
     </span>
   </nav>
   <div class="hero-text">
-    <h1>I build marketing websites, then check whether they worked.</h1>
-    <p class="lead">Web developer at JKC Media in Eindhoven. Colleagues call me Jericho.</p>
+    <h1>I build marketing websites and the automation that runs them.</h1>
+    <p class="lead">Web developer at JKC Media in Eindhoven. Colleagues call me Jericho. Claude Code is my main tool, and every change gets measured.</p>
     <p class="self" id="self">This page measures itself. On your device its largest element painted after <b id="m-lcp">…</b>, the layout has shifted <b id="m-cls">0.00</b>, and everything loaded so far weighs <b id="m-kb">…</b>.</p>
   </div>
 </header>
@@ -52,8 +52,59 @@
 
 <section class="intro" id="work">
   <h2>Now, at JKC Media</h2>
-  <p>I started at JKC Media on 1 September 2026. The plan was three days of development and two of marketing a week. Since late October I am also responsible for all client marketing. Clients are described by sector here, because the work belongs to them.</p>
+  <p>I started at JKC Media on 1 September 2026. The plan was three days of development and two of marketing a week. I started automating the marketing side in my second week, and since late October I am responsible for all client marketing. Clients are described by sector here, because the work belongs to them.</p>
 </section>
+
+<section class="desk">
+  <div class="desk-text">
+    <h3>The desk: the tool I run client work from</h3>
+    <p>Plain Python server, plain JavaScript, SQLite, no framework and no build step. It runs on my Mac and pulls Productive, GA4, Search Console, Google Ads, Meta and client mail into one page per client.</p>
+    <p>About 41,000 lines of Python over 113 modules, 986 unit tests, 28 scheduled jobs. The job runner handles retries, backoff and time limits. In the two weeks up to 6 November it logged 837 AI runs, 819 of them successful, using 38 million tokens.</p>
+    <p>The rule that shaped it: code computes, the model only judges and writes. Agents have tool allowlists and a daily token budget. They cannot contact a client, publish, or touch a budget. Small fixes such as a redirect get a backup, a live check and an Undo button.</p>
+    <p>I built it with Claude Code, which typed most of the lines. What it does, where it stops and how it gets tested are my decisions.</p>
+  </div>
+  <figure>
+    <img src="assets/img/projects/desk-demo.webp" width="1440" height="900" loading="lazy" decoding="async" alt="The desk's Today page in demo mode, with a ranked list of work for invented clients.">
+    <figcaption>Demo mode. Clients and numbers are invented, the real thing holds client data.</figcaption>
+  </figure>
+</section>
+
+<section class="runs">
+  <h3>What runs without me</h3>
+  <p>I was hired to do this work by hand. These ten routines now do the repetitive part. The last column matters most to me.</p>
+  <div class="scroll" tabindex="0" role="region" aria-label="Table of automated workflows">
+  <table>
+    <thead><tr><th scope="col">Routine</th><th scope="col">Runs</th><th scope="col">Does by itself</th><th scope="col">Stops at</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Task keeper</th><td>When a task changes or a client mails</td><td>Corrects due dates and statuses, closes work it can prove is live</td><td>Never writes to a client, and has an Undo</td></tr>
+      <tr><th scope="row">Client watchers</th><td>Every 30 minutes, no AI</td><td>Spots tracking breaks, spend spikes, falling pages, unanswered mail</td><td>Only raises an alert</td></tr>
+      <tr><th scope="row">Ads and site checks</th><td>Recurring tasks</td><td>Code gathers the data in fixed steps, AI writes the comment</td><td>Proposes, never changes a bid or budget</td></tr>
+      <tr><th scope="row">Mail reader</th><td>Every 10 minutes</td><td>Pulls facts from client mail for every later step, prepares a reply</td><td>A draft in Missive, nothing is sent</td></tr>
+      <tr><th scope="row">Dead page redirects</th><td>Nightly</td><td>Sends 404s that Google still shows to the best live page, with backup and live check</td><td>Five a day, with rollback</td></tr>
+      <tr><th scope="row">Blog drafts</th><td>On blog tasks</td><td>Picks a topic from Search Console gaps and writes a WordPress draft</td><td>Never publishes</td></tr>
+      <tr><th scope="row">Report drafts</th><td>First working day</td><td>Builds last month's numbers, work and summary per client</td><td>Never sends</td></tr>
+      <tr><th scope="row">Backlink checks</th><td>Monthly</td><td>Tests each paid placement: live, link, dofollow, anchor, date</td><td>Orders nothing</td></tr>
+      <tr><th scope="row">Timesheet</th><td>Weekdays 16:45</td><td>Drafts my day from sessions, comments and sent mail</td><td>Logs only when I click</td></tr>
+      <tr><th scope="row">Desk doctor</th><td>Every 30 minutes</td><td>Repairs failed data, reproduces a repeating crash in a copy and tests a fix</td><td>Code waits for my yes</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <h3>It learns from results</h3>
+  <p>The change log holds 561 changes. Each one is measured again at 14, 28 and 56 days, and 252 across 14 clients have a measured outcome so far. The desk writes what it finds into that client's skill file, so the next Claude session starts from it. At one client, on-page work brought leads 4 times out of 4, and 9 new pages brought none. That is a correlation in a small sample, and I treat it as a hint. It still changed what we planned next.</p>
+</section>
+
+<section class="kit">
+  <h3>How I set up Claude Code</h3>
+  <ul>
+    <li><b>Knowledge in skills.</b> About 50 skills written for JKC, in two layers: general craft, and how things work at one client. A lesson from client work goes into a skill straight away, so it survives the session. Fifteen clients also have a machine-readable precheck with their limits and banned terms.</li>
+    <li><b>My own CLIs.</b> <code>prod</code>, <code>gapi</code>, <code>hsapi</code>, <code>meta</code> and <code>seranking</code> reach Productive, Google, HubSpot, Meta and SE Ranking with compact output. They use far fewer tokens than a browser or a chatty tool result.</li>
+    <li><b>Measuring the tooling.</b> <code>toolusage</code> reads the session logs and reports calls, errors and tokens per tool. That is how I decide what gets a CLI next.</li>
+    <li><b>Instagram research.</b> About 8,000 lines of Python read public posts at a polite pace, 5,371 so far, and work out which formats perform for our target groups.</li>
+    <li><b>Conversion check.</b> Compares real form leads with GA4 and Google Ads over 28 days, checks Consent Mode v2, and builds an offline conversion import with validated GCLIDs and neutralised CSV formulas.</li>
+  </ul>
+</section>
+
+<section class="intro sites"><h2>The websites</h2></section>
 
 <article class="case">
   <div class="case-head">
@@ -97,20 +148,6 @@
   <p>Small one I liked: a vehicle fit-out site had brand logos of up to 681 KB, for images shown 100 pixels wide. They were Figma exports with a 3840 px PNG hidden inside the SVG. Same SVG with a 400 px WebP inside: 6 to 32 KB.</p>
 </aside>
 
-<section class="desk">
-  <div class="desk-text">
-    <h3>The desk: the tool I run client work from</h3>
-    <p>Plain Python server, plain JavaScript, SQLite, no framework and no build step. It runs on my Mac and pulls Productive, GA4, Search Console, Google Ads, Meta and client mail into one page per client.</p>
-    <p>About 41,000 lines of Python over 113 modules, 986 unit tests, 28 scheduled jobs. The job runner handles retries, backoff and time limits. Each logged change is measured again at 14, 28 and 56 days, and moves that worked rank higher next time.</p>
-    <p>The rule that shaped it: code computes, the model only judges and writes. Agents have tool allowlists and a daily token budget. They cannot contact a client, publish, or touch a budget. Small fixes such as a redirect get a backup, a live check and an Undo button.</p>
-    <p>I built it with Claude Code, which typed most of the lines. What it does, where it stops and how it gets tested are my decisions.</p>
-  </div>
-  <figure>
-    <img src="assets/img/projects/desk-demo.webp" width="1440" height="900" loading="lazy" decoding="async" alt="The desk's Today page in demo mode, with a ranked list of work for invented clients.">
-    <figcaption>Demo mode. Clients and numbers are invented, the real thing holds client data.</figcaption>
-  </figure>
-</section>
-
 <article class="case plain">
   <div class="case-head">
     <h3>JKC Tours</h3>
@@ -140,7 +177,7 @@
       <tr><th scope="row">Digital Abyssinia Technologies</th><td>Co-founder, 2019 to 2024. More than 20 client sites in WordPress and Elementor Pro.</td></tr>
       <tr><th scope="row">Barcon Getta, Ottawa</th><td>Shopify site and digital marketing, remote, 2021 to 2023.</td></tr>
       <tr><th scope="row"><a href="https://dutch-tutor-eta.vercel.app">DutchMaster</a></th><td>Dutch tutor for the B1 exam, which I needed myself. AI chat, voice conversations, vocabulary trainer. Next.js, TypeScript, Tailwind. <a href="https://github.com/jerichoNega/dutch-tutor">Code</a></td></tr>
-      <tr><th scope="row"><a href="https://github.com/jerichoNega/housing-finder">Housing finder</a></th><td>Finding a studio in Eindhoven is a race, so this watches about ten rental sites every minute at peak times and sends new matches to Telegram. Python, launchd.</td></tr>
+      <tr><th scope="row"><a href="https://github.com/jerichoNega/housing-finder">Housing finder</a></th><td>Finding a studio in Eindhoven is a race, so this watches nine rental sites every few minutes, scores each listing and sends new matches to Telegram, with a control bot for status and pausing. Python, launchd.</td></tr>
       <tr><th scope="row"><a href="https://github.com/jerichoNega/content-automation-bot">Content bot</a></th><td>One topic in, three drafts out, and nothing posts until a person approves it. Python, Claude API.</td></tr>
       <tr><th scope="row"><a href="https://react-crypto-dashboard-pi.vercel.app">Crypto dashboard</a></th><td>Live prices and charts for 100+ coins. React, Recharts. <a href="https://github.com/jerichoNega/react-crypto-dashboard">Code</a></td></tr>
     </tbody>
@@ -149,7 +186,7 @@
 
 <section class="tools">
   <h2>Tools and background</h2>
-  <p><b>Daily:</b> JavaScript, CSS, HTML, PHP, Python, WordPress, ACF, WooCommerce, SCSS, Git, WP-CLI, Chrome DevTools, Playwright, Claude Code, GA4, Search Console, GTM.</p>
+  <p><b>Daily:</b> Claude Code, Python, JavaScript, CSS, HTML, PHP, SQLite, WordPress, ACF, WooCommerce, SCSS, Git, WP-CLI, Chrome DevTools, Playwright, MCP servers, GA4, Search Console, GTM.</p>
   <p><b>Used on projects:</b> TypeScript, React, Next.js, Tailwind, Webflow, Shopify, Figma, Make.com, n8n.</p>
   <p><b>Study:</b> BSc Software Engineering, Arba Minch University. MA Content &amp; Media Strategy, NHL Stenden, 2026.</p>
   <p><b>Languages:</b> Amharic, English, and Dutch at B1, with lessons ongoing.</p>
