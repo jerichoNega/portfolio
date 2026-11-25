@@ -406,269 +406,134 @@ if (verbCanvases.length) {
   });
 }
 
-/* Pipeline */
-const STATIONS = [
-  { name: 'Signal', at: 0.03, color: '#04040a' },
-  { name: 'Facts', at: 0.17, color: '#04040a' },
-  { name: 'Draft', at: 0.33, color: '#04040a' },
-  { name: 'Decision', at: 0.5, color: '#ff5a1f' },
-  { name: 'Live', at: 0.67, color: '#04040a' },
-  { name: 'Lesson', at: 0.84, color: '#04040a' }
-];
-const EVENTS = ['task changed', 'new mail in', 'tracking stopped', 'page returns 404', 'traffic dropped', 'report is due', 'blog task opened', 'spend spike'];
-const NS = 'http://www.w3.org/2000/svg';
+/* Content bot: Search Console first, update before new. Invented shop, invented numbers. */
+const gscEl = document.getElementById('gsc');
+if (gscEl) {
+  const TITLE_CHECKS = ['Under 60 characters', 'Top query in the first half', 'Matches what the page says', 'No claim without a source', 'Not used on another page'];
+  const PAGES = [
+    { url: '/brewing-guide', kind: 'A', clicks: [410, 262], impr: [21000, 20400], pos: [6.2, 6.4], gain: 90, action: 'title',
+      why: 'Impressions held and the position barely moved, but clicks fell 36%. People see the page and pick another result, so the snippet is the problem, not the content.',
+      queries: [['pour over ratio', 6200, 5.8], ['v60 grind size', 4100, 7.2], ['how to brew coffee', 3900, 9.4]],
+      fix: { type: 'serp', before: 'Coffee Brewing Guide - Tips and Tricks for Brewing Great Coffee at Home | Demo Shop', after: 'Pour Over Ratio and V60 Grind Size Guide | Demo Shop',
+        desc: 'How much coffee per cup, how fine to grind for a V60, and the three mistakes that make pour over bitter.' },
+      checks: TITLE_CHECKS, result: [24, 31] },
+    { url: '/beans/ethiopia-yirgacheffe', kind: 'B', clicks: [61, 67], impr: [8000, 8400], pos: [10.1, 9.6], gain: 70, action: 'links',
+      why: 'Position 9.6 with 8,400 impressions: right on the edge of page one. The cheapest win is links from the pages Google already trusts.',
+      queries: [['yirgacheffe coffee', 3100, 8.9], ['ethiopian coffee beans', 2700, 10.4], ['fruity coffee beans', 1200, 11.8]],
+      fix: { type: 'list', head: 'Three links from pages that get clicks', items: ['Brewing guide: "a light, fruity roast like our Yirgacheffe"', 'Whole beans: the light roast row', 'Cold brew: "works well as cold brew"'] },
+      checks: ['Links come from pages with clicks', 'Link text reads naturally', 'One link per page', 'Page still matches the query'], result: [15, 28] },
+    { url: '/blog/coffee-trends-2024', kind: 'A', clicks: [140, 71], impr: [7600, 4200], pos: [7.9, 11.3], gain: 30, action: 'refresh',
+      why: 'It slid from position 7.9 to 11.3. The page still says 2024, its prices are out of date, and the pages that passed it are from this year.',
+      queries: [['coffee trends', 2400, 10.8], ['specialty coffee prices', 1100, 12.6], ['coffee trends 2026', 700, 14.1]],
+      fix: { type: 'diff', rows: [['Title', 'Coffee Trends 2024', 'Coffee Trends 2026: What Changed in Two Years'], ['Prices', '€9.50 for 250 g', '€12.90 for 250 g, from the current price list'], ['New section', '', 'What the shop roasts more of since 2024, from its own orders']] },
+      checks: ['Every number has a source', 'Same URL, no redirect', 'Date updated on the page', 'No claim without a source'], result: [19, 40] },
+    { url: '/grinders', kind: 'B', clicks: [22, 24], impr: [5400, 5600], pos: [14.6, 14.2], gain: 45, action: 'material',
+      why: 'At position 14 a new title will not do it. The pages above it show their own tests, and this one reads like everyone else\'s.',
+      queries: [['best coffee grinder', 2600, 15.1], ['burr grinder vs blade', 1700, 12.9], ['hand grinder for v60', 800, 13.4]],
+      fix: { type: 'material', have: ['Grind times the shop measured for 4 grinders'], missing: ['Own photos of each grind size', 'A line from the roaster on which grinder they use'] } },
+    { url: '/decaf', kind: 'C', clicks: [0, 0], impr: [2100, 2300], pos: [8.1, 7.8], gain: 25, action: 'title',
+      why: 'Position 7.8, 2,300 impressions, nobody clicks. The search is "decaf coffee beans": people want to buy, and the snippet reads like a blog post.',
+      queries: [['decaf coffee beans', 1500, 7.1], ['swiss water decaf', 500, 8.6], ['decaf without chemicals', 300, 9.9]],
+      fix: { type: 'serp', before: 'All About Decaf: What You Need to Know | Demo Shop', after: 'Swiss Water Decaf Coffee Beans, Roasted Weekly | Demo Shop',
+        desc: 'Decaf made with water instead of chemicals. Three origins, roasted every Monday and shipped the next day.' },
+      checks: TITLE_CHECKS, result: [31, 58], absolute: true },
+    { url: '/cold-brew', kind: 'A', clicks: [180, 96], impr: [9000, 5100], pos: [5.4, 5.6], gain: 0, action: 'wait',
+      why: 'Clicks and impressions both fell while the position held. It did the same last autumn: people stop searching for cold brew when it gets cold. Rewriting it now would be wasted work.',
+      queries: [['cold brew recipe', 3300, 4.9], ['cold brew ratio', 1100, 5.8], ['cold brew at home', 700, 6.3]],
+      fix: { type: 'note', text: 'No change. Check again in April, when the searches come back.' } },
+    { url: 'New post: best espresso machines', kind: 'N', gain: null, action: 'new',
+      why: 'On the plan because a competitor wrote one. Nothing on the site ranks for it, the shop sells no machines, and new posts here took months to get seen. It goes to the bottom.',
+      fix: { type: 'note', text: 'Not now. If it stays on the plan, it should link to the grinders page and help that one instead.' } }
+  ];
+  PAGES.sort((a, b) => (b.gain ?? -1) - (a.gain ?? -1));
+  const KIND = { A: 'Losing clicks', B: 'Just under page one', C: 'Seen, never clicked', N: 'New post' };
+  const ACTION = { title: 'Title and snippet', links: 'Internal links', refresh: 'Refresh facts and dates', material: 'First-hand material', wait: 'Wait, seasonal', new: 'New blog post' };
+  const LEARN = { title: [9, 6, '+21%'], links: [5, 3, '+12%'], refresh: [7, 4, '+9%'], material: [3, 2, '+34%'], new: [12, 2, '0 clicks'] };
+  const state = PAGES.map(() => 'todo');
+  let sel = 0, flash = null;
+  const tableEl = document.getElementById('gsc-table'), detail = document.getElementById('gsc-detail'), learnEl = document.getElementById('gsc-learn'), countEl = document.getElementById('sim-count');
+  const fmt = n => Math.round(n).toLocaleString('en');
+  const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+  const ctr = (c, i) => i ? c / i * 100 : 0;
+  const ch = (a, b, flip) => { if (!a && !b) return ''; if (!a) return '<span class="up">new</span>'; const d = (b - a) / a * 100, good = flip ? d < 0 : d > 0; return `<span class="${Math.abs(d) < 1 ? '' : good ? 'up' : 'dn'}">${d > 0 ? '+' : ''}${d.toFixed(0)}%</span>`; };
+  const STATUS = { todo: '', live: '<span class="st live">live</span>', measured: '<span class="st done">measured</span>', asked: '<span class="st ask">asked shop</span>' };
 
-const path = document.getElementById('sim-path');
-if (path) {
-  const length = path.getTotalLength();
-  const tokensEl = document.getElementById('sim-tokens');
-  const logEl = document.getElementById('sim-log');
-  const countEl = document.getElementById('sim-count');
-  const bigEl = document.getElementById('sim-big');
-  const approveBtn = document.getElementById('approve');
-  const rejectBtn = document.getElementById('reject');
-  const stationAt = name => STATIONS.find(s => s.name === name);
-  const gate = stationAt('Decision');
-  const tokens = [];
-  const waiting = [];
-  let lessons = 0;
-  let lastSpawn = -1e9;
-  let last = 0;
-
-  const point = t => path.getPointAtLength((t % 1) * length);
-  const log = text => {
-    const li = document.createElement('li');
-    li.textContent = `${new Date().toTimeString().slice(0, 8)}  ${text}`;
-    logEl.prepend(li);
-    while (logEl.children.length > 3) logEl.lastChild.remove();
+  const series = (p, extra) => {
+    const W = [0, .04, -.03, .05, -.02, .03, -.04, .02, .06, -.01, .03, -.03, .01];
+    const a = p.clicks[0] / 13, b = p.clicks[1] / 13;
+    const s = [...W.map(w => a * (1 + w)), ...W.map((w, i) => (a + (b - a) * Math.min(1, (i + 2) / 6)) * (1 + w))];
+    if (extra) {
+      const after = p.absolute ? i => (p.result[1] / 4.3) * Math.min(1, (i + 1) / 6) : i => b * (1 + p.result[1] / 100 * Math.min(1, (i + 1) / 6));
+      for (let i = 0; i < 8; i++) s.push(after(i) * (1 + W[i]));
+    }
+    return s;
   };
-  const colorAt = t => [...STATIONS].reverse().find(s => t >= s.at)?.color || STATIONS[0].color;
-  const refresh = () => {
-    countEl.textContent = `${waiting.length} waiting for you`;
-    approveBtn.disabled = rejectBtn.disabled = !waiting.length;
-    bigEl.textContent = lessons;
-  };
-
-  for (const s of STATIONS) {
-    const p = point(s.at);
-    const dot = document.createElementNS(NS, 'circle');
-    dot.setAttribute('cx', p.x); dot.setAttribute('cy', p.y); dot.setAttribute('r', 11);
-    dot.setAttribute('fill', s.color); dot.setAttribute('class', 'st-dot');
-    const label = document.createElementNS(NS, 'text');
-    label.setAttribute('class', 'st-label');
-    const inside = p.y < 60 ? -20 : p.y < 190 ? 34 : -24;
-    label.setAttribute('x', Math.min(Math.max(p.x, 70), 530)); label.setAttribute('y', p.y + inside);
-    label.textContent = s.name;
-    document.getElementById('sim-stations').append(dot, label);
-  }
-
-  /* Side loops: subagents branch off at Facts, drafts circle Check, lessons fly to the centre */
-  const subsEl = document.getElementById('sim-subs');
-  const svgEl = (tag, attrs, parent = subsEl) => {
-    const e = document.createElementNS(NS, tag);
-    for (const k in attrs) e.setAttribute(k, attrs[k]);
-    parent.append(e);
-    return e;
-  };
-  const factsAt = stationAt('Facts').at, facts = point(factsAt);
-  const SUBS = [['search', 225], ['site', 350], ['history', 475]].map(([name, x]) => {
-    const y = 128, r = 16;
-    const line = svgEl('path', { class: 'sub-line', d: `M${facts.x} ${facts.y}C${facts.x} ${facts.y + 44} ${x} ${y - 62} ${x} ${y - r}` });
-    svgEl('circle', { class: 'sub-ring', cx: x, cy: y, r });
-    svgEl('text', { class: 'sub-label', x, y: y + r + 16 }).textContent = name;
-    return { name, x, y, r, line, len: line.getTotalLength() };
-  });
-  let checkAt = .386;
-  for (let t = .33; t < .5; t += .001) if (point(t).y >= 190) { checkAt = t; break; }
-  const joint = point(checkAt);
-  const RING = { x: 512, y: joint.y, r: 26 };
-  svgEl('path', { class: 'sub-line', d: `M${joint.x} ${joint.y}H${RING.x + RING.r}` });
-  svgEl('circle', { class: 'sub-ring', cx: RING.x, cy: RING.y, r: RING.r });
-  svgEl('text', { class: 'sub-label', x: RING.x, y: RING.y + 5 }).textContent = 'check';
-  const lessonAt = stationAt('Lesson').at, lessonPoint = point(lessonAt);
-  const back = svgEl('path', { class: 'sub-line', d: `M${lessonPoint.x} ${lessonPoint.y}C${lessonPoint.x + 110} ${lessonPoint.y} 180 214 262 214` });
-  const backLen = back.getTotalLength();
-  const flyers = [];
-
-  const dotAt = (el, x, y, fill = '#04040a') => {
-    el.setAttribute('cx', x); el.setAttribute('cy', y); el.setAttribute('fill', fill);
-  };
-  const flyer = (r, update, done) => {
-    const el = document.createElementNS(NS, 'circle');
-    el.setAttribute('r', r);
-    tokensEl.append(el);
-    flyers.push({ el, p: 0, update, done });
+  const chart = (p, measured) => {
+    const s = series(p, measured), n = 34, W = 600, H = 150, L = 34, R = 8, T = 10, B = 20;
+    const top = Math.max(4, ...s) * 1.15, x = i => L + i / (n - 1) * (W - L - R), y = v => H - B - v / top * (H - B - T);
+    const d = s.map((v, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)} ${y(v).toFixed(1)}`).join('');
+    const grid = [0, .5, 1].map(k => `<line x1="${L}" x2="${W - R}" y1="${y(top * k / 1.15)}" y2="${y(top * k / 1.15)}" class="g"/><text x="${L - 6}" y="${y(top * k / 1.15) + 4}" text-anchor="end">${fmt(top * k / 1.15)}</text>`).join('');
+    const cut = state[sel] !== 'todo' ? `<line x1="${x(25.5)}" x2="${x(25.5)}" y1="${T}" y2="${H - B}" class="cut"/><text x="${x(25.5) + 5}" y="${T + 10}">change live</text>` : '';
+    return `<svg viewBox="0 0 ${W} ${H}" class="gsc-chart" role="img" aria-label="Clicks per week for ${esc(p.url)}">${grid}<text x="${x(0)}" y="${H - 4}">26 weeks ago</text><text x="${x(25)}" y="${H - 4}" text-anchor="end">now</text>${measured ? `<text x="${x(33)}" y="${H - 4}" text-anchor="end">day 56</text>` : ''}${cut}<path d="${d}" class="ln"/></svg>`;
   };
 
-  const spawn = () => {
-    const label = EVENTS[Math.floor(Math.random() * EVENTS.length)];
-    const el = document.createElementNS(NS, 'circle');
-    el.setAttribute('r', 7);
-    tokensEl.append(el);
-    tokens.push({ t: STATIONS[0].at, label, el, released: false, queued: false, sent: false, checked: false, busy: false });
-    log(`signal: ${label}`);
-  };
-  const remove = token => {
-    token.el.remove();
-    tokens.splice(tokens.indexOf(token), 1);
-  };
-  const draw = token => {
-    const p = point(token.t);
-    token.el.setAttribute('cx', p.x);
-    token.el.setAttribute('cy', p.y);
-    token.el.setAttribute('fill', token.back ? '#ff5a1f' : colorAt(token.t));
-  };
-
-  /* Quicker with every lesson, down to about half the time */
-  const pace = () => Math.max(.55, 1 - lessons * .07);
-  const sendSubagents = token => {
-    token.busy = true;
-    let out = SUBS.length;
-    log(`${SUBS.length} subagents out: ${token.label}`);
-    SUBS.forEach((sub, i) => flyer(4.5, (el, p) => {
-      if (p < .22) {
-        const q = sub.line.getPointAtLength(p / .22 * sub.len);
-        dotAt(el, q.x, q.y);
-      } else if (p < .78) {
-        const a = -Math.PI / 2 + (p - .22) / .56 * Math.PI * 2 * (i === 1 ? 2 : 1);
-        dotAt(el, sub.x + Math.cos(a) * sub.r, sub.y + Math.sin(a) * sub.r);
-      } else {
-        const q = sub.line.getPointAtLength((1 - (p - .78) / .22) * sub.len);
-        dotAt(el, q.x, q.y);
-      }
-    }, () => {
-      out -= 1;
-      if (!out) { token.busy = false; log(`facts back: ${token.label}`); }
-    }));
-    flyers.slice(-SUBS.length).forEach((f, i) => { f.speed = 1 / ((1700 + i * 350) * pace()); });
-  };
-  const runCheck = token => {
-    token.busy = true;
-    const turns = token.again ? 1 : Math.random() < .4 ? 2 : 1;
-    if (turns > 1) log(`check failed, redraft: ${token.label}`);
-    token.el.style.opacity = 0;
-    flyer(7, (el, p) => {
-      if (p < .12 || p > .88) {
-        const k = p < .12 ? p / .12 : (1 - p) / .12;
-        dotAt(el, joint.x + (RING.x + RING.r - joint.x) * k, joint.y);
-      } else {
-        const q = (p - .12) / .76, a = q * Math.PI * 2 * turns;
-        dotAt(el, RING.x + Math.cos(a) * RING.r, RING.y + Math.sin(a) * RING.r, turns > 1 && q < .5 ? '#ff5a1f' : '#04040a');
-      }
-    }, () => { token.busy = false; token.el.style.opacity = 1; });
-    flyers[flyers.length - 1].speed = 1 / (1500 * turns * pace());
-  };
-  const storeLesson = token => {
-    remove(token);
-    flyer(5, (el, p) => {
-      const q = back.getPointAtLength(p * backLen);
-      dotAt(el, q.x, q.y);
-    }, () => {
-      lessons += 1;
-      log(`measured: ${token.label}, next run is quicker`);
-      refresh();
-      bigEl.classList.remove('pop');
-      void bigEl.getBBox();
-      bigEl.classList.add('pop');
+  const drawTable = () => {
+    tableEl.innerHTML = `<thead><tr><th>Page</th><th>Why it is listed</th><th>Clicks</th><th>Position</th><th>Expected</th><th></th></tr></thead><tbody>${PAGES.map((p, i) => `
+      <tr class="${i === sel ? 'on' : ''}${p.kind === 'N' ? ' new' : ''}" data-i="${i}" tabindex="0"><th scope="row">${esc(p.url)}</th><td><span class="k k${p.kind}">${KIND[p.kind]}</span></td>
+      <td>${p.clicks ? `${fmt(p.clicks[1])} ${ch(...p.clicks)}` : 'none'}</td><td>${p.pos ? p.pos[1].toFixed(1) : 'none'}</td>
+      <td>${p.gain === null ? '?' : p.gain ? `+${p.gain}/mo` : 'wait'}</td><td>${STATUS[state[i]]}</td></tr>`).join('')}</tbody>`;
+    tableEl.querySelectorAll('tbody tr').forEach(r => {
+      const pick = () => { sel = +r.dataset.i; draw(); };
+      r.addEventListener('click', pick);
+      r.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
     });
-    flyers[flyers.length - 1].speed = 1 / 900;
   };
 
-  function approve() {
-    const token = waiting.shift();
-    if (!token) return;
-    token.released = true;
-    log(`approved: ${token.label}`);
-    refresh();
-  }
-  function reject() {
-    const token = waiting.shift();
-    if (!token) return;
-    log(`rejected: ${token.label}, back to check`);
-    token.back = true;
-    token.queued = false;
-    token.checked = false;
-    refresh();
-  }
-  approveBtn.addEventListener('click', approve);
-  rejectBtn.addEventListener('click', reject);
-
-  const step = dt => {
-    for (const f of [...flyers]) {
-      f.p = Math.min(1, f.p + dt * (f.speed || .001));
-      f.update(f.el, f.p);
-      if (f.p >= 1) {
-        f.el.remove();
-        flyers.splice(flyers.indexOf(f), 1);
-        f.done();
-      }
-    }
-    for (const token of [...tokens]) {
-      if (token.busy) continue;
-      if (token.back) {
-        token.t -= dt * 0.00034;
-        if (token.t <= checkAt) { token.t = checkAt; token.back = false; token.again = true; }
-        draw(token);
-        continue;
-      }
-      if (!token.sent && token.t >= factsAt) {
-        token.sent = true;
-        sendSubagents(token);
-        continue;
-      }
-      if (!token.checked && token.t >= checkAt) {
-        token.checked = true;
-        draw(token);
-        runCheck(token);
-        continue;
-      }
-      if (!token.released) {
-        const slot = gate.at - 0.016 - waiting.indexOf(token) * 0.024;
-        const stop = token.queued ? slot : gate.at - 0.016 - waiting.length * 0.024;
-        token.t = Math.min(token.t + dt * 0.00011, stop);
-        if (!token.queued && token.t >= stop) {
-          token.queued = true;
-          waiting.push(token);
-          log(`draft ready: ${token.label}`);
-          refresh();
-        }
-      } else {
-        token.t += dt * 0.00011;
-        if (token.t >= lessonAt) {
-          storeLesson(token);
-          continue;
-        }
-      }
-      draw(token);
-    }
+  const fixHtml = (p, st) => {
+    const f = p.fix;
+    let body = '';
+    if (f.type === 'serp') body = `<p class="fx-h">Draft: new title and description</p><div class="gs old"><span class="gs-url">demo-shop.nl › ${esc(p.url.slice(1))}</span><span class="gs-title">${esc(f.before)}</span></div><div class="gs"><span class="gs-url">demo-shop.nl › ${esc(p.url.slice(1))}</span><span class="gs-title">${esc(f.after)}</span><span class="gs-desc">${esc(f.desc)}</span></div>`;
+    if (f.type === 'list') body = `<p class="fx-h">Draft: ${esc(f.head)}</p><ul class="fx-list">${f.items.map(t => `<li>${esc(t)}</li>`).join('')}</ul>`;
+    if (f.type === 'diff') body = `<p class="fx-h">Draft: what changes on the page</p><table class="fx-diff">${f.rows.map(([k, a, b]) => `<tr><th>${k}</th><td><del>${esc(a) || 'nothing'}</del></td><td><ins>${esc(b)}</ins></td></tr>`).join('')}</table>`;
+    if (f.type === 'material') body = `<p class="fx-h">Draft blocked: real material needed</p><ul class="fx-list"><li class="have">Have: ${esc(f.have.join(', '))}</li>${f.missing.map(t => `<li class="miss">Missing: ${esc(t)}</li>`).join('')}</ul><p class="fx-note">The bot does not fill gaps with made-up text. Missing material is a question for the shop.</p>`;
+    if (f.type === 'note') body = `<p class="fx-h">Decision</p><p class="fx-note">${esc(f.text)}</p>`;
+    const checks = p.checks ? `<ul class="fx-checks">${p.checks.map(c => `<li>${esc(c)}</li>`).join('')}</ul>` : '';
+    let btn = '';
+    if (f.type === 'material') btn = st === 'asked' ? '<p class="fx-note">Asked the shop for the photos. The page waits until they arrive.</p>' : '<button type="button" data-do="ask">Ask the shop for the material</button>';
+    else if (p.checks && st === 'todo') btn = `<button type="button" data-do="approve">Approve and log the change</button>`;
+    else if (st === 'live') btn = `<button type="button" data-do="measure">Skip ahead 56 days</button>`;
+    else if (st === 'measured') btn = `<p class="fx-res">Day 28: ${p.absolute ? `${p.result[0]} clicks` : `+${p.result[0]}% clicks`}. Day 56: ${p.absolute ? `${p.result[1]} clicks a month, from none` : `+${p.result[1]}%`}. Added to the table below.</p>`;
+    return `<div class="fx">${body}${checks}${btn}</div>`;
   };
 
-  const tick = now => {
-    const dt = Math.min(now - last, 50);
-    last = now;
-    if (now - lastSpawn > 3000 && waiting.length + tokens.filter(t => !t.released && !t.queued).length < 4) {
-      lastSpawn = now;
-      spawn();
+  const draw = () => {
+    drawTable();
+    const p = PAGES[sel], st = state[sel];
+    if (p.kind === 'N') {
+      detail.innerHTML = `<div class="dt-h"><b>${esc(p.url)}</b><span class="k kN">${KIND.N}</span></div><p class="dt-why">${esc(p.why)}</p>${fixHtml(p, st)}`;
+    } else {
+      const cards = [['Clicks', fmt(p.clicks[1]), ch(...p.clicks), 'c'], ['Impressions', fmt(p.impr[1]), ch(...p.impr), 'i'], ['CTR', `${ctr(p.clicks[1], p.impr[1]).toFixed(1)}%`, ch(ctr(p.clicks[0], p.impr[0]), ctr(p.clicks[1], p.impr[1])), 't'], ['Position', p.pos[1].toFixed(1), ch(p.pos[0], p.pos[1], true), 'p']];
+      detail.innerHTML = `<div class="dt-h"><b>${esc(p.url)}</b><span class="k k${p.kind}">${KIND[p.kind]}</span><span class="dt-a">${ACTION[p.action]}</span></div>
+        <div class="mc">${cards.map(([l, v, d, c]) => `<div class="mc-${c}"><span>${l}</span><b>${v}</b><small>${d}</small></div>`).join('')}</div>
+        ${chart(p, st === 'measured')}
+        <p class="dt-why">${esc(p.why)}</p>
+        <table class="dt-q"><thead><tr><th>Top queries</th><th>Impressions</th><th>Position</th></tr></thead><tbody>${p.queries.map(([q, i, ps]) => `<tr><td>${esc(q)}</td><td>${fmt(i)}</td><td>${ps.toFixed(1)}</td></tr>`).join('')}</tbody></table>
+        ${fixHtml(p, st)}`;
     }
-    step(dt);
-    if (running) requestAnimationFrame(tick);
+    detail.querySelectorAll('[data-do]').forEach(b => b.addEventListener('click', () => {
+      const a = b.dataset.do;
+      if (a === 'approve') state[sel] = 'live';
+      if (a === 'ask') state[sel] = 'asked';
+      if (a === 'measure') { state[sel] = 'measured'; const L = LEARN[p.action]; L[0]++; L[1]++; flash = p.action; }
+      draw();
+      detail.querySelector('[data-do]')?.focus({ preventScroll: true });
+    }));
+    learnEl.innerHTML = `<table class="gsc-learn-t"><thead><tr><th>Type of change</th><th>Measured</th><th>More clicks</th><th>Median at 56 days</th></tr></thead><tbody>${Object.entries(LEARN).map(([k, [n, w, m]]) => `<tr class="${k === 'new' ? 'new' : ''}${k === flash ? ' flash' : ''}"><th>${ACTION[k]}</th><td>${n}</td><td>${w} of ${n}</td><td>${m}</td></tr>`).join('')}</tbody></table><p class="gsc-muted">New posts get a list of their own: most were still not seen by Google after 8 weeks.</p>`;
+    flash = null;
+    const live = state.filter(s => s === 'live').length, done = state.filter(s => s === 'measured').length;
+    countEl.textContent = live || done ? `${live} change${live === 1 ? '' : 's'} live, ${done} measured` : '';
   };
-
-  let running = false;
-  const start = () => { if (!running) { running = true; last = performance.now(); requestAnimationFrame(tick); } };
-  const stop = () => { running = false; };
-
-  if (calm) {
-    spawn();
-    tokens[0].t = gate.at - 0.016;
-    tokens[0].sent = tokens[0].checked = true;
-    tokens[0].queued = true;
-    waiting.push(tokens[0]);
-    draw(tokens[0]);
-    refresh();
-  } else {
-    new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop())).observe(path.ownerSVGElement);
-  }
+  draw();
 }
 
 /* Scroll: headings stretch into place, cards recede under the next one */
@@ -701,110 +566,76 @@ if (window.gsap && window.ScrollTrigger && !calm) {
   }));
 }
 
-/* Growth map: sources to pages to goals, with moves that change the flow */
-const flowSvg = document.getElementById('flow-svg');
-if (flowSvg) {
-  const NODES = {
-    google: ['Google', 0, 0], ai: ['AI search', 0, 1], social: ['Social', 0, 2], mail: ['Email', 0, 3],
-    home: ['Homepage', 1, 0], guide: ['Brewing guide', 1, 1], beans: ['Whole beans', 1, 2], sub: ['Subscription', 1, 3],
-    order: ['Orders', 2, 1], news: ['Newsletter', 2, 2]
+/* Funnel: a GA4 style funnel exploration on an invented shop, with ranked moves that change one step each */
+const funnelEl = document.getElementById('funnel');
+if (funnelEl) {
+  const STEPS = ['Session start', 'Viewed a product', 'Added to cart', 'Began checkout', 'Purchase'];
+  const SRC = {
+    google: { label: 'google / organic', base: [860, 380, 140, 108, 88] },
+    ai: { label: 'chatgpt.com / referral', base: [100, 52, 22, 18, 16] },
+    social: { label: 'instagram / social', base: [230, 70, 22, 16, 10] },
+    mail: { label: 'newsletter / email', base: [160, 108, 56, 48, 46] }
   };
-  const EDGES = [
-    ['google', 'home', 420], ['google', 'guide', 260], ['google', 'beans', 180], ['ai', 'guide', 60], ['ai', 'beans', 40],
-    ['social', 'home', 140], ['social', 'guide', 90], ['mail', 'beans', 120], ['mail', 'sub', 40],
-    ['home', 'order', 40], ['beans', 'order', 90], ['guide', 'order', 8], ['sub', 'order', 22], ['home', 'news', 30], ['guide', 'news', 24]
-  ];
   const MOVES = [
-    { name: 'New title on the brewing guide', kind: 'SEO', fx: [['google', 'guide', 180], ['guide', 'order', 12], ['guide', 'news', 8]] },
-    { name: 'Answer-first copy and schema', kind: 'AI search', fx: [['ai', 'guide', 90], ['ai', 'beans', 70], ['beans', 'order', 16]] },
-    { name: 'Subscription in the monthly email', kind: 'Email', fx: [['mail', 'sub', 80], ['sub', 'order', 26]] }
+    { name: 'New title on the brewing guide', kind: 'SEO', score: 82, src: 'google', fx: [180, 60, 18, 14, 12],
+      says: 'More people arrive from Google, but the step that grows most is the first one. The guide still needs a clear way to the beans.' },
+    { name: 'Answer-first copy and schema', kind: 'AI search', score: 74, src: 'ai', fx: [160, 90, 25, 19, 16],
+      says: 'AI search sends fewer people than Google, but they land on a product and more of them buy.' },
+    { name: 'Subscription in the monthly email', kind: 'Email', score: 69, src: 'mail', fx: [80, 60, 34, 30, 26],
+      says: 'The smallest source with the best rate: a third of these sessions end in a purchase. Cheap to repeat every month.' }
   ];
   const on = new Set();
+  let seg = null, last = null;
   const total = document.getElementById('flow-total');
-  const NSV = 'http://www.w3.org/2000/svg';
-  const make = (tag, attrs, parent) => {
-    const e = document.createElementNS(NSV, tag);
-    for (const k in attrs) e.setAttribute(k, attrs[k]);
-    parent.append(e);
-    return e;
-  };
-  let edges = [], dots = [], dotLayer, visible = false, running = false, last = 0;
+  const chart = document.getElementById('fn-chart');
+  const table = document.getElementById('fn-table');
+  const segEl = document.getElementById('fn-seg');
+  const fmt = n => Math.round(n).toLocaleString('en');
+  const pct = (a, b) => b ? `${(a / b * 100).toFixed(1)}%` : '0%';
+  const vals = (key, set) => SRC[key].base.map((v, i) => v + MOVES.filter((m, j) => set.has(j) && m.src === key).reduce((s, m) => s + m.fx[i], 0));
+  const keys = () => seg ? [seg] : Object.keys(SRC);
+  const sumOf = set => STEPS.map((_, i) => keys().reduce((s, k) => s + vals(k, set)[i], 0));
 
-  const target = e => e.base + [...on].flatMap(i => MOVES[i].fx).filter(f => f[0] === e.from && f[1] === e.to).reduce((s, f) => s + f[2], 0);
-  const sums = () => {
-    const visits = edges.filter(e => NODES[e.from][1] === 0).reduce((s, e) => s + target(e), 0);
-    const orders = edges.filter(e => e.to === 'order').reduce((s, e) => s + target(e), 0);
-    return { visits, orders };
-  };
-  const label = () => {
-    const { visits, orders } = sums();
-    total.textContent = `${visits.toLocaleString('en')} visits, ${orders} orders a month`;
-    for (const id in numbers) {
-      const flow = edges.filter(e => e.to === id).reduce((s, e) => s + target(e), 0) || edges.filter(e => e.from === id).reduce((s, e) => s + target(e), 0);
-      numbers[id].textContent = flow.toLocaleString('en');
-    }
-    edges.forEach(e => e.path.classList.toggle('boost', target(e) > e.base));
-  };
-  let numbers = {};
+  /* Bars: a column per step, blue for who carried on, a hatched block for who dropped off, orange for what a move added */
+  const cols = STEPS.map((name, i) => {
+    const col = document.createElement('div');
+    col.className = 'fn-col';
+    col.innerHTML = `<div class="fn-head"><span>${i + 1}. ${name}</span><b></b></div><div class="fn-track"><div class="fn-drop"></div><div class="fn-fill"><div class="fn-add"></div></div></div><div class="fn-foot"></div>`;
+    chart.append(col);
+    return { head: col.querySelector('.fn-head b'), drop: col.querySelector('.fn-drop'), fill: col.querySelector('.fn-fill'), add: col.querySelector('.fn-add'), foot: col.querySelector('.fn-foot') };
+  });
 
-  const build = () => {
-    const narrow = flowSvg.getBoundingClientRect().width < 560;
-    const W = narrow ? 620 : 1000, H = narrow ? 640 : 620;
-    const colX = narrow ? [75, 310, 545] : [90, 500, 910];
-    const rowY = r => 70 + r * ((H - 130) / 3);
-    flowSvg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-    flowSvg.replaceChildren();
-    numbers = {};
-    const at = id => { const [, c, r] = NODES[id]; return [colX[c], rowY(r)]; };
-    const layer = make('g', {}, flowSvg);
-    edges = EDGES.map(([from, to, base]) => {
-      const [x1, y1] = at(from), [x2, y2] = at(to), mid = (x1 + x2) / 2;
-      const path = make('path', { class: 'fl-edge', d: `M${x1} ${y1}C${mid} ${y1} ${mid} ${y2} ${x2} ${y2}` }, layer);
-      return { from, to, base, path, len: path.getTotalLength(), now: base, debt: Math.random() };
+  const draw = () => {
+    const now = sumOf(on), base = sumOf(new Set()), top = sumOf(new Set(MOVES.map((_, i) => i)))[0];
+    cols.forEach((c, i) => {
+      const h = now[i] / top * 100, added = now[i] - base[i];
+      c.fill.style.height = `${h}%`;
+      c.add.style.height = now[i] ? `${added / now[i] * 100}%` : '0';
+      c.drop.style.height = i ? `${(now[i - 1] - now[i]) / top * 100}%` : '0';
+      c.drop.style.bottom = `${h}%`;
+      c.head.textContent = pct(now[i], now[0]);
+      c.foot.innerHTML = `<b>${fmt(now[i])}</b>${added > 0 ? ` <em>+${fmt(added)}</em>` : ''}${i < STEPS.length - 1 ? `<span>Abandonment ${fmt(now[i] - now[i + 1])}, ${pct(now[i] - now[i + 1], now[i])}</span>` : '<span>completed the funnel</span>'}`;
     });
-    dotLayer = make('g', {}, flowSvg);
-    dots = [];
-    for (const id in NODES) {
-      const [x, y] = at(id), [name, col] = NODES[id];
-      const g = make('g', {}, flowSvg);
-      const node = make('circle', { class: `fl-node${col === 2 ? ' goal' : ''}`, cx: x, cy: y, r: 11, tabindex: -1 }, g);
-      make('text', { class: 'fl-name', x, y: y - 32 }, g).textContent = name;
-      numbers[id] = make('text', { class: 'fl-num', x, y: y - 16 }, g);
-      node.addEventListener('pointerenter', () => edges.forEach(e => {
-        const hit = e.from === id || e.to === id;
-        e.path.classList.toggle('lit', hit);
-        e.path.classList.toggle('dim', !hit);
-      }));
-      node.addEventListener('pointerleave', () => edges.forEach(e => e.path.classList.remove('lit', 'dim')));
+    segEl.textContent = seg ? SRC[seg].label : 'All users';
+    const rows = Object.keys(SRC).map(k => {
+      const v = vals(k, on);
+      return `<tr class="${seg === k ? 'on' : ''}" data-src="${k}" tabindex="0"><th scope="row">${SRC[k].label}</th>${v.map(n => `<td>${fmt(n)}</td>`).join('')}<td><b>${pct(v[4], v[0])}</b></td></tr>`;
+    }).join('');
+    table.innerHTML = `<thead><tr><th>Session source / medium</th>${STEPS.map((s, i) => `<th>Step ${i + 1}</th>`).join('')}<th>Purchase rate</th></tr></thead><tbody>${rows}</tbody>`;
+    table.querySelectorAll('tbody tr').forEach(r => {
+      const pick = () => { seg = seg === r.dataset.src ? null : r.dataset.src; draw(); };
+      r.addEventListener('click', pick);
+      r.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+    });
+    const all = STEPS.map((_, i) => Object.keys(SRC).reduce((s, k) => s + vals(k, on)[i], 0));
+    if (seg) {
+      const v = vals(seg, on), worst = v.slice(0, 4).map((n, i) => (n - v[i + 1]) / n).reduce((w, r, i, a) => r > a[w] ? i : w, 0);
+      total.textContent = `${SRC[seg].label}: ${pct(v[4], v[0])} buy. The biggest drop is from "${STEPS[worst].toLowerCase()}" to "${STEPS[worst + 1].toLowerCase()}". Click the row again for everyone.`;
+    } else if (last !== null && on.has(last)) {
+      total.textContent = MOVES[last].says;
+    } else {
+      total.textContent = `${fmt(all[0])} sessions, ${fmt(all[4])} purchases (${pct(all[4], all[0])}). Most people leave before they see a product. Click a source in the table to see its own funnel.`;
     }
-    paint();
-    label();
-  };
-  const paint = () => { for (const e of edges) e.path.setAttribute('stroke-width', (1.5 + e.now / 26).toFixed(2)); };
-
-  const step = now => {
-    const dt = Math.min(now - last, 50);
-    last = now;
-    for (const e of edges) {
-      e.now += (target(e) - e.now) * 0.05;
-      e.debt += e.now * dt * 0.000045;
-      while (e.debt >= 1 && dots.length < 170) {
-        e.debt -= 1;
-        dots.push({ e, t: 0, hot: target(e) > e.base && Math.random() < 0.6, el: make('circle', { class: 'fl-dot', r: 3 }, dotLayer) });
-        dots[dots.length - 1].el.classList.toggle('hot', dots[dots.length - 1].hot);
-      }
-      e.debt = Math.min(e.debt, 2);
-    }
-    paint();
-    for (let i = dots.length - 1; i >= 0; i--) {
-      const d = dots[i];
-      d.t += dt * 0.00042;
-      if (d.t >= 1) { d.el.remove(); dots.splice(i, 1); continue; }
-      const p = d.e.path.getPointAtLength(d.t * d.e.len);
-      d.el.setAttribute('cx', p.x);
-      d.el.setAttribute('cy', p.y);
-    }
-    if (visible) requestAnimationFrame(step); else running = false;
   };
 
   const list = document.getElementById('moves');
@@ -813,29 +644,17 @@ if (flowSvg) {
     b.type = 'button';
     b.className = 'move';
     b.setAttribute('aria-pressed', 'false');
-    b.innerHTML = `<span>${m.name}</span><span>${m.kind}</span>`;
+    b.innerHTML = `<span>${m.name}</span><span>${m.kind}, score ${m.score}</span>`;
     b.addEventListener('click', () => {
       if (on.has(i)) on.delete(i); else on.add(i);
+      last = i;
       b.setAttribute('aria-pressed', String(on.has(i)));
-      b.lastChild.textContent = on.has(i) ? 'Applied' : m.kind;
-      if (calm) { edges.forEach(e => { e.now = target(e); }); paint(); }
-      label();
+      b.lastChild.textContent = on.has(i) ? 'Applied' : `${m.kind}, score ${m.score}`;
+      draw();
     });
     list.append(b);
   });
-
-  build();
-  let wide = innerWidth, wait;
-  addEventListener('resize', () => {
-    if (innerWidth === wide) return;
-    wide = innerWidth;
-    clearTimeout(wait);
-    wait = setTimeout(build, 200);
-  });
-  if (!calm) new IntersectionObserver(([e]) => {
-    visible = e.isIntersecting;
-    if (visible && !running) { running = true; last = performance.now(); requestAnimationFrame(step); }
-  }).observe(flowSvg);
+  draw();
 }
 
 /* Review tour demo */
@@ -870,19 +689,19 @@ if (tourTitle) {
   show();
 }
 
-/* Data section: an invented shop, raw GA4 against cleaned numbers, per channel */
+/* Data section: an invented shop as a GA4 / Looker Studio style report, raw GA4 against cleaned numbers */
 const chartEl = document.getElementById('dash-chart');
 if (chartEl) {
   const WIGGLE = [0, .03, -.02, .05, -.03, .01, .04, -.01, .06, .03, .07, .05];
   const LAUNCH = 7; // week 8, index 7
   const CHANNELS = {
-    all: { label: 'All' },
-    google: { label: 'Google', base: 400, lift: 14, noise: 30, tagged: .02, real: .018 },
-    paid: { label: 'Paid', base: 220, lift: 2, noise: 40, tagged: .09, real: .016 },
-    email: { label: 'Email', base: 100, lift: 3, noise: 5, tagged: .03, real: .03 },
-    social: { label: 'Social', base: 140, lift: 0, noise: 25, tagged: .02, real: .004 },
-    direct: { label: 'Direct', base: 120, lift: 1, noise: 760, tagged: .015, real: .012 }
+    google: { label: 'Organic search', color: '#1a73e8', base: 400, lift: 14, noise: 30, tagged: .02, real: .018 },
+    paid: { label: 'Paid search', color: '#e8710a', base: 220, lift: 2, noise: 40, tagged: .09, real: .016 },
+    email: { label: 'Email', color: '#12b5cb', base: 100, lift: 3, noise: 5, tagged: .03, real: .03 },
+    social: { label: 'Organic social', color: '#d01884', base: 140, lift: 0, noise: 25, tagged: .02, real: .004 },
+    direct: { label: 'Direct', color: '#7cb342', base: 120, lift: 1, noise: 760, tagged: .015, real: .012 }
   };
+  const KEYS = Object.keys(CHANNELS);
   const READS = {
     all: { raw: 'Looks great. Too great: this is what most reports show.', clean: 'Nearly half the visits were staff and bots, and most conversions were not orders. This is the number to plan on.' },
     google: { raw: 'Steady growth, with little to clean here.', clean: 'The new landing page in week 8 is working. Put the next hour of content work here.' },
@@ -891,83 +710,92 @@ if (chartEl) {
     social: { raw: 'Decent traffic and a few conversions.', clean: 'Hardly any orders come from here. Keep it for reach and stop judging it on sales.' },
     direct: { raw: 'The biggest channel by far. That should worry you.', clean: 'Most of this was staff logging in. Exclude that traffic in GA4 and it stops hiding everything else.' }
   };
-  const weeks = key => {
-    const c = CHANNELS[key];
-    return WIGGLE.map((w, i) => {
+  const data = {};
+  KEYS.forEach(k => {
+    const c = CHANNELS[k];
+    data[k] = WIGGLE.map((w, i) => {
       const clean = Math.round(c.base * (1 + w) + Math.max(0, i - LAUNCH + 1) * c.lift);
       const raw = clean + Math.round(c.noise * (1 + w / 2));
       return { raw, clean, tagged: Math.round(raw * c.tagged), orders: Math.round(clean * c.real) };
     });
-  };
-  const keys = Object.keys(CHANNELS).filter(k => k !== 'all');
-  const data = { all: WIGGLE.map((_, i) => keys.reduce((sum, k) => {
-    const w = weeks(k)[i];
-    return { raw: sum.raw + w.raw, clean: sum.clean + w.clean, tagged: sum.tagged + w.tagged, orders: sum.orders + w.orders };
-  }, { raw: 0, clean: 0, tagged: 0, orders: 0 })) };
-  keys.forEach(k => { data[k] = weeks(k); });
+  });
+  const sum = (keys, f) => WIGGLE.map((_, i) => keys.reduce((s, k) => s + f(data[k][i]), 0));
 
   let view = 'clean', channel = 'all', shown = null, frameId = 0;
   const NSC = 'http://www.w3.org/2000/svg';
-  const tip = document.getElementById('dash-tip');
-  const svg = document.createElementNS(NSC, 'svg');
-  svg.setAttribute('role', 'img');
-  chartEl.prepend(svg);
-  const add = (tag, attrs, text) => {
-    const e = document.createElementNS(NSC, tag);
-    for (const k in attrs) e.setAttribute(k, attrs[k]);
-    if (text !== undefined) e.textContent = text;
-    svg.append(e);
+  const fmt = n => Math.round(n).toLocaleString('en');
+  const nice = v => { const p = 10 ** Math.floor(Math.log10(v)), n = v / p; return [1.2, 1.6, 2, 2.4, 3, 4, 5, 6, 8, 10].find(s => n <= s) * p; };
+  const el = (tag, attrs = {}, kids = []) => {
+    const e = tag.startsWith('svg:') ? document.createElementNS(NSC, tag.slice(4)) : document.createElement(tag);
+    for (const k in attrs) k === 'text' ? (e.textContent = attrs[k]) : e.setAttribute(k, attrs[k]);
+    e.append(...kids);
     return e;
   };
-  const fmt = n => n.toLocaleString('en');
-  const nice = v => { const p = 10 ** Math.floor(Math.log10(v)), n = v / p; return [1.2, 1.6, 2, 2.4, 3, 4, 5, 6, 8, 10].find(s => n <= s) * p; };
+  const delta = (now, before) => {
+    if (!before) return el('span', { text: '' });
+    const d = (now - before) / before * 100;
+    if (Math.abs(d) < .5) return el('span', { text: 'no change' });
+    return el('span', { class: d >= 0 ? 'up' : 'dn', text: `${d >= 0 ? '▲' : '▼'} ${Math.abs(d).toFixed(0)}%` });
+  };
 
-  let box = {}, lines = {}, hair, ends = {};
+  /* Chart: stacked areas per channel, a dashed raw total over the cleaned view, a dot for the change */
+  const tip = document.getElementById('dash-tip');
+  const svg = el('svg:svg', { role: 'img' });
+  chartEl.prepend(svg);
+  const add = (tag, attrs, text) => { const e = el('svg:' + tag, text === undefined ? attrs : { ...attrs, text }); svg.append(e); return e; };
+  let box = {}, areas = {}, rawLine, hair;
   const layout = () => {
-    const W = chartEl.clientWidth, H = 280, L = 44, R = W < 480 ? 12 : 70, T = 12, B = 26;
+    const W = chartEl.clientWidth, H = W < 480 ? 210 : 250, L = 44, R = 10, T = 16, B = 24;
     svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
     svg.replaceChildren();
-    box = { W, H, L, R, T, B, x: i => L + i / 11 * (W - L - R), y: 0 };
+    box = { W, H, L, R, T, B, x: i => L + i / 11 * (W - L - R) };
     box.grid = [0, 1, 2, 3, 4].map(() => ({ line: add('line', { class: 'grid' }), text: add('text', { 'text-anchor': 'end' }) }));
-    [0, 3, 7, 11].forEach(i => add('text', { x: box.x(i), y: H - 6, 'text-anchor': 'middle' }, `Week ${i + 1}`));
-    add('line', { class: 'event', x1: box.x(LAUNCH), x2: box.x(LAUNCH), y1: T, y2: H - B });
-    add('text', { x: box.x(LAUNCH) - 6, y: T + 10, 'text-anchor': 'end' }, 'New landing page');
-    lines = { raw: add('path', { class: 'raw' }), clean: add('path', { class: 'clean' }) };
-    ends = { raw: add('text', {}, 'Raw'), clean: add('text', {}, 'Cleaned') };
+    [0, 3, 7, 11].forEach(i => add('text', { x: box.x(i), y: H - 4, 'text-anchor': i === 11 ? 'end' : i ? 'middle' : 'start' }, `Week ${i + 1}`));
+    areas = {};
+    KEYS.forEach(k => { areas[k] = add('path', { class: 'ar', fill: CHANNELS[k].color }); });
+    rawLine = add('path', { class: 'rawl' });
+    add('line', { class: 'ev', x1: box.x(LAUNCH), x2: box.x(LAUNCH), y1: T, y2: H - B });
+    add('text', { x: box.x(LAUNCH) - 6, y: T - 4, 'text-anchor': 'end' }, 'New landing page');
+    add('circle', { class: 'evd', cx: box.x(LAUNCH), cy: H - B, r: 5 });
     hair = add('line', { class: 'hair', y1: T, y2: H - B, opacity: 0 });
   };
-
-  const paint = s => {
-    const { H, T, B, L, W, R } = box;
-    const top = s.top, y = v => H - B - v / top * (H - B - T);
-    box.grid.forEach((g, i) => {
-      const v = top / 4 * i, gy = y(v);
-      g.line.setAttribute('x1', L); g.line.setAttribute('x2', W - R); g.line.setAttribute('y1', gy); g.line.setAttribute('y2', gy);
-      g.text.setAttribute('x', L - 8); g.text.setAttribute('y', gy + 4);
-      g.text.textContent = fmt(Math.round(v));
-    });
-    for (const key of ['raw', 'clean']) {
-      lines[key].setAttribute('d', s[key].map((v, i) => `${i ? 'L' : 'M'}${box.x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(''));
-      lines[key].setAttribute('opacity', key === 'clean' ? s.cleanOn : 1);
-      const end = ends[key];
-      end.setAttribute('x', box.x(11) + 8);
-      end.setAttribute('y', y(s[key][11]) + 4);
-      end.setAttribute('opacity', R > 20 ? (key === 'clean' ? s.cleanOn : 1) : 0);
-    }
-  };
   const target = () => {
-    const d = data[channel];
-    return { raw: d.map(w => w.raw), clean: d.map(w => w.clean), top: nice(Math.max(...d.map(w => w.raw)) * 1.05), cleanOn: view === 'clean' ? 1 : 0 };
+    const f = view === 'clean' ? w => w.clean : w => w.raw;
+    const stack = {};
+    KEYS.forEach(k => { stack[k] = data[k].map(f); });
+    const rawTotal = sum(KEYS, w => w.raw);
+    return { stack, rawTotal, top: nice(Math.max(...rawTotal) * 1.05), rawOn: view === 'clean' ? 1 : 0, dim: Object.fromEntries(KEYS.map(k => [k, channel === 'all' || channel === k ? 1 : .18])) };
   };
   const mix = (a, b, k) => ({
-    raw: a.raw.map((v, i) => v + (b.raw[i] - v) * k), clean: a.clean.map((v, i) => v + (b.clean[i] - v) * k),
-    top: a.top + (b.top - a.top) * k, cleanOn: a.cleanOn + (b.cleanOn - a.cleanOn) * k
+    stack: Object.fromEntries(KEYS.map(c => [c, a.stack[c].map((v, i) => v + (b.stack[c][i] - v) * k)])),
+    rawTotal: b.rawTotal, top: a.top + (b.top - a.top) * k, rawOn: a.rawOn + (b.rawOn - a.rawOn) * k,
+    dim: Object.fromEntries(KEYS.map(c => [c, a.dim[c] + (b.dim[c] - a.dim[c]) * k]))
   });
+  const paint = s => {
+    const { H, T, B, L, W, R } = box, y = v => H - B - v / s.top * (H - B - T);
+    box.grid.forEach((g, i) => {
+      const v = s.top / 4 * i, gy = y(v);
+      Object.entries({ x1: L, x2: W - R, y1: gy, y2: gy }).forEach(([k, val]) => g.line.setAttribute(k, val));
+      g.text.setAttribute('x', L - 8); g.text.setAttribute('y', gy + 4); g.text.textContent = fmt(v);
+    });
+    let base = WIGGLE.map(() => 0);
+    KEYS.forEach(k => {
+      const top = base.map((b, i) => b + s.stack[k][i]);
+      const up = top.map((v, i) => `${i ? 'L' : 'M'}${box.x(i).toFixed(1)} ${y(v).toFixed(1)}`).join('');
+      const down = base.map((v, i) => `L${box.x(i).toFixed(1)} ${y(v).toFixed(1)}`).reverse().join('');
+      areas[k].setAttribute('d', up + down + 'Z');
+      areas[k].setAttribute('opacity', s.dim[k]);
+      base = top;
+    });
+    rawLine.setAttribute('d', s.rawTotal.map((v, i) => `${i ? 'L' : 'M'}${box.x(i).toFixed(1)} ${y(v).toFixed(1)}`).join(''));
+    rawLine.setAttribute('opacity', s.rawOn);
+  };
+  const calmNow = () => typeof calm !== 'undefined' ? calm : matchMedia('(prefers-reduced-motion: reduce)').matches;
   const go = () => {
     const to = target(), from = shown || to, began = performance.now();
     cancelAnimationFrame(frameId);
     const run = now => {
-      const k = calm ? 1 : Math.min(1, (now - began) / 450), e = 1 - (1 - k) ** 3;
+      const k = calmNow() ? 1 : Math.min(1, (now - began) / 450), e = 1 - (1 - k) ** 3;
       shown = mix(from, to, e);
       paint(shown);
       if (k < 1) frameId = requestAnimationFrame(run);
@@ -975,46 +803,77 @@ if (chartEl) {
     run(began);
   };
 
-  const kpis = document.getElementById('dash-kpis');
+  /* Scorecards, legend, channel list, plain-words line, table */
+  const cardsEl = document.getElementById('dash-kpis');
+  const legend = document.getElementById('dash-legend');
+  const list = document.getElementById('dash-list');
   const read = document.getElementById('dash-read');
   const table = document.getElementById('dash-table');
+  const filterEl = document.getElementById('dash-filter');
+  const select = document.getElementById('dash-channel');
+  select.append(el('option', { value: 'all', text: 'All channels' }), ...KEYS.map(k => el('option', { value: k, text: CHANNELS[k].label })));
+  select.addEventListener('change', () => { channel = select.value; update(); });
+
+  const spark = vals => {
+    const W = 120, H = 30, top = Math.max(...vals) * 1.1, lo = Math.min(...vals) * .8;
+    const pts = vals.map((v, i) => [i / 11 * W, H - (v - lo) / (top - lo) * H]);
+    const d = pts.map((p, i) => `${i ? 'L' : 'M'}${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join('');
+    return el('svg:svg', { class: 'rep-spk', viewBox: `0 0 ${W} ${H}`, preserveAspectRatio: 'none', 'aria-hidden': 'true' },
+      [el('svg:path', { class: 'a', d: `${d}L${W} ${H}L0 ${H}Z` }), el('svg:path', { d })]);
+  };
+  const last4 = a => a.slice(8).reduce((s, v) => s + v, 0), prev4 = a => a.slice(4, 8).reduce((s, v) => s + v, 0);
+
   const update = () => {
-    const d = data[channel], clean = view === 'clean';
-    const visits = d.reduce((s, w) => s + (clean ? w.clean : w.raw), 0);
-    const conv = d.reduce((s, w) => s + (clean ? w.orders : w.tagged), 0);
-    kpis.innerHTML = '';
-    [[fmt(Math.round(visits / 12)), 'visits a week'], [fmt(conv), clean ? 'real orders' : 'conversions'], [`${(conv / visits * 100).toFixed(1)}%`, 'conversion rate']].forEach(([n, l]) => {
-      const el = document.createElement('div');
-      const b = document.createElement('b'), t = document.createElement('span');
-      b.textContent = n; t.textContent = l;
-      el.append(b, t);
-      kpis.append(el);
-    });
+    const clean = view === 'clean', keys = channel === 'all' ? KEYS : [channel];
+    const visits = sum(keys, w => clean ? w.clean : w.raw);
+    const conv = sum(keys, w => clean ? w.orders : w.tagged);
+    const rate = visits.map((v, i) => conv[i] / v * 100);
+    const noise = sum(keys, w => w.raw - w.clean);
+    const tot = a => a.reduce((s, v) => s + v, 0);
+    const cards = [
+      ['Sessions', fmt(tot(visits)), delta(last4(visits), prev4(visits)), visits],
+      [clean ? 'Orders' : 'Key events', fmt(tot(conv)), delta(last4(conv), prev4(conv)), conv],
+      ['Conversion rate', `${(tot(conv) / tot(visits) * 100).toFixed(1)}%`, delta(last4(conv) / last4(visits), prev4(conv) / prev4(visits)), rate],
+      clean ? ['Removed as noise', fmt(tot(noise)), el('span', { text: 'staff, bots, test orders' }), noise] : ['Removed as noise', '0', el('span', { text: 'no filters yet' }), null]
+    ];
+    cardsEl.replaceChildren(...cards.map(([k, v, d, s]) => el('div', { class: 'rep-card' }, [el('span', { class: 'rep-k', text: k }), el('span', { class: 'rep-v', text: v }), el('span', { class: 'rep-d' }, [d]), ...(s ? [spark(s)] : [])])));
+
+    legend.replaceChildren(...KEYS.map(k => el('span', {}, [el('i', { style: `background:${CHANNELS[k].color}` }), CHANNELS[k].label])), ...(clean ? [el('span', {}, [el('i', { class: 'ln' }), 'Raw total'])] : []));
+
+    const shareBase = KEYS.reduce((s, k) => s + last4(data[k].map(w => clean ? w.clean : w.raw)), 0);
+    list.replaceChildren(...KEYS.map(k => {
+      const v = data[k].map(w => clean ? w.clean : w.raw), n = last4(v), share = n / shareBase * 100;
+      const b = el('button', { type: 'button', class: 'rep-row', 'aria-pressed': String(channel === k) }, [
+        el('span', { class: 'n' }, [el('i', { style: `background:${CHANNELS[k].color}` }), CHANNELS[k].label]),
+        el('span', { class: 'v' }, [fmt(n), el('small', { text: `${share.toFixed(0)}%` }), ' ', delta(n, prev4(v))]),
+        el('span', { class: 'bar' }, [el('span', { style: `width:${share.toFixed(1)}%;background:${CHANNELS[k].color}` })])
+      ]);
+      b.addEventListener('click', () => { channel = channel === k ? 'all' : k; update(); });
+      return b;
+    }));
+
+    filterEl.replaceChildren(...(clean ? ['Internal traffic excluded', 'Bots filtered', 'Orders only'].map(t => el('i', { text: t })) : [el('span', { text: 'No filters applied' })]));
     read.textContent = READS[channel][view];
-    svg.setAttribute('aria-label', `${CHANNELS[channel].label} visits per week over 12 weeks, ${view === 'clean' ? 'raw and cleaned' : 'raw'}. ${READS[channel][view]}`);
-    table.innerHTML = `<table><thead><tr><th>Week</th><th>Raw visits</th><th>Cleaned</th><th>Conversions</th><th>Real orders</th></tr></thead><tbody>${d.map((w, i) => `<tr><td>${i + 1}</td><td>${fmt(w.raw)}</td><td>${fmt(w.clean)}</td><td>${w.tagged}</td><td>${w.orders}</td></tr>`).join('')}</tbody></table>`;
+    select.value = channel;
+    svg.setAttribute('aria-label', `Sessions per week per channel over 12 weeks, ${clean ? 'cleaned, with the raw total as a dashed line' : 'raw GA4'}. ${READS[channel][view]}`);
+    const rows = channel === 'all' ? WIGGLE.map((_, i) => KEYS.reduce((s, k) => ({ raw: s.raw + data[k][i].raw, clean: s.clean + data[k][i].clean, tagged: s.tagged + data[k][i].tagged, orders: s.orders + data[k][i].orders }), { raw: 0, clean: 0, tagged: 0, orders: 0 })) : data[channel];
+    table.innerHTML = `<table><thead><tr><th>Week</th><th>Raw sessions</th><th>Cleaned</th><th>Key events</th><th>Real orders</th></tr></thead><tbody>${rows.map((w, i) => `<tr><td>${i + 1}</td><td>${fmt(w.raw)}</td><td>${fmt(w.clean)}</td><td>${w.tagged}</td><td>${w.orders}</td></tr>`).join('')}</tbody></table>`;
     document.querySelectorAll('[data-view]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === view)));
-    document.querySelectorAll('[data-channel]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.channel === channel)));
     go();
   };
-
-  const row = document.getElementById('dash-channel');
-  for (const key in CHANNELS) {
-    const b = document.createElement('button');
-    b.className = 'mini'; b.type = 'button'; b.dataset.channel = key; b.textContent = CHANNELS[key].label;
-    b.addEventListener('click', () => { channel = key; update(); });
-    row.append(b, ' ');
-  }
   document.querySelectorAll('[data-view]').forEach(b => b.addEventListener('click', () => { view = b.dataset.view; update(); }));
 
   const hover = e => {
     const r = chartEl.getBoundingClientRect(), px = e.clientX - r.left;
     const i = Math.max(0, Math.min(11, Math.round((px - box.L) / (box.W - box.L - box.R) * 11)));
-    const w = data[channel][i], x = box.x(i);
+    const x = box.x(i), clean = view === 'clean';
     hair.setAttribute('x1', x); hair.setAttribute('x2', x); hair.setAttribute('opacity', 1);
+    const keys = channel === 'all' ? KEYS : [channel];
+    tip.replaceChildren(el('strong', { text: `Week ${i + 1}${i === LAUNCH ? ', new landing page' : ''}` }),
+      ...keys.slice().reverse().map(k => el('div', {}, [el('i', { style: `background:${CHANNELS[k].color}` }), CHANNELS[k].label, el('b', { text: fmt(clean ? data[k][i].clean : data[k][i].raw) })])),
+      ...(clean && channel === 'all' ? [el('div', {}, ['Raw total', el('b', { text: fmt(sum(KEYS, w => w.raw)[i]) })])] : []));
     tip.hidden = false;
-    tip.textContent = view === 'clean' ? `Week ${i + 1}: ${fmt(w.clean)} cleaned, ${fmt(w.raw)} raw` : `Week ${i + 1}: ${fmt(w.raw)} visits`;
-    tip.style.left = `${Math.min(x + 10, box.W - tip.offsetWidth)}px`;
+    tip.style.left = `${x > box.W / 2 ? x - tip.offsetWidth - 10 : x + 10}px`;
   };
   const out = () => { tip.hidden = true; hair.setAttribute('opacity', 0); };
   chartEl.addEventListener('pointermove', hover);

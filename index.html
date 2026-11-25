@@ -29,6 +29,7 @@
   <script src="assets/js/vendor/gsap.min.js" defer></script>
   <script src="assets/js/vendor/ScrollTrigger.min.js" defer></script>
   <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/quote.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -50,7 +51,7 @@
     <h1 id="name"><span>Jericho</span> <span>Degu</span></h1>
     <canvas id="field" aria-hidden="true"></canvas>
     <div class="side">
-      <p class="lead">Web developer in Eindhoven. I build fast, accessible marketing sites, and the AI automation that keeps them moving.</p>
+      <p class="lead">Web developer and AI automation engineer in Eindhoven. I build fast, accessible sites, and AI agents that take the repeated work off people's desks, with a person deciding what goes out.</p>
       <p class="links"><a class="btn" href="#projects">See the work</a> <a class="btn quiet" href="assets/Jericho-Degu-CV.pdf">Download CV</a></p>
     </div>
   </div>
@@ -125,16 +126,21 @@
   <div class="browser"><p class="url">localhost, demo mode</p><img id="desk-shot" src="assets/img/projects/desk-map.webp" width="1440" height="900" loading="lazy" decoding="async" alt="Map of how people move through a site, from searches and channels to pages and checkout."></div>
 </section>
 
-<section class="exhibit flowmap" id="map" aria-label="Interactive growth map on an invented shop">
-  <h2>Where people flow</h2>
+<section class="exhibit flowmap" id="map" aria-label="Interactive funnel on an invented shop">
+  <h2>Where people drop off</h2>
   <div class="exhibit-copy">
     <h3>Try it yourself</h3>
-    <p>From the map, the system ranks the next moves from the data. A person picks one, and the result gets measured at 28 and 56 days. Here it is on an invented coffee shop. Pick a move and watch the flow change.</p>
+    <p>The system reads the funnel every day and ranks the next moves by what they should add. A person picks one, and the result gets measured at 28 and 56 days. Here it is on an invented coffee shop. Apply a move and watch which step it fixes.</p>
     <div class="moves" id="moves"></div>
     <p class="flow-total" id="flow-total" role="status"></p>
     <p class="sim-note">Invented shop, invented numbers.</p>
   </div>
-  <svg id="flow-svg" role="img" aria-label="Visitors flow from Google, AI search, social and email to four pages, and from there to orders and newsletter signups."></svg>
+  <div class="ga" id="funnel">
+    <div class="ga-top"><svg aria-hidden="true"><use href="assets/img/logos.svg#googleanalytics"/></svg><b>Funnel exploration</b><span class="ga-sp"></span><span class="ga-muted">Last 28 days</span></div>
+    <div class="ga-bar"><span class="ga-chip" id="fn-seg">All users</span><span class="ga-muted">Breakdown: session source</span></div>
+    <div class="fn-chart" id="fn-chart"></div>
+    <div class="fn-tablewrap"><table class="fn-table" id="fn-table"></table></div>
+  </div>
 </section>
 
 <section class="exhibit bone" id="data" aria-label="Interactive analytics dashboard with invented data">
@@ -142,40 +148,65 @@
   <div class="exhibit-copy">
     <h3>GA4 and Looker Studio dashboards</h3>
     <p>Most reports count too much: staff logging in, bots, a page view tagged as a conversion. I set up GA4 and GTM, take that noise out, and build Looker Studio and custom dashboards per channel, with a line in plain words under the numbers so a marketing team knows what to do next.</p>
-    <p>Switch between raw and cleaned, then pick a channel. The shop and its numbers are invented.</p>
+    <p>Switch between raw and cleaned, then pick a channel or click one in the list. The look follows the client dashboards I build; the shop and its numbers are invented.</p>
     <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#googleanalytics"/></svg>GA4</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#looker"/></svg>Looker Studio</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#googletagmanager"/></svg>GTM</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#googlesearchconsole"/></svg>Search Console</li></ul>
   </div>
   <div class="dash">
-    <p class="mini-row" id="dash-view"><button class="mini" type="button" data-view="raw" aria-pressed="false">Raw GA4</button> <button class="mini" type="button" data-view="clean" aria-pressed="true">Cleaned</button></p>
-    <p class="mini-row" id="dash-channel"></p>
-    <div class="kpis" id="dash-kpis"></div>
-    <p class="legend"><span class="key"></span>Cleaned <span class="key dashed"></span>Raw <span class="key mark"></span>Change made</p>
-    <div class="chart" id="dash-chart"><div class="chart-tip" id="dash-tip" hidden></div></div>
-    <p class="dash-read" id="dash-read" aria-live="polite"></p>
+    <div class="rep" id="rep">
+      <div class="rep-top"><svg aria-hidden="true"><use href="assets/img/logos.svg#looker"/></svg><b>Demo shop: channel report</b><span class="rep-sp"></span><span class="rep-upd">Data from GA4, last 12 weeks</span></div>
+      <div class="rep-bar">
+        <div class="rep-seg" role="group" aria-label="Data"><button type="button" data-view="raw" aria-pressed="false">Raw GA4</button><button type="button" data-view="clean" aria-pressed="true">Cleaned</button></div>
+        <label class="rep-sel">Channel <select id="dash-channel"></select></label>
+        <span class="rep-filter" id="dash-filter"></span>
+      </div>
+      <div class="rep-cards" id="dash-kpis"></div>
+      <div class="rep-card rep-main">
+        <div class="rep-h"><b>Sessions per channel</b><small>per week, the dot is a change we made</small></div>
+        <p class="rep-legend" id="dash-legend"></p>
+        <div class="chart" id="dash-chart"><div class="chart-tip" id="dash-tip" hidden></div></div>
+      </div>
+      <div class="rep-card rep-next"><b>What to do next</b><p id="dash-read" aria-live="polite"></p></div>
+      <div class="rep-card"><div class="rep-h"><b>Channels</b><small>last 4 weeks against the 4 before, click to filter</small></div><div class="rep-list" id="dash-list"></div></div>
+    </div>
     <details class="dash-table"><summary>Show as a table</summary><div id="dash-table"></div></details>
   </div>
 </section>
 
-<section class="exhibit teal" id="agents" aria-label="Interactive simulation of an agent pipeline">
-  <h2>Run the pipeline</h2>
+<section class="exhibit teal" id="agents" aria-label="Interactive content bot on an invented shop">
+  <h2>Update before new</h2>
   <div class="exhibit-copy">
-    <h3>The agent loop behind it</h3>
-    <p>I designed and built the system alone. It notices work, sends subagents out for the facts in parallel, and loops each draft through checks until it passes. A person decides what goes out, the result gets measured, and each lesson makes the next run quicker. Try it: nothing passes Decision until you click, and a rejected draft goes back round.</p>
-    <p class="count" id="sim-count">0 waiting for you</p>
-    <div class="sim-actions">
-      <button id="approve" disabled>Approve</button>
-      <button id="reject" class="quiet" disabled>Reject</button>
-    </div>
-    <ol class="sim-log" id="sim-log" aria-live="off"></ol>
+    <h3>The content bot</h3>
+    <p>Most content plans start with a new blog post. When I measured it, updating pages that already rank got seen by Google sooner and brought more traffic than new posts. So the content bot starts from Search Console, not from a topic list.</p>
+    <p>It sorts every page into three kinds: losing clicks, just under page one, or seen but never clicked. It ranks them by what an update should add, drafts the fix, checks it, and waits for a person. Every change is measured at 28 and 56 days, and the result feeds the table of what works.</p>
+    <p>Pick a page to see why it is on the list. The shop and its numbers are invented.</p>
+    <p class="count" id="sim-count"></p>
   </div>
-  <svg viewBox="0 0 600 380" id="sim-svg" role="img" aria-label="Events move around a loop of six stations. Subagents branch off at Facts, drafts circle a check loop, everything stops at the human decision, and lessons return to the centre.">
-    <path id="sim-path" d="M90 50H510a60 60 0 0 1 60 60V270a60 60 0 0 1-60 60H90a60 60 0 0 1-60-60V110a60 60 0 0 1 60-60Z"/>
-    <g id="sim-subs"></g>
-    <g id="sim-stations"></g>
-    <g id="sim-tokens"></g>
-    <text x="300" y="232" class="mid" id="sim-big">0</text>
-    <text x="300" y="262" class="mid-label">lessons learned</text>
-  </svg>
+  <div class="gsc" id="gsc">
+    <div class="gsc-top"><svg aria-hidden="true"><use href="assets/img/logos.svg#googlesearchconsole"/></svg><b>Content bot</b><span class="gsc-prop">demo-shop.nl</span><span class="gsc-sp"></span><span class="gsc-muted">Last 90 days against the 90 before</span></div>
+    <div class="gsc-tablewrap"><table class="gsc-table" id="gsc-table"></table></div>
+    <div class="gsc-detail" id="gsc-detail"></div>
+    <details class="gsc-learn" open><summary>What works on this site, by type of change</summary><div id="gsc-learn"></div></details>
+  </div>
+</section>
+
+<section class="exhibit orange" id="quote" aria-label="Interactive quote matcher on an invented catalogue">
+  <h2>Request in, quote out</h2>
+  <div class="exhibit-copy">
+    <h3>Matching requests to a catalogue</h3>
+    <p>My recruitment pipeline scores CVs against a role. Quote requests are the same problem: messy input, a catalogue, and a person who has to trust the match. So every match shows why it was picked, unsure lines go to a person, and nothing becomes a quote until someone confirms each line.</p>
+    <p>Pick an example or type your own request, in English or Dutch. Here the reading step is plain JavaScript so it runs in your browser; in production that step is an LLM call with the same rules around it. Invented supplier, invented parts.</p>
+    <ul class="logos tech"><li><svg aria-hidden="true"><use href="assets/img/logos.svg#python"/></svg>Python</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#claude"/></svg>Claude API</li><li>SQL</li><li><svg aria-hidden="true"><use href="assets/img/logos.svg#javascript"/></svg>JavaScript</li></ul>
+  </div>
+  <div class="qm" id="qm">
+    <p class="mini-row" id="qm-samples"></p>
+    <label class="qm-label" for="qm-in">Customer request</label>
+    <textarea id="qm-in" rows="6" spellcheck="false"></textarea>
+    <p class="mini-row"><button type="button" class="mini" id="qm-run">Match again</button></p>
+    <div id="qm-out" aria-live="polite"></div>
+    <p class="qm-sum" id="qm-sum" role="status"></p>
+    <p class="mini-row"><button type="button" class="mini" id="qm-quote" disabled>Draft the quote</button></p>
+    <div class="qm-doc" id="qm-doc" hidden></div>
+  </div>
 </section>
 
 <section class="exhibit bone" aria-label="Interactive demo of a review tour">
